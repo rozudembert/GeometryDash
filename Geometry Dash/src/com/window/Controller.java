@@ -51,7 +51,9 @@ public class Controller {
 		for(int xx = 0; xx < Game.WIDTH *4 ; xx += 128)
 			addObject(new Block(xx, Game.HEIGHT - 160, 0, ObjectId.Block));
 		for(int xx = 64; xx < Game.WIDTH *4 ; xx += 128)
-			addObject(new Block(xx, Game.HEIGHT - 160, 1, ObjectId.Block));
+			addObject(new Block(xx, Game.HEIGHT - 160, 1, ObjectId.Block));		
 		
+		for(int xx = 2000; xx < Game.WIDTH *4 ; xx += 64)
+			addObject(new Block(xx, Game.HEIGHT - 160 - 64, 1, ObjectId.Block));
 	}
 }
