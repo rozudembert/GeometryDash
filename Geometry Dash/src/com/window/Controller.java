@@ -45,13 +45,11 @@ public class Controller {
 		
 		//line on the right side
 		for(int yy = 0; yy < Game.HEIGHT + 64; yy += 64)
-			addObject(new Block(00, yy, ObjectId.Block));		
+			addObject(new Block(00, yy, 1, ObjectId.Block));		
 		
 		//low ground line
 		for(int xx = 0; xx < Game.WIDTH *4 ; xx += 64)
-			addObject(new Block(xx, Game.HEIGHT - 160, ObjectId.Block));
+			addObject(new Block(xx, Game.HEIGHT - 160, 0, ObjectId.Block));
 		
-		for(int xx = 400; xx < 500 ; xx += 64)
-			addObject(new Spike(xx, Game.HEIGHT - 224, ObjectId.Spike));
 	}
 }

@@ -12,15 +12,22 @@ import java.util.LinkedList;
 
 import com.framework.GameObject;
 import com.framework.ObjectId;
+import com.framework.Texture;
+import com.window.Game;
 
 public class Block extends GameObject{
+	
+	Texture texture = Game.getInstance();
+	public int type;
 	
 	//block dimensions
 	public int width = 64;
 	public int height = 64;
-	
-	public Block(int x, int y, ObjectId id) {
+		
+	//public block (x coordinate, y coordinate, type, objectId)
+	public Block(int x, int y, int type, ObjectId id) {
 		super(x, y, id);
+		this.type = type;
 	}
 	
 	public void update(LinkedList<GameObject> object) {
@@ -29,8 +36,14 @@ public class Block extends GameObject{
 	
 	//the block appears as a white outlined rectangle
 	public void render (Graphics graphics) {
-		graphics.setColor(Color.WHITE);
-		graphics.drawRect((int)x, (int)y, width, height);
+		if(type == 0)
+			graphics.drawImage(texture.block[0], (int)x, (int)y, null);
+		if(type == 1)
+			graphics.drawImage(texture.block[1], (int)x, (int)y, null);
+		
+		//the block appears as a white outlined rectangle
+		//graphics.setColor(Color.WHITE);
+		//graphics.drawRect((int)x, (int)y, width, height);
 	}
 	
 	//creates a rectangle to use in collision detection

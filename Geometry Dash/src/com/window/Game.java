@@ -10,6 +10,7 @@ import java.util.Random;
 
 import com.framework.KeyInput;
 import com.framework.ObjectId;
+import com.framework.Texture;
 import com.objects.Block;
 import com.objects.Player;
 
@@ -28,9 +29,12 @@ public class Game extends Canvas implements Runnable{
 	
 	Controller controller;
 	Camera cam;
+	static Texture texture;
 	
 	//
 	private void initialise() {
+		
+		texture = new Texture();
 		
 		controller = new Controller();
 		
@@ -43,6 +47,9 @@ public class Game extends Canvas implements Runnable{
 		this.addKeyListener(new KeyInput(controller));
 	}
 	
+	public static Texture getInstance() {
+		return texture;
+	}
 	
 	
 	/*
