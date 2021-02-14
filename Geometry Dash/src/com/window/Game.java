@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable{
 		
 		cam = new Camera(0, 0);
 		
-		controller.addObject(new Player(200, 496, controller, ObjectId.Player));
+		controller.addObject(new Player(200, 496, controller, 2, ObjectId.Player));
 		
 		controller.createLevel();
 		

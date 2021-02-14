@@ -1,1 +1,11 @@
 TODO - List:
+
+Level erstellen method:
+	doppelter for-loop für xx (width) und yy (height
+	int pixel = image.getRGB(xx,yy)
+	int red = (pixel >> 16) & 0xff;
+	int grün
+	int blue
+	
+	wenn (RGB Code)
+		controller.addObject

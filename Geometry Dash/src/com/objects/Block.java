@@ -18,6 +18,8 @@ import com.window.Game;
 public class Block extends GameObject{
 	
 	Texture texture = Game.getInstance();
+	
+	//what type of block is it -> used for texture
 	public int type;
 	
 	//block dimensions
@@ -36,9 +38,9 @@ public class Block extends GameObject{
 	
 	//the block appears as a white outlined rectangle
 	public void render (Graphics graphics) {
-		if(type == 0)
+		if(type == 0) //example Block
 			graphics.drawImage(texture.block[0], (int)x, (int)y, null);
-		if(type == 1)
+		if(type == 1) //example Block
 			graphics.drawImage(texture.block[1], (int)x, (int)y, null);
 		
 		//the block appears as a white outlined rectangle

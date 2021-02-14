@@ -8,35 +8,40 @@ public class Texture {
 	
 	BufferedImage image;
 	
+	SpriteSheet bs; //Sprite for Block Sheet
+	SpriteSheet ps; //Sprite for Player Sheet
 	private BufferedImage block_sheet = null;
+	private BufferedImage player_sheet = null;
 	
 	//array to store the images in
-	public BufferedImage[] block = new BufferedImage[2];
+	public BufferedImage[] block = new BufferedImage[2]; //array has to have the size of different blocks
+	public BufferedImage[] player = new BufferedImage[3];
 	
 	public Texture() {
 		
 		ImageLoader loader = new ImageLoader();
+		
+		//load the sheets from our files
 		try {
 			block_sheet = loader.loadImage("/block_sheet.png");
+			player_sheet = loader.loadImage("/player_sheet.png");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		image = block_sheet;
+		bs = new SpriteSheet(block_sheet);
+		ps = new SpriteSheet(player_sheet);
 		
 		getTextures();
 	}
 	
-	//assigns the images from the ssheets
+	//assign the images from the sheets to the arrays
 	public void getTextures() {
-		block[0] = grabImage(1, 1, 64, 64);
-		block[1] = grabImage(2, 1, 64, 64);
-	}
-	
-	//method to grab the image out of our sheets
-	public BufferedImage grabImage (int col, int row, int width, int height) {
-		BufferedImage img = image.getSubimage((col*width) - width, (row * height) - height, width, height);
-		return img;
-	}
+		block[0] = bs.grabImage(1, 1, 64, 64);
+		block[1] = bs.grabImage(2, 1, 64, 64);
+		player[0] = ps.grabImage(1, 1, 64, 64);
+		player[1] = ps.grabImage(2, 1, 64, 64);
+		player[2] = ps.grabImage(3, 1, 64, 64);
+	}	
 }

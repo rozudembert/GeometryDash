@@ -12,7 +12,9 @@ import java.util.LinkedList;
 
 import com.framework.GameObject;
 import com.framework.ObjectId;
+import com.framework.Texture;
 import com.window.Controller;
+import com.window.Game;
 
 public class Player extends GameObject{
 
@@ -24,13 +26,17 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//Visible Player hitbox can be enabled here
-	private boolean showHitbox = true;
+	private boolean showHitbox = false;
+	
+	Texture texture = Game.getInstance();
 	
 	private Controller controller;
+	int skin; //What Skin the player is wearing 
 	
-	public Player(float x, float y, Controller controller, ObjectId id) {
+	public Player(float x, float y, Controller controller, int skin, ObjectId id) {
 		super(x, y, id);
 		this.controller = controller;
+		this.skin = skin;
 	}
 	
 	
@@ -101,9 +107,14 @@ public class Player extends GameObject{
 	
 	//method to render the graphics
 	public void render(Graphics graphics) {
+		
+		if(skin == 0) graphics.drawImage(texture.player[0], (int)x, (int)y, null);
+		if(skin == 1) graphics.drawImage(texture.player[1], (int)x, (int)y, null);
+		if(skin == 2) graphics.drawImage(texture.player[2], (int)x, (int)y, null);
+		
 		//the player appears as a blue box
-		graphics.setColor(Color.blue);
-		graphics.fillRect((int)x, (int)y, (int)width, (int)height);
+		//graphics.setColor(Color.blue);
+		//graphics.fillRect((int)x, (int)y, (int)width, (int)height);
 		
 		//given graphics get casted in 2d graphics to use for collision
 		Graphics2D g2d = (Graphics2D) graphics; 
