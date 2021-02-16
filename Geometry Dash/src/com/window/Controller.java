@@ -40,6 +40,9 @@ public class Controller {
 		this.object.remove(object);
 	}
 	
+	/*
+	 * 
+	 *
 	//to create all the blocks in the game
 	public void createLevel() {
 		
@@ -56,4 +59,5 @@ public class Controller {
 		for(int xx = 2000; xx < Game.WIDTH *4 ; xx += 64)
 			addObject(new Block(xx, Game.HEIGHT - 160 - 64, 1, ObjectId.Block));
 	}
+	*/
 }
