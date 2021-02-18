@@ -62,7 +62,7 @@ public class Player extends GameObject{
 			GameObject tempObject = controller.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Player) {
-				tempObject.setVelX(5);
+				tempObject.setVelX(7);
 			}
 		}	
 	}
