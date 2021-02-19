@@ -114,6 +114,7 @@ public class Player extends GameObject{
 	public void death() {
 		
 		//Spieler wird entfernt
+		System.out.println("Player died due to collision");
 		controller.removeObject(this);
 		
 	}
