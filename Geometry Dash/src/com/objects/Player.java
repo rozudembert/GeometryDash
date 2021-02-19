@@ -17,7 +17,7 @@ import com.window.Controller;
 import com.window.Game;
 
 public class Player extends GameObject{
-
+	
 	//players width and height
 	public float width = 64, height = 64;
 	
@@ -74,10 +74,12 @@ public class Player extends GameObject{
 			
 			if(tempObject.getId() == ObjectId.Block) {
 				
-				//collision with the top
+				//collision with the top -> Player dies
 				if(getBorderTop().intersects(tempObject.getBorder())){
-					y = tempObject.getY() + height/2; //height/2 kann verändert werden damit es besser passt
-					velY = 0;
+					death();
+					
+					//y = tempObject.getY() + height/2; //height/2 kann verändert werden damit es besser passt
+					//velY = 0;
 				}
 				
 				//collision with the ground
@@ -90,12 +92,16 @@ public class Player extends GameObject{
 				
 				//Right side collision
 				if(getBorderRight().intersects(tempObject.getBorder())){
-					x = tempObject.getX() - width;					
+					death();
+					
+					//x = tempObject.getX() - width;					
 				}
 				
 				//Left side collision
 				if(getBorderLeft().intersects(tempObject.getBorder())){
-					x = tempObject.getX() + width + 2;
+					death();
+					
+					//x = tempObject.getX() + width + 2;
 				}				
 			}	
 			
@@ -103,6 +109,13 @@ public class Player extends GameObject{
 				//player death
 			}
 		}
+	}
+	
+	public void death() {
+		
+		//Spieler wird entfernt
+		controller.removeObject(this);
+		
 	}
 	
 	//method to render the graphics
