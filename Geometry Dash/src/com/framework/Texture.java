@@ -8,8 +8,8 @@ public class Texture {
 	
 	BufferedImage image;
 	
-	SpriteSheet bs; //Sprite for Block Sheet
-	SpriteSheet ps; //Sprite for Player Sheet
+	SpriteSheet bs, ps; //Sprite for Block Sheet (bs) and Player Sheet (ps)
+	
 	private BufferedImage block_sheet = null;
 	private BufferedImage player_sheet = null;
 	
