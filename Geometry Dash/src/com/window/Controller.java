@@ -1,16 +1,30 @@
 package com.window;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import com.framework.GameObject;
 import com.framework.ObjectId;
 import com.objects.Block;
+import com.objects.Goal;
+import com.objects.Player;
 import com.objects.Spike;
 
 public class Controller {
-	
+
 	//Creates LinkedList with every GameObject in the game
 	public LinkedList <GameObject> object = new LinkedList<GameObject>();
+	
+	private Camera cam;
+	private BufferedImage level2 = null;
+	
+	public Controller(Camera cam) {
+		this.cam = cam;
+		
+		//load level image from file system
+		ImageLoader loader = new ImageLoader();
+		level2 = loader.loadImage("/level_2.png");
+	}
 	
 	//Update List
 	public void update() {
@@ -30,6 +44,51 @@ public class Controller {
 		}
 	}
 	
+	//Recieves an image as input and converts it into GameObjects
+	public void loadLevel(BufferedImage image) {
+		
+		int width = image.getWidth();
+		int height = image.getHeight();
+		
+		//To go through every pixel in the image
+		for(int xx = 0; xx < width; xx++) {
+			for(int yy = 0; yy < height; yy++) {
+				
+				//get RGB value per Pixel
+				int pixel = image.getRGB(xx, yy);
+				int red = (pixel >> 16) & 0xff;
+				int green = (pixel >> 8) & 0xff;
+				int blue = (pixel) & 0xff;
+				
+				//add Object depending on color code
+				if(red == 255 && green == 255 && blue == 255)
+					addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
+				if(red == 0 && green == 0 && blue == 255)
+					addObject(new Player(xx*64, yy*64, this, 0, cam, ObjectId.Player));
+				if(red == 255 && green == 255 && blue == 0)
+					addObject(new Goal(xx*64, yy*64, ObjectId.Goal));
+			}
+		}		
+	}
+	
+	public void switchLevel() {
+		clearLevel();
+		cam.setX(0);
+		
+		switch(Game.LEVEL) {
+		
+			case 1:
+				loadLevel(level2);				
+				break;		
+		}
+		
+		Game.LEVEL++;
+	}
+	
+	private void clearLevel() {
+		object.clear();
+	}
+	
 	//add Objects in the world	
 	public void addObject(GameObject object) {
 		this.object.add(object);
@@ -39,25 +98,4 @@ public class Controller {
 	public void removeObject(GameObject object) {
 		this.object.remove(object);
 	}
-	
-	/*
-	 * 
-	 *
-	//to create all the blocks in the game
-	public void createLevel() {
-		
-		//line on the right side
-		for(int yy = 0; yy < Game.HEIGHT + 64; yy += 64)
-			addObject(new Block(00, yy, 1, ObjectId.Block));		
-		
-		//low ground line
-		for(int xx = 0; xx < Game.WIDTH *4 ; xx += 128)
-			addObject(new Block(xx, Game.HEIGHT - 160, 0, ObjectId.Block));
-		for(int xx = 64; xx < Game.WIDTH *4 ; xx += 128)
-			addObject(new Block(xx, Game.HEIGHT - 160, 1, ObjectId.Block));		
-		
-		for(int xx = 2000; xx < Game.WIDTH *4 ; xx += 64)
-			addObject(new Block(xx, Game.HEIGHT - 160 - 64, 1, ObjectId.Block));
-	}
-	*/
 }

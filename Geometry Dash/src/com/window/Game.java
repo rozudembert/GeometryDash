@@ -12,6 +12,7 @@ import com.framework.KeyInput;
 import com.framework.ObjectId;
 import com.framework.Texture;
 import com.objects.Block;
+import com.objects.Goal;
 import com.objects.Player;
 
 public class Game extends Canvas implements Runnable{
@@ -27,60 +28,39 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	private Thread thread;	
 	
-	private BufferedImage level = null;
+	public BufferedImage level = null, level2 = null;
 	
 	Controller controller;
 	Camera cam;
 	static Texture texture;
+	Menu menu;
+	
+	public STATUS gameStatus = STATUS.Menu;
+	
+	public static int LEVEL = 1;
 	
 	//
 	private void initialise() {
 		
-		texture = new Texture();
+		menu = new Menu(this, controller);
 		
-		controller = new Controller();
+		texture = new Texture();
 		
 		cam = new Camera(0, 0);
 		
-		//load level image from file system
-		ImageLoader loader = new ImageLoader();
-		level = loader.loadImage("/level_1.png");
-		
-		loadLevel(level);
-		
-//		controller.addObject(new Player(700, 496, controller, 2, ObjectId.Player));
-		
-//		controller.createLevel();
-		
-		this.addKeyListener(new KeyInput(controller));
+		controller = new Controller(cam);
+			
+		this.addKeyListener(new KeyInput(controller));	
+		this.addKeyListener(new Menu(this, controller));
 	}
 	
-	//Recieves an image as input and converts it into GameObjects
-	private void loadLevel(BufferedImage image) {
-		
-		int width = image.getWidth();
-		int height = image.getHeight();
-		
-		//To go through every pixel in the image
-		for(int xx = 0; xx < width; xx++) {
-			for(int yy = 0; yy < height; yy++) {
-				
-				//get RGB value per Pixel
-				int pixel = image.getRGB(xx, yy);
-				int red = (pixel >> 16) & 0xff;
-				int green = (pixel >> 8) & 0xff;
-				int blue = (pixel) & 0xff;
-				
-				//add Object depending on color code
-				if(red == 255 && green == 255 && blue == 255)
-					controller.addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
-				if(red == 0 && green == 0 && blue == 255)
-					controller.addObject(new Player(xx*64, yy*64, controller, 0, ObjectId.Player));
-			}
-		}
-		
-		
+	public enum STATUS{
+		Menu,
+		Help,
+		Game;
 	}
+	
+	
 	
 	public static Texture getInstance() {
 		return texture;
@@ -149,12 +129,18 @@ public class Game extends Canvas implements Runnable{
 	private void update() {
 		controller.update();
 		
-		//updating camera
-		for(int i = 0; i < controller.object.size(); i++) {
-			if(controller.object.get(i).getId() == ObjectId.Player) {
-				cam.update(controller.object.get(i));
+		if(gameStatus == STATUS.Menu) {
+			menu.update();
+		} 
+		
+		else if(gameStatus == STATUS.Game) {			
+			//updating camera
+			for(int i = 0; i < controller.object.size(); i++) {
+				if(controller.object.get(i).getId() == ObjectId.Player) {
+					cam.update(controller.object.get(i));
+				}
 			}
-		}
+		}		
 	}
 	
 	//to render the graphics
@@ -173,14 +159,20 @@ public class Game extends Canvas implements Runnable{
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		
+				
 		g2d.translate(cam.getX(), cam.getY()); //Begin of camera; translates everything it "sandwiches"
 				
 		controller.render(graphics);
 		
 		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
 		
-		
+		if(gameStatus == STATUS.Game) {
+			
+		}
+		else if(gameStatus == STATUS.Menu || gameStatus == STATUS.Help) {
+			menu.render(graphics);
+		}
+				
 		graphics.dispose();
 		bufferStrategy.show();
 	}

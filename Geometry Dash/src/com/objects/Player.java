@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import com.framework.GameObject;
 import com.framework.ObjectId;
 import com.framework.Texture;
+import com.window.Camera;
 import com.window.Controller;
 import com.window.Game;
 
@@ -31,12 +32,14 @@ public class Player extends GameObject{
 	Texture texture = Game.getInstance();
 	
 	private Controller controller;
+	private Camera cam;
 	int skin; //What Skin the player is wearing 
 	
-	public Player(float x, float y, Controller controller, int skin, ObjectId id) {
+	public Player(float x, float y, Controller controller, int skin, Camera cam, ObjectId id) {
 		super(x, y, id);
 		this.controller = controller;
 		this.skin = skin;
+		this.cam = cam;
 	}
 	
 	
@@ -103,7 +106,15 @@ public class Player extends GameObject{
 					
 					//x = tempObject.getX() + width + 2;
 				}				
-			}	
+			}
+			
+			if(tempObject.getId() == ObjectId.Goal) {
+				//switch level
+				if(getBorder().intersects(tempObject.getBorder())) {
+					controller.switchLevel(); //Level ändert sich wenn Kontakt mit gelbem Block
+				}
+				
+			}
 			
 			if(tempObject.getId() == ObjectId.Spike) {
 				//player death
