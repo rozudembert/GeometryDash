@@ -65,6 +65,7 @@ public class Player extends GameObject{
 			GameObject tempObject = controller.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Player) {
+				//Adjust player speed
 				tempObject.setVelX(7);
 			}
 		}	

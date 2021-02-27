@@ -55,6 +55,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public enum STATUS{
+		StartMenu,
 		Menu,
 		Help,
 		Game;
