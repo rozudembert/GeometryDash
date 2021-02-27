@@ -10,13 +10,14 @@ public class Menu extends KeyAdapter{
 	
 	//boolean for the selected buttons
 	private static boolean playButtonSelected = true;
+	private static boolean levelButtonSelected = false;
 	private static boolean helpButtonSelected = false;
 	private static boolean backButtonSelected = false;
 	private static boolean quitButtonSelected = false;
 	
 	private static Game game;
-	private Controller controller;
-	
+	private Controller controller;	
+	private int level = 1;
 	
 	public Menu(Game game, Controller controller) {
 		Menu.game = game;
@@ -38,24 +39,29 @@ public class Menu extends KeyAdapter{
 				//Start the Game
 				if(key == KeyEvent.VK_ENTER) {
 					game.setGameStatus(STATUS.Game);
+					controller.startLevel(level);
 					
-					ImageLoader loader = new ImageLoader();
-					game.level = loader.loadImage("/level_1.png");
-					controller.loadLevel(game.level);					
+					//ImageLoader loader = new ImageLoader();
+					//game.level = loader.loadImage("/level_1.png");
+					//controller.loadLevel(game.level);					
 				}
-				else if(key == KeyEvent.VK_DOWN) {
+				else if(key == KeyEvent.VK_LEFT) {
 					playButtonSelected = false;
 					helpButtonSelected = true;
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					playButtonSelected = false;
+					levelButtonSelected = true;
 				}
 			}
 			
 			//Help Button
 			else if(helpButtonSelected == true) {
-				if(key == KeyEvent.VK_UP) {
+				if(key == KeyEvent.VK_RIGHT) {
 					helpButtonSelected = false;
 					playButtonSelected = true;
 				}
-				else if(key == KeyEvent.VK_DOWN) {
+				else if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_LEFT) {
 					helpButtonSelected = false;
 					quitButtonSelected = true;
 				}
@@ -69,12 +75,32 @@ public class Menu extends KeyAdapter{
 			
 			//Quit Button
 			else if(quitButtonSelected == true) {
-				if(key == KeyEvent.VK_UP) {
+				if(key == KeyEvent.VK_UP || key == KeyEvent.VK_RIGHT) {
 					quitButtonSelected = false;
 					helpButtonSelected = true;
 				}
 				else if(key == KeyEvent.VK_ENTER) {
 					System.exit(1);
+				}
+			}
+			
+			//Change Level
+			else if(levelButtonSelected == true) {
+				if(key == KeyEvent.VK_UP) {
+					if(level < 5)
+						level++;
+				}
+				else if(key == KeyEvent.VK_DOWN) {
+					if(level > 1)
+						level = level - 1;
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					levelButtonSelected = false;
+					playButtonSelected = true;
+				}
+				else if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Game);
+					controller.startLevel(level);
 				}
 			}
 		}	
@@ -97,8 +123,8 @@ public class Menu extends KeyAdapter{
 		
 		Font fnt = new Font("calibri", 1, 50);
         Font fnt2 = new Font("calibri", 1, 30);
-        int q = 200;
-        int j = 64;
+        int q = 200; //boxWidth
+        int j = 64; //boxHeight
         int width = Game.WIDTH;
         int height = Game.HEIGHT;
 
@@ -121,20 +147,29 @@ public class Menu extends KeyAdapter{
         	//Play Button Position
         	if (playButtonSelected) g.setColor(Color.orange);
         	else g.setColor(Color.white);
-        	g.drawRect(width / 2 - q / 2, height / 2 - (j * 3 / 2), q, j);
-        	g.drawString("Play", width / 2 - 30, height / 2 - j + 10);
+        	g.drawRect(width / 2 - 192 / 2, height / 2 - 50, 192, 192);
+        	g.drawString("Play", width / 2 - 26, height / 2 + 60);
+        	
         	
         	//Help Button Position
         	if (helpButtonSelected) g.setColor(Color.orange);
         	else g.setColor(Color.white);
-	        g.drawRect(width / 2 - q / 2, height / 2, q, j);
-	        g.drawString("Help", width / 2 - 30, height / 2 + (j / 2) + 10);
-	        
+	        g.drawRect(width / 2 - 500, height / 2, q, j);
+	        g.drawString("Help", width / 2 - 430, height / 2 + (j / 2) + 10);
+        	
+        	
 	        //Quit Button Position
 	        if (quitButtonSelected) g.setColor(Color.orange);
 	        else g.setColor(Color.white);
-	        g.drawRect(width / 2 - q / 2, height / 2 + (j * 3 / 2), q, j);
-	        g.drawString("Quit", width / 2 - 30, height / 2 + j * 2 + 10);
+	        g.drawRect(0, height - j , 100, 50);
+	        g.drawString("Quit", 20, height - 30);
+	        
+	        //Level Selector Color and Position
+	        if (levelButtonSelected) g.setColor(Color.orange);
+	        else g.setColor(Color.white);
+	        g.drawRect(width / 2 + 300, height / 2, q, j);
+	        g.drawString("Level: " + level, width / 2 + 330, height / 2 + (j / 2) + 10);
+        	
         }
         else if(game.gameStatus==STATUS.Help){
         	g.setFont(fnt2);

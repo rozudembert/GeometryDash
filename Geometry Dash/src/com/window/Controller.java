@@ -16,14 +16,20 @@ public class Controller {
 	public LinkedList <GameObject> object = new LinkedList<GameObject>();
 	
 	private Camera cam;
-	private BufferedImage level2 = null;
+	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
+	public int level = 1;
+	
 	
 	public Controller(Camera cam) {
 		this.cam = cam;
 		
 		//load level image from file system
 		ImageLoader loader = new ImageLoader();
+		level1 = loader.loadImage("/level_1.png");
 		level2 = loader.loadImage("/level_2.png");
+		//level3 = loader.loadImage("/level_3.png");
+		//level4 = loader.loadImage("/level_4.png");
+		//level5 = loader.loadImage("/level_5.png");
 	}
 	
 	//Update List
@@ -42,6 +48,17 @@ public class Controller {
 			
 			tempObject.render(graphics);
 		}
+	}
+	
+	public void startLevel(int level) {
+		
+		clearLevel();
+		
+		if(level == 1) loadLevel(level1);
+		else if(level == 2) loadLevel(level2);
+		else if(level == 3) loadLevel(level1);
+		else if(level == 4) loadLevel(level1);
+		else if(level == 5) loadLevel(level1);
 	}
 	
 	//Recieves an image as input and converts it into GameObjects
@@ -71,18 +88,32 @@ public class Controller {
 		}		
 	}
 	
-	public void switchLevel() {
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	public void switchLevel(int level) {
 		clearLevel();
 		cam.setX(0);
 		
-		switch(Game.LEVEL) {
+		switch(level) {
 		
 			case 1:
-				loadLevel(level2);				
+				loadLevel(level1);				
 				break;		
+			case 2: 
+				loadLevel(level2);				
+				break;
+			case 3: 
+				loadLevel(level3);				
+				break;
+			case 4: 
+				loadLevel(level4);				
+				break;
+			case 5: 
+				loadLevel(level5);				
+				break;
 		}
-		
-		Game.LEVEL++;
 	}
 	
 	private void clearLevel() {

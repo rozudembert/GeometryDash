@@ -112,7 +112,7 @@ public class Player extends GameObject{
 			if(tempObject.getId() == ObjectId.Goal) {
 				//switch level
 				if(getBorder().intersects(tempObject.getBorder())) {
-					controller.switchLevel(); //Level ändert sich wenn Kontakt mit gelbem Block
+					//controller.switchLevel(); //Level ändert sich wenn Kontakt mit gelbem Block
 				}
 				
 			}
