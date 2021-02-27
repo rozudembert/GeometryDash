@@ -60,7 +60,9 @@ public class Game extends Canvas implements Runnable{
 		Game;
 	}
 	
-	
+	public void setGameStatus(STATUS status) {
+		this.gameStatus = status;
+	}
 	
 	public static Texture getInstance() {
 		return texture;
@@ -117,7 +119,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println("FPS: " + frames + " TICKS: " + updates);
+				//System.out.println("FPS: " + frames + " TICKS: " + updates);
 				frames = 0;
 				updates = 0;
 			}				
@@ -127,7 +129,7 @@ public class Game extends Canvas implements Runnable{
 	
 	//updating the GameObjects
 	private void update() {
-		controller.update();
+		controller.update();		
 		
 		if(gameStatus == STATUS.Menu) {
 			menu.update();
@@ -170,9 +172,11 @@ public class Game extends Canvas implements Runnable{
 			
 		}
 		else if(gameStatus == STATUS.Menu || gameStatus == STATUS.Help) {
-			menu.render(graphics);
+			//menu.render(graphics);
 		}
-				
+		
+		menu.render(graphics);
+		
 		graphics.dispose();
 		bufferStrategy.show();
 	}
