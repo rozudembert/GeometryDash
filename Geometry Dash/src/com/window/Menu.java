@@ -89,10 +89,12 @@ public class Menu extends KeyAdapter{
 				if(key == KeyEvent.VK_UP) {
 					if(level < 5)
 						level++;
+						System.out.println("You selected Level " + level);
 				}
 				else if(key == KeyEvent.VK_DOWN) {
 					if(level > 1)
 						level = level - 1;
+						System.out.println("You selected Level " + level);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
 					levelButtonSelected = false;
