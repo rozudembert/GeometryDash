@@ -23,11 +23,11 @@ public class Player extends GameObject{
 	public float width = 64, height = 64;
 	
 	//Gravity Settings
-	private float gravity = 0.5f;
+	private float GRAVITY = 0.5f;
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//Visible Player hitbox can be enabled here
-	private boolean showHitbox = false;
+	private boolean showHitbox = true;
 	
 	Texture texture = Game.getInstance();
 	
@@ -48,7 +48,7 @@ public class Player extends GameObject{
 		y += velY;
 		
 		if(falling || jumping) {
-			velY += gravity;
+			velY += GRAVITY;
 			
 			if(velY > MAX_FALLINGSPEED) {
 				velY = MAX_FALLINGSPEED;
@@ -66,7 +66,7 @@ public class Player extends GameObject{
 			
 			if(tempObject.getId() == ObjectId.Player) {
 				//Adjust player speed
-				tempObject.setVelX(7);
+				//tempObject.setVelX(7);
 			}
 		}	
 	}
@@ -134,9 +134,7 @@ public class Player extends GameObject{
 	//method to render the graphics
 	public void render(Graphics graphics) {
 		
-		if(skin == 0) graphics.drawImage(texture.player[0], (int)x, (int)y, null);
-		if(skin == 1) graphics.drawImage(texture.player[1], (int)x, (int)y, null);
-		if(skin == 2) graphics.drawImage(texture.player[2], (int)x, (int)y, null);
+		graphics.drawImage(texture.player[skin], (int)x, (int)y, null);
 		
 		//the player appears as a blue box
 		//graphics.setColor(Color.blue);
