@@ -34,7 +34,7 @@ public class Game extends Canvas implements Runnable{
 	static Texture texture;
 	Menu menu;
 	
-	public STATUS gameStatus = STATUS.StartMenu;
+	public STATUS gameStatus = STATUS.Menu;
 	
 	public static int LEVEL = 1;
 	
@@ -161,7 +161,6 @@ public class Game extends Canvas implements Runnable{
 		//create Background
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
-		
 				
 		g2d.translate(cam.getX(), cam.getY()); //Begin of camera; translates everything it "sandwiches"
 				

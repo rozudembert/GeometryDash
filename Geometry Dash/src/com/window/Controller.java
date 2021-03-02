@@ -24,8 +24,8 @@ public class Controller {
 		
 		//load level image from file system
 		ImageLoader loader = new ImageLoader();
-		level1 = loader.loadImage("/level_1.png");
-		level2 = loader.loadImage("/level_2.png");
+		level1 = loader.loadImage("/level/level_1.png");
+		level2 = loader.loadImage("/level/level_2.png");
 		//level3 = loader.loadImage("/level_3.png");
 		//level4 = loader.loadImage("/level_4.png");
 		//level5 = loader.loadImage("/level_5.png");

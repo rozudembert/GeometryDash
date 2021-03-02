@@ -23,8 +23,8 @@ public class Texture {
 		
 		//load the sheets from our files
 		try {
-			block_sheet = loader.loadImage("/block_sheet.png");
-			player_sheet = loader.loadImage("/player_sheet.png");
+			block_sheet = loader.loadImage("/texture/block_sheet.png");
+			player_sheet = loader.loadImage("/texture/player_sheet.png");
 		
 		} catch (Exception e) {
 			e.printStackTrace();

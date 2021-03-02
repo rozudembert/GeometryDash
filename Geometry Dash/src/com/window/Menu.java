@@ -6,28 +6,31 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import com.window.Game.STATUS;
-import com.window.ImageLoader;
 
 public class Menu extends KeyAdapter{
 	
 	//graphics
 	private BufferedImage titleScreen = null;
 	private BufferedImage buttonLeft = null, buttonRight = null, buttonLeftActive = null, buttonRightActive = null;
+	private BufferedImage buttonPlay = null, buttonPlayActive = null;
+	
 	
 	//boolean for the selected buttons
 	private static boolean playButtonSelected = true;
-	private static boolean levelButtonSelected = false;
-	private static boolean helpButtonSelected = false;
+	private static boolean leftLevelButtonSelected = false;
+	private static boolean rightLevelButtonSelected = false;
 	private static boolean backButtonSelected = false;
-	private static boolean quitButtonSelected = false;
 	
 	private static Game game;
 	private Controller controller;	
+	
 	private int level = 1;
 
 	public Menu(Game game, Controller controller) {
 		Menu.game = game;
 		this.controller = controller;
+		
+		graphics();
 		
 	}
 	
@@ -36,10 +39,13 @@ public class Menu extends KeyAdapter{
 		
 		try {
 			titleScreen = loader.loadImage("/TitleScreen.png");
-			buttonLeft = loader.loadImage("/buttonLeft.png");
-			buttonLeftActive = loader.loadImage("/buttonLeftActive.png");
-			buttonRight = loader.loadImage("/buttonRight.png");
-			buttonRightActive = loader.loadImage("/buttonRightActive.png");
+			buttonLeft = loader.loadImage("/buttons/buttonLeft.png");
+			buttonLeftActive = loader.loadImage("/buttons/buttonLeftActive.png");
+			buttonRight = loader.loadImage("/buttons/buttonRight.png");
+			buttonRightActive = loader.loadImage("/buttons/buttonRightActive.png");
+			buttonPlay = loader.loadImage("/buttons/Play.png");
+			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,86 +63,52 @@ public class Menu extends KeyAdapter{
 		else if(game.gameStatus == STATUS.Menu) {
 			
 			//Play Button
-			if(playButtonSelected == true) {
+			if(playButtonSelected) {
 				//Start the Game
 				if(key == KeyEvent.VK_ENTER) {
 					game.setGameStatus(STATUS.Game);
-					controller.startLevel(level);
-					
-					//ImageLoader loader = new ImageLoader();
-					//game.level = loader.loadImage("/level_1.png");
-					//controller.loadLevel(game.level);					
+					controller.startLevel(level);					
+									
 				}
 				else if(key == KeyEvent.VK_LEFT) {
 					playButtonSelected = false;
-					helpButtonSelected = true;
+					leftLevelButtonSelected = true;
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
 					playButtonSelected = false;
-					levelButtonSelected = true;
+					rightLevelButtonSelected = true;
 				}
-			}
+			}			
 			
-			//Help Button
-			else if(helpButtonSelected == true) {
-				if(key == KeyEvent.VK_RIGHT) {
-					helpButtonSelected = false;
+			//Left Level Button to change level
+			else if(leftLevelButtonSelected) {
+				if(key == KeyEvent.VK_ENTER && level > 1 ) {
+					level = level - 1;
+					System.out.println("You selected level: " + level);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					leftLevelButtonSelected = false;
 					playButtonSelected = true;
 				}
-				else if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_LEFT) {
-					helpButtonSelected = false;
-					quitButtonSelected = true;
-				}
-				//Get in the Help Menu
-				else if(key == KeyEvent.VK_ENTER) {
-					game.setGameStatus(STATUS.Help);
-					helpButtonSelected = false;
-					backButtonSelected = true;
-				}
 			}
 			
-			//Quit Button
-			else if(quitButtonSelected == true) {
-				if(key == KeyEvent.VK_UP || key == KeyEvent.VK_RIGHT) {
-					quitButtonSelected = false;
-					helpButtonSelected = true;
-				}
-				else if(key == KeyEvent.VK_ENTER) {
-					System.exit(1);
-				}
-			}
-			
-			//Change Level
-			else if(levelButtonSelected == true) {
-				if(key == KeyEvent.VK_UP) {
-					if(level < 5)
-						level++;
-						System.out.println("You selected Level " + level);
-				}
-				else if(key == KeyEvent.VK_DOWN) {
-					if(level > 1)
-						level = level - 1;
-						System.out.println("You selected Level " + level);
+			//Right Level Button to change level
+			else if(rightLevelButtonSelected) {
+				if(key == KeyEvent.VK_ENTER && level < 5 ) {
+					level++;
+					System.out.println("You selected level: " + level);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
-					levelButtonSelected = false;
+					rightLevelButtonSelected = false;
 					playButtonSelected = true;
 				}
-				else if(key == KeyEvent.VK_ENTER) {
-					game.setGameStatus(STATUS.Game);
-					controller.startLevel(level);
-				}
-			}
+			}			
+			
 		}	
-		else if(game.gameStatus == STATUS.Help) {
-			if(backButtonSelected == true) {
-				if(key == KeyEvent.VK_ENTER) {
-					game.setGameStatus(STATUS.Menu);
-					backButtonSelected = false;
-					helpButtonSelected = true;
-				}
-			}
-		}
+		
+		//else if(//new button in different menu state) {
+			
+		//}
 	}
 	
 	public void update() {
@@ -146,51 +118,63 @@ public class Menu extends KeyAdapter{
 	public void render(Graphics g) {
 		
 		Font fnt = new Font("calibri", 1, 50);
-        Font fnt2 = new Font("calibri", 1, 30);
+        Font fnt2 = new Font("calibri", 1, 28);
         int q = 200; //boxWidth
         int j = 64; //boxHeight
         int width = Game.WIDTH;
         int height = Game.HEIGHT;
+        g.setColor(Color.WHITE);
+        g.setFont(fnt2);
+        Color buttonYellow = new Color(255,168,0);
 
         if(game.gameStatus == STATUS.StartMenu) {
         	g.drawImage(titleScreen, 0, 0, null);
             	
         	g.setFont(fnt2);
-        	g.setColor(Color.yellow);
+        	g.setColor(buttonYellow);
         	g.drawString("Press SPACE to continue", width / 2 + 200, height / 2 + 150);
         }        
         else if(game.gameStatus==STATUS.Menu) {
-        	g.setFont(fnt);
-        	g.setColor(Color.white);
-        	g.drawString("Menu", width / 2 - 75, 100);
-
-        	g.setFont(fnt2);
+        	//g.drawImage(menuTest, 0, 0, null);
         	
-        	//Play Button Position
-        	if (playButtonSelected) g.setColor(Color.orange);
-        	else g.setColor(Color.white);
-        	g.drawRect(width / 2 - 192 / 2, height / 2 - 50, 192, 192);
-        	g.drawString("Play", width / 2 - 26, height / 2 + 60);
+        	//Left Button
+        	if(true) {
+        		if(leftLevelButtonSelected) {
+        			g.drawImage(buttonLeftActive, 340, 405, null);
+        			g.setColor(buttonYellow);
+        		}
+            	else {
+            		g.setColor(Color.white);
+            		g.drawImage(buttonLeft, 340, 405, null);
+            	}
+            	g.drawString("Level: " + (level-1) , 364, 510);
+        	}
+        	        	        	
+        	//Right Button
+        	if(true) {
+        		if(rightLevelButtonSelected) {
+        			g.drawImage(buttonRightActive, 830, 405, null);
+        			g.setColor(buttonYellow);
+        		}
+            	else {
+            		g.setColor(Color.white);
+            		g.drawImage(buttonRight, 830, 405, null);
+            	}
+            	g.drawString("Level: " + (level+1), 852, 510);
+        	}
         	
+        	//Play Button
+        	if(playButtonSelected) {
+        		g.drawImage(buttonPlayActive, 503, 532, null);
+        		g.setColor(buttonYellow);
+        	}
+        	else {
+        		g.setColor(Color.white);
+        		g.drawImage(buttonPlay, 503, 532, null);
+        	}
         	
-        	//Help Button Position
-        	if (helpButtonSelected) g.setColor(Color.orange);
-        	else g.setColor(Color.white);
-	        g.drawRect(width / 2 - 500, height / 2, q, j);
-	        g.drawString("Help", width / 2 - 430, height / 2 + (j / 2) + 10);
+        	g.drawString("< Level: " + (level) + " >", 575, 580);
         	
-        	
-	        //Quit Button Position
-	        if (quitButtonSelected) g.setColor(Color.orange);
-	        else g.setColor(Color.white);
-	        g.drawRect(0, height - j , 100, 50);
-	        g.drawString("Quit", 20, height - 30);
-	        
-	        //Level Selector Color and Position
-	        if (levelButtonSelected) g.setColor(Color.orange);
-	        else g.setColor(Color.white);
-	        g.drawRect(width / 2 + 300, height / 2, q, j);
-	        g.drawString("Level: " + level, width / 2 + 330, height / 2 + (j / 2) + 10);
         	
         }
         else if(game.gameStatus==STATUS.Help){
