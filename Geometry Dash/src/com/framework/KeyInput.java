@@ -12,6 +12,8 @@ import com.window.Controller;
 
 public class KeyInput extends KeyAdapter{
 
+	int test;
+	
 	//disables auto movement and enables more specific movement to the left and right
 	private boolean testing = false;
 	

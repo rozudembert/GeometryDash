@@ -12,7 +12,6 @@ import com.framework.KeyInput;
 import com.framework.ObjectId;
 import com.framework.Texture;
 import com.objects.Block;
-import com.objects.Goal;
 import com.objects.Player;
 
 public class Game extends Canvas implements Runnable{

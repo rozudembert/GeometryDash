@@ -3,10 +3,16 @@ package com.window;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import com.window.Game.STATUS;
+import com.window.ImageLoader;
 
 public class Menu extends KeyAdapter{
+	
+	//graphics
+	private BufferedImage titleScreen = null;
+	private BufferedImage buttonLeft = null, buttonRight = null, buttonLeftActive = null, buttonRightActive = null;
 	
 	//boolean for the selected buttons
 	private static boolean playButtonSelected = true;
@@ -18,10 +24,26 @@ public class Menu extends KeyAdapter{
 	private static Game game;
 	private Controller controller;	
 	private int level = 1;
-	
+
 	public Menu(Game game, Controller controller) {
 		Menu.game = game;
 		this.controller = controller;
+		
+	}
+	
+	public void graphics() {
+		ImageLoader loader = new ImageLoader();
+		
+		try {
+			titleScreen = loader.loadImage("/TitleScreen.png");
+			buttonLeft = loader.loadImage("/buttonLeft.png");
+			buttonLeftActive = loader.loadImage("/buttonLeftActive.png");
+			buttonRight = loader.loadImage("/buttonRight.png");
+			buttonRightActive = loader.loadImage("/buttonRightActive.png");
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -131,13 +153,11 @@ public class Menu extends KeyAdapter{
         int height = Game.HEIGHT;
 
         if(game.gameStatus == STATUS.StartMenu) {
-        	Font fntStart = new Font("calibri", 1, 120);
-        	g.setFont(fntStart);
-        	g.setColor(Color.white);
-        	g.drawString("Geometry Dash", width / 2 - 400, 200);
+        	g.drawImage(titleScreen, 0, 0, null);
+            	
         	g.setFont(fnt2);
         	g.setColor(Color.yellow);
-        	g.drawString("Press SPACE to continue", width / 2 - 170, height / 2 + 200);
+        	g.drawString("Press SPACE to continue", width / 2 + 200, height / 2 + 150);
         }        
         else if(game.gameStatus==STATUS.Menu) {
         	g.setFont(fnt);

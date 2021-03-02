@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import com.framework.GameObject;
 import com.framework.ObjectId;
 import com.objects.Block;
-import com.objects.Goal;
 import com.objects.Player;
 import com.objects.Spike;
 
@@ -82,8 +81,7 @@ public class Controller {
 					addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
 				if(red == 0 && green == 0 && blue == 255)
 					addObject(new Player(xx*64, yy*64, this, 0, cam, ObjectId.Player));
-				if(red == 255 && green == 255 && blue == 0)
-					addObject(new Goal(xx*64, yy*64, ObjectId.Goal));
+				
 			}
 		}		
 	}
