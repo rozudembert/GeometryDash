@@ -14,13 +14,18 @@ public class Camera {
 		this.y = y;
 	}
 	
+	private int tempY = 320;
+	
 	//The Camera follows the players movement
 	public void update(GameObject player) {
 		x = -player.getX() + Game.WIDTH/2 - 200;
 		
-		//float playerY = player.getY();
+		float playerY = player.getY();
 		
-		
+		//HIER WEITERMACHEN
+		if(playerY < tempY) {
+			y = playerY - (320 + 720);
+		}
 		
 		//y = -player.getY() + Game.HEIGHT/2 + 90;
 		System.out.println(player.getY());
