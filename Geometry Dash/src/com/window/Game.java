@@ -34,7 +34,7 @@ public class Game extends Canvas implements Runnable{
 	static Texture texture;
 	Menu menu;
 	
-	public STATUS gameStatus = STATUS.Menu;
+	public STATUS gameStatus = STATUS.StartMenu;
 	
 	public static int LEVEL = 1;
 	

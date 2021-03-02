@@ -16,7 +16,20 @@ public class Camera {
 	
 	//The Camera follows the players movement
 	public void update(GameObject player) {
-		x = -player.getX() + Game.WIDTH/2;
+		x = -player.getX() + Game.WIDTH/2 - 200;
+		
+		//float playerY = player.getY();
+		
+		
+		
+		//y = -player.getY() + Game.HEIGHT/2 + 90;
+		System.out.println(player.getY());
+		System.out.println(-player.getY());
+		System.out.println("");
+		
+		//float playerY = player.getY(); 
+		
+		
 	}
 	
 	

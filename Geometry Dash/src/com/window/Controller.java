@@ -76,11 +76,36 @@ public class Controller {
 				int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
 				
-				//add Object depending on color code
-				if(red == 255 && green == 255 && blue == 255)
-					addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
-				if(red == 0 && green == 0 && blue == 255)
-					addObject(new Player(xx*64, yy*64, this, 0, cam, ObjectId.Player));
+				//add objects depending on rgb color 
+				//Player
+				if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*64, yy*64, this, 7, cam, ObjectId.Player));
+				
+				//Blocks
+				if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 1, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 2, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 3, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 4, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 5, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 6, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 7, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 8, ObjectId.Block));
+				if(red == 0 && green == 110 && blue == 47) addObject(new Block(xx*64, yy*64, 8, ObjectId.Block));
+				if(red == 163 && green == 72 && blue == 47) addObject(new Block(xx*64, yy*64, 9, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 10, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 11, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 12, ObjectId.Block));
+				if(red == 132 && green == 64 && blue == 64) addObject(new Block(xx*64, yy*64, 13, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 14, ObjectId.Block));
+				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 15, ObjectId.Block));
+				if(red == 64 && green == 64 && blue == 64) addObject(new Block(xx*64, yy*64, 16, ObjectId.Block));
+				if(red == 128 && green == 128 && blue == 128) addObject(new Block(xx*64, yy*64, 17, ObjectId.Block));
+				if(red == 0 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 18, ObjectId.Block));
+				if(red == 0 && green == 255 && blue == 0) addObject(new Block(xx*64, yy*64, 19, ObjectId.Block));
+				if(red == 255 && green == 255 && blue == 0) addObject(new Block(xx*64, yy*64, 20, ObjectId.Block));
+				if(red == 0 && green == 31 && blue == 0) addObject(new Block(xx*64, yy*64, 21, ObjectId.Block));
+				
+				
 				
 			}
 		}		

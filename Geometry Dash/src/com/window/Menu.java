@@ -117,6 +117,7 @@ public class Menu extends KeyAdapter{
 	
 	public void render(Graphics g) {
 		
+		int showLevel = level;
 		Font fnt = new Font("calibri", 1, 50);
         Font fnt2 = new Font("calibri", 1, 28);
         int q = 200; //boxWidth
@@ -147,7 +148,7 @@ public class Menu extends KeyAdapter{
             		g.setColor(Color.white);
             		g.drawImage(buttonLeft, 340, 405, null);
             	}
-            	g.drawString("Level: " + (level-1) , 364, 510);
+            	g.drawString("Level: " + (showLevel-1) , 364, 510);
         	}
         	        	        	
         	//Right Button
@@ -160,7 +161,7 @@ public class Menu extends KeyAdapter{
             		g.setColor(Color.white);
             		g.drawImage(buttonRight, 830, 405, null);
             	}
-            	g.drawString("Level: " + (level+1), 852, 510);
+            	g.drawString("Level: " + (showLevel+1), 852, 510);
         	}
         	
         	//Play Button
@@ -173,22 +174,10 @@ public class Menu extends KeyAdapter{
         		g.drawImage(buttonPlay, 503, 532, null);
         	}
         	
-        	g.drawString("< Level: " + (level) + " >", 575, 580);
+        	g.drawString("< Level: " + (showLevel) + " >", 575, 580);
         	
         	
-        }
-        else if(game.gameStatus==STATUS.Help){
-        	g.setFont(fnt2);
-        	
-        	if(backButtonSelected) g.setColor(Color.orange);
-        	else g.setColor(Color.white);
-        	g.drawRect(width / 2 - q / 2, height - j * 2, q, j);
-        	g.drawString("Back", width / 2 - 40, height - j*3/2 + 10);
-
-        	g.setFont(fnt);
-        	g.setColor(Color.white);
-        	g.drawString("Help", width / 2 - 60, 80);        	
-		}
+        }        
 	}
 	
 }
