@@ -28,7 +28,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//Visible Player hitbox can be enabled here
-	private boolean showHitbox = false;
+	private boolean showHitbox = true;
 	
 	Texture texture = Game.getInstance();
 	
@@ -104,11 +104,11 @@ public class Player extends GameObject{
 				}
 				
 				//Left side collision
-				if(getBorderLeft().intersects(tempObject.getBorder())){
-					death();
+				//if(getBorderLeft().intersects(tempObject.getBorder())){
+					//death();
 					
 					//x = tempObject.getX() + width + 2;
-				}				
+				//}				
 			}
 			
 			if(tempObject.getId() == ObjectId.Goal) {
