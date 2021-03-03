@@ -18,6 +18,7 @@ public class Controller {
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	public int level = 1;
 	private Game game;
+	private Player player;
 	
 	
 	public Controller(Camera cam) {
@@ -34,11 +35,28 @@ public class Controller {
 	
 	//Update List
 	public void update() {
-		for(int i= 0; i < object.size(); i++) {
+		float playerX = 0;
+		
+		for(int i= 0; i < object.size(); i++) {			
 			GameObject tempObject = object.get(i);
 			
 			tempObject.update(object);
+			
+			//If Block is out of sight, remove it
+			if(tempObject.getId() == ObjectId.Player) {
+				playerX = tempObject.getX();
+			}
+			
+			if(tempObject.getId() == ObjectId.Block) {
+				if(tempObject.getX() < playerX - 500) {
+					removeObject(tempObject);
+				}
+					
+			}
 		}
+		
+		//Wenn tempObject ein Block ist und X-Wert vom Player überschritten ist wird es gelöscht
+				
 	}
 	
 	//Render Lists
