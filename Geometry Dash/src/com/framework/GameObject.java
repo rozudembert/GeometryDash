@@ -15,7 +15,7 @@ public abstract class GameObject {
 	
 	//X and Y coordinates
 	protected float x, y;
-	
+	protected boolean visible;
 	protected ObjectId id; 
 	
 	//Vertical and horizontal velocity of the object 
@@ -95,4 +95,11 @@ public abstract class GameObject {
 		return id;
 	}
 
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	
+	public boolean getVisible() {
+		return visible;
+	}
 }

@@ -45,11 +45,18 @@ public class Controller {
 				playerX = tempObject.getX();
 			}			
 			if(tempObject.getId() == ObjectId.Block) {
-				if(tempObject.getX() < playerX - 500) {
+				if(tempObject.getX() < playerX - 550) {
 					removeObject(tempObject);
 				}					
 			}
 			
+			//If Block is too far away from the player dont render it
+			if(tempObject.getId() == ObjectId.Block) {
+				if(tempObject.getX() > playerX + 900) {
+					tempObject.setVisible(false);
+				}
+				else tempObject.setVisible(true);				
+			}
 			
 			
 			
