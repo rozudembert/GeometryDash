@@ -12,11 +12,12 @@ import com.objects.Spike;
 public class Controller {
 
 	//Creates LinkedList with every GameObject in the game
-	public LinkedList <GameObject> object = new LinkedList<GameObject>();
+	public static LinkedList <GameObject> object = new LinkedList<GameObject>();
 	
 	private Camera cam;
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	public int level = 1;
+	private Game game;
 	
 	
 	public Controller(Camera cam) {
@@ -104,6 +105,8 @@ public class Controller {
 				if(red == 0 && green == 255 && blue == 0) addObject(new Block(xx*64, yy*64, 19, ObjectId.Block));
 				if(red == 255 && green == 255 && blue == 0) addObject(new Block(xx*64, yy*64, 20, ObjectId.Block));
 				if(red == 0 && green == 31 && blue == 0) addObject(new Block(xx*64, yy*64, 21, ObjectId.Block));
+				if(red == 255 && green == 0 && blue == 0) addObject(new Block(xx*64, yy*64, 22, ObjectId.Block));
+				//if(red == 0 && green == 31 && blue == 0) addObject(new Block(xx*64, yy*64, 23, ObjectId.Block));
 				
 				
 				
@@ -139,7 +142,7 @@ public class Controller {
 		}
 	}
 	
-	private void clearLevel() {
+	public static void clearLevel() {
 		object.clear();
 	}
 	

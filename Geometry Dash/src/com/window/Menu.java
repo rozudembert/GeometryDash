@@ -24,7 +24,7 @@ public class Menu extends KeyAdapter{
 	private static Game game;
 	private Controller controller;	
 	
-	private int level = 2;
+	private int level = 1;
 
 	public Menu(Game game, Controller controller) {
 		Menu.game = game;
@@ -34,6 +34,7 @@ public class Menu extends KeyAdapter{
 		
 	}
 	
+	//to load graphics from the files
 	public void graphics() {
 		ImageLoader loader = new ImageLoader();
 		
@@ -55,11 +56,16 @@ public class Menu extends KeyAdapter{
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
+		//Space in StartMenu leads to Menu
 		if(game.gameStatus == STATUS.StartMenu) {
 			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
-				game.setGameStatus(STATUS.Menu);
+				//game.setGameStatus(STATUS.Menu);
+				
+				game.setGameStatus(STATUS.Game);
+				controller.startLevel(level);
 			}
 		}		
+		//Actions in MainMenu
 		else if(game.gameStatus == STATUS.Menu) {
 			
 			//Play Button
@@ -127,7 +133,8 @@ public class Menu extends KeyAdapter{
         g.setColor(Color.WHITE);
         g.setFont(fnt2);
         Color buttonYellow = new Color(255,168,0);
-
+        
+        //to render titleScreen
         if(game.gameStatus == STATUS.StartMenu) {
         	g.drawImage(titleScreen, 0, 0, null);
             	

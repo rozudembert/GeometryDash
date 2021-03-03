@@ -10,21 +10,44 @@ public class Texture {
 	
 	SpriteSheet bs, ps; //Sprite for Block Sheet (bs) and Player Sheet (ps)
 	
+	//Buttons
+	public BufferedImage titleScreen = null;
+	public BufferedImage buttonLeft = null, buttonRight = null, buttonLeftActive = null, buttonRightActive = null;
+	public BufferedImage buttonPlay = null, buttonPlayActive = null;
+	
+	
 	private BufferedImage block_sheet = null;
 	private BufferedImage player_sheet = null;
 	
 	//array to store the images in
-	public BufferedImage[] block = new BufferedImage[23]; //array has to have the size of different blocks
+	public BufferedImage[] block = new BufferedImage[23]; //array has to have the size of the amount of blocks
 	public BufferedImage[] player = new BufferedImage[8];
 	
 	public Texture() {
+		
+		loadTextures();
+		
+		getTextures();
+	}
+	
+	public void loadTextures() {
 		
 		ImageLoader loader = new ImageLoader();
 		
 		//load the sheets from our files
 		try {
+			//Player and Block Sheet
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
+			
+			//Buttons
+			titleScreen = loader.loadImage("/TitleScreen.png");
+			buttonLeft = loader.loadImage("/buttons/buttonLeft.png");
+			buttonLeftActive = loader.loadImage("/buttons/buttonLeftActive.png");
+			buttonRight = loader.loadImage("/buttons/buttonRight.png");
+			buttonRightActive = loader.loadImage("/buttons/buttonRightActive.png");
+			buttonPlay = loader.loadImage("/buttons/Play.png");
+			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -32,8 +55,6 @@ public class Texture {
 		
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(player_sheet);
-		
-		getTextures();
 	}
 	
 	//assign the images from the sheets to the arrays

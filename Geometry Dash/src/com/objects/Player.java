@@ -16,6 +16,7 @@ import com.framework.Texture;
 import com.window.Camera;
 import com.window.Controller;
 import com.window.Game;
+import com.window.Game.STATUS;
 
 public class Player extends GameObject{
 	
@@ -33,6 +34,7 @@ public class Player extends GameObject{
 	
 	private Controller controller;
 	private Camera cam;
+	Game game;
 	int skin; //What Skin the player is wearing 
 	
 	public Player(float x, float y, Controller controller, int skin, Camera cam, ObjectId id) {
@@ -124,10 +126,14 @@ public class Player extends GameObject{
 	}
 	
 	public void death() {
-		
-		//Spieler wird entfernt
+		//Remove Player from the game
+		Game.playerDeath();
 		System.out.println("Player died due to collision");
 		controller.removeObject(this);
+		
+		
+		
+		
 		
 	}
 	

@@ -34,7 +34,7 @@ public class Game extends Canvas implements Runnable{
 	static Texture texture;
 	Menu menu;
 	
-	public STATUS gameStatus = STATUS.StartMenu;
+	public static STATUS gameStatus = STATUS.StartMenu;
 	
 	public static int LEVEL = 1;
 	
@@ -69,6 +69,10 @@ public class Game extends Canvas implements Runnable{
 		return texture;
 	}
 	
+	public static void playerDeath() {
+		Controller.clearLevel();
+		gameStatus = STATUS.Menu;
+	}
 	
 	/*
 	 * The following methods are needed to start the game
@@ -120,7 +124,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				//System.out.println("FPS: " + frames + " TICKS: " + updates);
+				System.out.println("FPS: " + frames + " TICKS: " + updates);
 				frames = 0;
 				updates = 0;
 			}				
