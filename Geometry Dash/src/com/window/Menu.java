@@ -24,7 +24,7 @@ public class Menu extends KeyAdapter{
 	private static Game game;
 	private Controller controller;	
 	
-	private int level = 1;
+	private int level = 2;
 
 	public Menu(Game game, Controller controller) {
 		Menu.game = game;

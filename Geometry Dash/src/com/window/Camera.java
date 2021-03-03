@@ -14,25 +14,22 @@ public class Camera {
 		this.y = y;
 	}
 	
-	private int tempY = 320;
+	private float cameraDistance = 320;
 	
 	//The Camera follows the players movement
 	public void update(GameObject player) {
 		x = -player.getX() + Game.WIDTH/2 - 200;
 		
-		float playerY = player.getY();
+		//Camera moves at the same speed like the player
+		//x += -player.getVelX();
 		
-		//HIER WEITERMACHEN
-		if(playerY < tempY) {
-			y = playerY - (320 + 720);
+		//the camera should always have a distance between the players top and games top
+		//Wenn Abstand zwischen PlayerY und cameraY kleiner als 320
+			//Was
+		if(player.getY() - y < cameraDistance) {
+			//Adjust camera Y
+			
 		}
-		
-		//y = -player.getY() + Game.HEIGHT/2 + 90;
-		System.out.println(player.getY());
-		System.out.println(-player.getY());
-		System.out.println("");
-		
-		//float playerY = player.getY(); 
 		
 		
 	}

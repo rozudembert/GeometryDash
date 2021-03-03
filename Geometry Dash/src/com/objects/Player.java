@@ -27,7 +27,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//Visible Player hitbox can be enabled here
-	private boolean showHitbox = true;
+	private boolean showHitbox = false;
 	
 	Texture texture = Game.getInstance();
 	
