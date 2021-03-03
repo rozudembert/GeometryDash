@@ -17,8 +17,6 @@ public class Controller {
 	private Camera cam;
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	public int level = 1;
-	private Game game;
-	private Player player;
 	
 	
 	public Controller(Camera cam) {
@@ -51,10 +49,11 @@ public class Controller {
 					removeObject(tempObject);
 				}					
 			}
-		}
-		
-		//Wenn tempObject ein Block ist und X-Wert vom Player überschritten ist wird es gelöscht
-				
+			
+			
+			
+			
+		}			
 	}
 	
 	//Render Lists
@@ -113,7 +112,7 @@ public class Controller {
 				//if(red == 25 blue == 255) addObject(new Block(xx*64, yy*64, 11, ObjectId.Block));
 				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 12, ObjectId.Block));
 				if(red == 132 && green == 64 && blue == 64) addObject(new Block(xx*64, yy*64, 13, ObjectId.Block));
-				//if(red == 255 && green == 5 && green == 255 &&255 && blue == 255) addObject(new Block(xx*64, yy*64, 14, ObjectId.Block));
+				//if(red == 255 && green == 5 && blue == 255) addObject(new Block(xx*64, yy*64, 14, ObjectId.Block));
 				//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 15, ObjectId.Block));
 				if(red == 64 && green == 64 && blue == 64) addObject(new Block(xx*64, yy*64, 16, ObjectId.Block));
 				if(red == 128 && green == 128 && blue == 128) addObject(new Block(xx*64, yy*64, 17, ObjectId.Block));
