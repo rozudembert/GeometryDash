@@ -42,16 +42,14 @@ public class Controller {
 			
 			tempObject.update(object);
 			
-			//If Block is out of sight, remove it
+			//Remove blocks if they are already passed by the player
 			if(tempObject.getId() == ObjectId.Player) {
 				playerX = tempObject.getX();
-			}
-			
+			}			
 			if(tempObject.getId() == ObjectId.Block) {
 				if(tempObject.getX() < playerX - 500) {
 					removeObject(tempObject);
-				}
-					
+				}					
 			}
 		}
 		
