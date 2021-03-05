@@ -1,11 +1,26 @@
-TODO - List:
+How-To
 
-Level erstellen method:
-	doppelter for-loop für xx (width) und yy (height
-	int pixel = image.getRGB(xx,yy)
-	int red = (pixel >> 16) & 0xff;
-	int grün
-	int blue
-	
-	wenn (RGB Code)
-		controller.addObject
+Rendern:
+
+loadLevel: Rendert nur die ersten 35 Blöcke
+
+renderLevel: Rendert alle anderen Blöcke
+
+
+Line 67: 
+Pro Tick wird der X-Wert um 7 größer
+(wegen der Velocity vom Spieler)
+Es wird daher nicht immer true, wenn
+playerX % 32 theoretisch erfüllt ist.
+
+Idee: 
+Den X-Wert von einem Block, der entfernt wird 
+nehmen, 2500 addieren und den entsprechenden
+PixelWert vom LevelBild nehmen und die Spalte
+von Blöcken rendern.
+
+oder
+
+X-Wert vom Player muss in einem bestimmten 
+Intervall liegen. Wenn Bed. erfüllt werden 
+Blöcke gerendert und das Intervall erhöht.
