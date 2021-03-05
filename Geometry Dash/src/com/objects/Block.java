@@ -20,11 +20,11 @@ public class Block extends GameObject{
 	Texture texture = Game.getInstance();
 	
 	//what type of block is it -> used for texture
-	public int type;
+	private int type;
 	
 	//block dimensions
-	public int width = 64;
-	public int height = 64;
+	private int width = 64;
+	private int height = 64;
 	
 	//public block (x coordinate, y coordinate, type, objectId)
 	public Block(int x, int y, int type, ObjectId id) {
@@ -38,15 +38,8 @@ public class Block extends GameObject{
 	
 	//the block appears as a white outlined rectangle
 	public void render (Graphics graphics) {
+		graphics.drawImage(texture.block[type], (int)x, (int)y, null);
 		
-		if(visible) {
-			graphics.drawImage(texture.block[type], (int)x, (int)y, null);
-		}
-		
-		
-		//the block appears as a white outlined rectangle
-		//graphics.setColor(Color.WHITE);
-		//graphics.drawRect((int)x, (int)y, width, height);
 	}
 	
 	//creates a rectangle to use in collision detection

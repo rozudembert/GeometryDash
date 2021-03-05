@@ -11,22 +11,20 @@ import com.objects.Spike;
 
 public class Controller {
 
-	//Creates LinkedList with every GameObject in the game
+	//LinkedList with every GameObject
 	public static LinkedList <GameObject> object = new LinkedList<GameObject>();
 	
 	private Camera cam;
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
-	public int level = 1;
-	
 	private BufferedImage activeLevel = null;
-	private boolean startLevelLoaded = false;
 	
-	
+	private int level = 1;
+	private int renderDistance;
 	
 	public Controller(Camera cam) {
 		this.cam = cam;
 		
-		//load level image from file system
+		//load level images from file system
 		ImageLoader loader = new ImageLoader();
 		level1 = loader.loadImage("/level/level_1.png");
 		level2 = loader.loadImage("/level/level_2.png");
@@ -35,57 +33,33 @@ public class Controller {
 		level5 = loader.loadImage("/level/level_5.png");
 	}
 	
-	//Bis zu diesem X-Wert wurden Blöcke gerendert
-	private int renderDistance = 0;
-	private boolean render = false;
-	
-	//Update List
 	public void update() {
-		float playerX = 0;
-		
+		int playerX = 0;
 		
 		for(int i= 0; i < object.size(); i++) {			
 			GameObject tempObject = object.get(i);
 			
 			tempObject.update(object);
 			
-			//Remove blocks if they are already passed by the player
-			if(tempObject.getId() == ObjectId.Player) {
-				playerX = tempObject.getX();
-			}			
-			if(tempObject.getId() == ObjectId.Block) {
-				if(tempObject.getX() < playerX - 550) {
-					removeObject(tempObject);
-				}					
-			}
+			if(tempObject.getId() == ObjectId.Player) playerX = (int)tempObject.getX();			
 			
-			//If Block is too far away from the player dont render it
-			if(tempObject.getId() == ObjectId.Block) {
-				if(tempObject.getX() > playerX + 900) {
-					tempObject.setVisible(false);
-				}
-				else tempObject.setVisible(true);				
-			}			
-		}	
-		
-		if(startLevelLoaded = true) {
-			if(playerX > 1000 + renderDistance && playerX < 1063 + renderDistance) {
-				
-				//Blöcke laden in bestimmter Spalte
-				//System.out.println("Jetzt!");
-				renderLevel(activeLevel, (int)playerX);
-				
-				renderDistance = renderDistance + 64;
-				
+			//remove block if passed by the player
+			if(tempObject.getId() == ObjectId.Block && tempObject.getX() < playerX - 550) {
+				removeObject(tempObject);					
 			}
-		}
+		}			
 		
-		//System.out.println(playerX);
-		//System.out.println("");
-		//System.out.println("");
+		//add blocks shortly before the player passes them
+		if(playerX > 800 + renderDistance && playerX < 863 + renderDistance) {
+			
+			loadLevel(activeLevel, (int)playerX);
+			renderDistance = renderDistance + 64;		
+		
+		}
 	}
 	
-	public void renderLevel(BufferedImage image, int playerX) {
+	//recieve image of the level as input and convert it into GameObjects
+	public void loadLevel(BufferedImage image, int playerX) {
 		int width = image.getWidth();
 		int height = image.getHeight();
 		int xx = (playerX + 1000)/64;
@@ -101,25 +75,16 @@ public class Controller {
 		}
 	}
 	
-	//Render Lists
-	public void render(Graphics graphics) {
-		for(int i= 0; i < object.size(); i++) {
-			GameObject tempObject = object.get(i);
-			
-			tempObject.render(graphics);
-		}
-	}
 	
 	
-	
-	//Recieves an image as input and converts it into GameObjects
-	
-	public void loadLevel(BufferedImage image) {
+	//recieves image of the level as input and converts it into GameObjects
+	//only for the first 35 blocks 
+	public void loadLevel_Start(BufferedImage image) {
 		
 		int width = image.getWidth();
 		int height = image.getHeight();
 		
-		//To go through every pixel in the image
+		//go through every pixel in the image
 		for(int xx = 0; xx < 2240/64; xx++) {
 			for(int yy = 0; yy < height; yy++) {
 				
@@ -129,102 +94,92 @@ public class Controller {
 				int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
 				
-				//add objects depending on rgb color 
-				//Player
+				//add Player
 				if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*64, yy*64, this, 7, cam, ObjectId.Player));
 				
-				//Blocks
-				
+				//add Blocks
 				loadBlocks(red, green, blue, xx, yy);
-				
-				startLevelLoaded = true;
 			}
 		}		
 	}
 	
-	public void loadBlocks(int red, int green, int blue, int xx, int yy) {
+	//add block depending on rgb color
+	public void loadBlocks(int r, int g, int b, int xx, int yy) {
+
 		
-		if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 1, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 2, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 3, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 4, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 5, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 6, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 7, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 8, ObjectId.Block));
-		if(red == 0 && green == 110 && blue == 47) addObject(new Block(xx*64, yy*64, 8, ObjectId.Block));
-		if(red == 163 && green == 72 && blue == 47) addObject(new Block(xx*64, yy*64, 9, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 10, ObjectId.Block));
-		//if(red == 25 blue == 255) addObject(new Block(xx*64, yy*64, 11, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 12, ObjectId.Block));
-		if(red == 132 && green == 64 && blue == 64) addObject(new Block(xx*64, yy*64, 13, ObjectId.Block));
-		//if(red == 255 && green == 5 && blue == 255) addObject(new Block(xx*64, yy*64, 14, ObjectId.Block));
-		//if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 15, ObjectId.Block));
-		if(red == 64 && green == 64 && blue == 64) addObject(new Block(xx*64, yy*64, 16, ObjectId.Block));
-		if(red == 128 && green == 128 && blue == 128) addObject(new Block(xx*64, yy*64, 17, ObjectId.Block));
-		if(red == 0 && green == 255 && blue == 255) addObject(new Block(xx*64, yy*64, 18, ObjectId.Block));
-		if(red == 0 && green == 255 && blue == 0) addObject(new Block(xx*64, yy*64, 19, ObjectId.Block));
-		if(red == 255 && green == 255 && blue == 0) addObject(new Block(xx*64, yy*64, 20, ObjectId.Block));
-		if(red == 0 && green == 31 && blue == 0) addObject(new Block(xx*64, yy*64, 21, ObjectId.Block));
-		if(red == 255 && green == 0 && blue == 0) addObject(new Block(xx*64, yy*64, 22, ObjectId.Block));
-		//if(red == 0 && green == 31 && blue == 0) addObject(new Block(xx*64, yy*64, 23, ObjectId.Block));
+		if(r == 255 && g == 255 && b == 255) addObject(new Block(xx*64, yy*64, 0, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 1, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 2, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 3, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 4, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 5, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 6, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 7, ObjectId.Block));
+		else if(r == 0 && g == 110 && b == 47) addObject(new Block(xx*64, yy*64, 8, ObjectId.Block));
+		else if(r == 163 && g == 72 && b == 47) addObject(new Block(xx*64, yy*64, 9, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 10, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 11, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 12, ObjectId.Block));
+		else if(r == 132 && g == 64 && b == 64) addObject(new Block(xx*64, yy*64, 13, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 14, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 15, ObjectId.Block));
+		else if(r == 64 && g == 64 && b == 64) addObject(new Block(xx*64, yy*64, 16, ObjectId.Block));
+		else if(r == 128 && g == 128 && b == 128) addObject(new Block(xx*64, yy*64, 17, ObjectId.Block));
+		else if(r == 0 && g == 255 && b == 255) addObject(new Block(xx*64, yy*64, 18, ObjectId.Block));
+		else if(r == 0 && g == 255 && b == 0) addObject(new Block(xx*64, yy*64, 19, ObjectId.Block));
+		else if(r == 255 && g == 255 && b == 0) addObject(new Block(xx*64, yy*64, 20, ObjectId.Block));
+		else if(r == 0 && g == 31 && b == 0) addObject(new Block(xx*64, yy*64, 21, ObjectId.Block));
+		else if(r == 255 && g == 0 && b == 0) addObject(new Block(xx*64, yy*64, 22, ObjectId.Block));
+		//else if(r == ? && g == ? && b == ?) addObject(new Block(xx*64, yy*64, 23, ObjectId.Block));
+		
+	}
+	
+	
+	//select correct level-image and call loadLevel method
+	public void startLevel(int level) {
+		
+		clearLevel();
+		
+		switch(level) {
+		case 1: 
+			activeLevel = level1;
+			break;
+		case 2: 
+			activeLevel = level2;
+			break;
+		case 3: 
+			activeLevel = level3;
+			break;
+		case 4: 
+			activeLevel = level4;
+			break;
+		case 5: 
+			activeLevel = level5;
+			break;
+		}
+		
+		loadLevel_Start(activeLevel);
+		
+	}
+	
+	//render the graphics of the objects
+	public void render(Graphics graphics) {
+		for(int i= 0; i < object.size(); i++) {
+			GameObject tempObject = object.get(i);
+			
+			tempObject.render(graphics);
+		}
 	}
 	
 	public void setLevel(int level) {
 		this.level = level;
 	}
 	
-	public void switchLevel(int level) {
-		clearLevel();
-		cam.setX(0);
-		
-		switch(level) {
-		
-			case 1:
-				loadLevel(level1);				
-				break;		
-			case 2: 
-				loadLevel(level2);				
-				break;
-			case 3: 
-				loadLevel(level3);				
-				break;
-			case 4: 
-				loadLevel(level4);				
-				break;
-			case 5: 
-				loadLevel(level5);				
-				break;
-		}
+	public int getLevel() {
+		return level;
 	}
 	
-	public void startLevel(int level) {
-		
-		clearLevel();
-				
-		if(level == 1) {
-			activeLevel = level1;
-			loadLevel(level1);
-		}
-		else if(level == 2) {
-			activeLevel = level2;
-			loadLevel(level2);
-		}
-		else if(level == 3) {
-			activeLevel = level3;
-			loadLevel(level3);
-		}
-		else if(level == 4) {
-			activeLevel = level4;
-			loadLevel(level4);
-		}
-		else if(level == 5) {
-			activeLevel = level5;
-			loadLevel(level5);
-		}
-	}
-	
+	//delete every object in the world
 	public static void clearLevel() {
 		object.clear();
 	}
