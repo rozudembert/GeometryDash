@@ -98,6 +98,7 @@ public class KeyInput extends KeyAdapter{
 			else if(menu.getLeftLevelButton()) {
 				if(key == KeyEvent.VK_ENTER && level > 1 ) {
 					level = level - 1;
+					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
@@ -108,6 +109,7 @@ public class KeyInput extends KeyAdapter{
 			else if(menu.getRightLevelButton()) {
 				if(key == KeyEvent.VK_ENTER && level < 5 ) {
 					level++;
+					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
 				}
 				else if(key == KeyEvent.VK_LEFT) {

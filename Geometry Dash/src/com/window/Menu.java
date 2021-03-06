@@ -12,9 +12,8 @@ public class Menu{
 	
 	//graphics
 	private BufferedImage titleScreen = null;
-	private BufferedImage buttonLeft = null, buttonRight = null, buttonLeftActive = null, buttonRightActive = null;
 	private BufferedImage buttonPlay = null, buttonPlayActive = null;
-	
+	private BufferedImage menu_background = null;
 	
 	//boolean for the selected buttons
 	private static boolean playButton = true;
@@ -27,9 +26,10 @@ public class Menu{
 	
 	private int level = 1;
 
-	public Menu(Game game, Controller controller) {
+	public Menu(Game game, Controller controller, Texture texture) {
 		Menu.game = game;
 		this.controller = controller;
+		this.texture = texture;
 		
 		graphics();
 		
@@ -41,13 +41,9 @@ public class Menu{
 		
 		try {
 			titleScreen = loader.loadImage("/TitleScreen.png");
-			buttonLeft = loader.loadImage("/buttons/buttonLeft.png");
-			buttonLeftActive = loader.loadImage("/buttons/buttonLeftActive.png");
-			buttonRight = loader.loadImage("/buttons/buttonRight.png");
-			buttonRightActive = loader.loadImage("/buttons/buttonRightActive.png");
 			buttonPlay = loader.loadImage("/buttons/Play.png");
 			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");
-			
+			menu_background = loader.loadImage("/background/menu_background.png");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,19 +51,16 @@ public class Menu{
 	}
 	
 	public void update() {
-		//HIER DRIN BOXEN ERSTELLEN
+		
+		
+		
 	}
 	
 	public void render(Graphics g) {
-		
-		int showLevel = level;
-		Font fnt = new Font("calibri", 1, 50);
+	
         Font fnt2 = new Font("calibri", 1, 28);
-        int q = 200; //boxWidth
-        int j = 64; //boxHeight
         int width = Game.WIDTH;
         int height = Game.HEIGHT;
-        g.setColor(Color.WHITE);
         g.setFont(fnt2);
         Color buttonYellow = new Color(255,168,0);
         
@@ -80,32 +73,24 @@ public class Menu{
         	g.drawString("Press SPACE to continue", width / 2 + 200, height / 2 + 150);
         }        
         else if(game.gameStatus==STATUS.Menu) {
-        	//g.drawImage(menuTest, 0, 0, null);
         	
-        	//Left Button
-        	if(true) {
-        		if(leftLevelButton) {
-        			g.drawImage(buttonLeftActive, 340, 405, null);
-        			g.setColor(buttonYellow);
-        		}
-            	else {
-            		g.setColor(Color.white);
-            		g.drawImage(buttonLeft, 340, 405, null);
-            	}
-            	g.drawString("Level: " + (showLevel-1) , 364, 510);
+        	g.drawImage(menu_background, 0, 0, null);
+        	
+        	if(leftLevelButton && level > 1) {
+        		g.drawImage(texture.button[level + 4], 340, 405, null);
+        	} 
+        	else {
+        		g.drawImage(texture.button[level - 1], 340, 405, null);
         	}
-        	        	        	
-        	//Right Button
-        	if(true) {
-        		if(rightLevelButton) {
-        			g.drawImage(buttonRightActive, 830, 405, null);
-        			g.setColor(buttonYellow);
-        		}
-            	else {
-            		g.setColor(Color.white);
-            		g.drawImage(buttonRight, 830, 405, null);
-            	}
-            	g.drawString("Level: " + (showLevel+1), 852, 510);
+        	
+        	if(rightLevelButton && level < 5) {
+        		g.drawImage(texture.button[level + 16], 830, 405, null);
+        	} 
+        	else if (level == 5) {
+        		g.drawImage(texture.button[0], 340, 405, null);
+        	} 
+        	else {
+        		g.drawImage(texture.button[level + 11], 830, 405, null);
         	}
         	
         	//Play Button
@@ -118,7 +103,7 @@ public class Menu{
         		g.drawImage(buttonPlay, 503, 532, null);
         	}
         	
-        	g.drawString("< Level: " + (showLevel) + " >", 575, 580);
+        	g.drawString("< Level: " + (level) + " >", 575, 580);
         	
         	
         }        
@@ -142,5 +127,10 @@ public class Menu{
 	public boolean getRightLevelButton() {
 		return rightLevelButton;
 	}
-	
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public int getLevel() {
+		return level;
+	}
 }

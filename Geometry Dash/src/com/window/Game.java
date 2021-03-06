@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable{
 		
 		texture = new Texture();
 		
-		menu = new Menu(this, controller);
+		menu = new Menu(this, controller, texture);
 		
 		cam = new Camera(0, 0);
 		
