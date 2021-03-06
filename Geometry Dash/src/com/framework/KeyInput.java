@@ -9,17 +9,26 @@ package com.framework;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import com.window.Controller;
+import com.window.Game;
+import com.window.Game.STATUS;
+import com.window.Menu;
 
 public class KeyInput extends KeyAdapter{
 	
 	//disables auto movement and enables more specific movement to the left and right
 	private boolean testing = false;
 	
+	Game game;
 	Controller controller;
+	Menu menu;
 	private boolean[ ] keyDown = new boolean[2];
 	
-	public KeyInput(Controller controller) {
+	private int level = 1;
+	
+	public KeyInput(Game game, Controller controller, Menu menu) {
+		this.game = game;
 		this.controller = controller;
+		this.menu = menu;
 		keyDown[1] = false;
 		keyDown[0] = false;	
 	}
@@ -61,6 +70,51 @@ public class KeyInput extends KeyAdapter{
 		//Press Escape to exit the Game
 		if (key == KeyEvent.VK_ESCAPE) {
 			System.exit(1);
+		}
+		
+		if(Game.gameStatus == STATUS.StartMenu) {
+			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
+				game.setGameStatus(STATUS.Game);
+				controller.startLevel(level);
+			}
+		}
+		
+		else if(Game.gameStatus == STATUS.Menu) {
+			
+			if(menu.getPlayButton()) {
+				if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Game);
+					controller.startLevel(level);										
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					menu.setPlayButton(false);
+					menu.setLeftLevelButton(true);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					menu.setPlayButton(false);
+					menu.setRightLevelButton(true);
+				}
+			}
+			else if(menu.getLeftLevelButton()) {
+				if(key == KeyEvent.VK_ENTER && level > 1 ) {
+					level = level - 1;
+					System.out.println("You selected level: " + level);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					menu.setLeftLevelButton(false);
+					menu.setPlayButton(true);
+				}
+			}
+			else if(menu.getRightLevelButton()) {
+				if(key == KeyEvent.VK_ENTER && level < 5 ) {
+					level++;
+					System.out.println("You selected level: " + level);
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					menu.setRightLevelButton(false);
+					menu.setPlayButton(true);
+				}
+			}
 		}
 	}
 	

@@ -36,21 +36,20 @@ public class Game extends Canvas implements Runnable{
 	
 	public static STATUS gameStatus = STATUS.StartMenu;
 	
-	public static int LEVEL = 1;
+	
 	
 	//
 	private void initialise() {
 		
-		menu = new Menu(this, controller);
-		
 		texture = new Texture();
+		
+		menu = new Menu(this, controller);
 		
 		cam = new Camera(0, 0);
 		
 		controller = new Controller(cam);
 			
-		this.addKeyListener(new KeyInput(controller));	
-		this.addKeyListener(new Menu(this, controller));
+		this.addKeyListener(new KeyInput(this, controller, menu));	
 	}
 	
 	public enum STATUS{

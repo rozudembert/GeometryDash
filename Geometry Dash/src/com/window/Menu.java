@@ -5,9 +5,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import com.framework.Texture;
 import com.window.Game.STATUS;
 
-public class Menu extends KeyAdapter{
+public class Menu{
 	
 	//graphics
 	private BufferedImage titleScreen = null;
@@ -16,13 +17,13 @@ public class Menu extends KeyAdapter{
 	
 	
 	//boolean for the selected buttons
-	private static boolean playButtonSelected = true;
-	private static boolean leftLevelButtonSelected = false;
-	private static boolean rightLevelButtonSelected = false;
-	private static boolean backButtonSelected = false;
+	private static boolean playButton = true;
+	private static boolean leftLevelButton = false;
+	private static boolean rightLevelButton = false;
 	
 	private static Game game;
 	private Controller controller;	
+	Texture texture;
 	
 	private int level = 1;
 
@@ -53,72 +54,8 @@ public class Menu extends KeyAdapter{
 		}
 	}
 	
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		
-		//Space in StartMenu leads to Menu
-		if(game.gameStatus == STATUS.StartMenu) {
-			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
-				//game.setGameStatus(STATUS.Menu);
-				
-				game.setGameStatus(STATUS.Game);
-				controller.startLevel(level);
-			}
-		}		
-		//Actions in MainMenu
-		else if(game.gameStatus == STATUS.Menu) {
-			
-			//Play Button
-			if(playButtonSelected) {
-				//Start the Game
-				if(key == KeyEvent.VK_ENTER) {
-					game.setGameStatus(STATUS.Game);
-					controller.startLevel(level);					
-									
-				}
-				else if(key == KeyEvent.VK_LEFT) {
-					playButtonSelected = false;
-					leftLevelButtonSelected = true;
-				}
-				else if(key == KeyEvent.VK_RIGHT) {
-					playButtonSelected = false;
-					rightLevelButtonSelected = true;
-				}
-			}			
-			
-			//Left Level Button to change level
-			else if(leftLevelButtonSelected) {
-				if(key == KeyEvent.VK_ENTER && level > 1 ) {
-					level = level - 1;
-					System.out.println("You selected level: " + level);
-				}
-				else if(key == KeyEvent.VK_RIGHT) {
-					leftLevelButtonSelected = false;
-					playButtonSelected = true;
-				}
-			}
-			
-			//Right Level Button to change level
-			else if(rightLevelButtonSelected) {
-				if(key == KeyEvent.VK_ENTER && level < 5 ) {
-					level++;
-					System.out.println("You selected level: " + level);
-				}
-				else if(key == KeyEvent.VK_LEFT) {
-					rightLevelButtonSelected = false;
-					playButtonSelected = true;
-				}
-			}			
-			
-		}	
-		
-		//else if(//new button in different menu state) {
-			
-		//}
-	}
-	
 	public void update() {
-		
+		//HIER DRIN BOXEN ERSTELLEN
 	}
 	
 	public void render(Graphics g) {
@@ -147,7 +84,7 @@ public class Menu extends KeyAdapter{
         	
         	//Left Button
         	if(true) {
-        		if(leftLevelButtonSelected) {
+        		if(leftLevelButton) {
         			g.drawImage(buttonLeftActive, 340, 405, null);
         			g.setColor(buttonYellow);
         		}
@@ -160,7 +97,7 @@ public class Menu extends KeyAdapter{
         	        	        	
         	//Right Button
         	if(true) {
-        		if(rightLevelButtonSelected) {
+        		if(rightLevelButton) {
         			g.drawImage(buttonRightActive, 830, 405, null);
         			g.setColor(buttonYellow);
         		}
@@ -172,7 +109,7 @@ public class Menu extends KeyAdapter{
         	}
         	
         	//Play Button
-        	if(playButtonSelected) {
+        	if(playButton) {
         		g.drawImage(buttonPlayActive, 503, 532, null);
         		g.setColor(buttonYellow);
         	}
@@ -185,6 +122,25 @@ public class Menu extends KeyAdapter{
         	
         	
         }        
+	}
+	
+	public void setPlayButton(boolean playButton) {
+		this.playButton = playButton;
+	}
+	public boolean getPlayButton() {
+		return playButton;
+	}
+	public void setLeftLevelButton(boolean leftLevelButton) {
+		this.leftLevelButton = leftLevelButton;
+	}
+	public boolean getLeftLevelButton() {
+		return leftLevelButton;
+	}
+	public void setRightLevelButton(boolean rightLevelButton) {
+		this.rightLevelButton = rightLevelButton;
+	}
+	public boolean getRightLevelButton() {
+		return rightLevelButton;
 	}
 	
 }
