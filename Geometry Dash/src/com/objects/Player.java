@@ -24,7 +24,7 @@ public class Player extends GameObject{
 	public float width = 64, height = 64;
 	
 	//Gravity Settings
-	private float GRAVITY = 0.5f;
+	private float GRAVITY = 0.75f;
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//Visible Player hitbox can be enabled here

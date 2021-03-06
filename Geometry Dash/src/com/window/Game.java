@@ -175,7 +175,7 @@ public class Game extends Canvas implements Runnable{
 		if(gameStatus == STATUS.Game) {
 			
 		}
-		else if(gameStatus == STATUS.Menu || gameStatus == STATUS.Help) {
+		else if(gameStatus == STATUS.Menu) {
 			//menu.render(graphics);
 		}
 		

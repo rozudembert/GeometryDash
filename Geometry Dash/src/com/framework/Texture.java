@@ -79,7 +79,7 @@ public class Texture {
 		block[21] = bs.grabImage(6, 3, 64, 64);	//Leaves
 		block[22] = bs.grabImage(7, 3, 64, 64);	//Transparent Block
 		
-		
+		//Player Skin
 		player[0] = ps.grabImage(1, 1, 64, 64);
 		player[1] = ps.grabImage(2, 1, 64, 64);
 		player[2] = ps.grabImage(3, 1, 64, 64);
@@ -89,6 +89,7 @@ public class Texture {
 		player[6] = ps.grabImage(7, 1, 64, 64);
 		player[7] = ps.grabImage(8, 1, 64, 64);	//Creeper
 		
+		//Buttons
 		button[0] = buttonSheet.grabImage(1, 1, 132, 132);
 		button[1] = buttonSheet.grabImage(2, 1, 132, 132);
 		button[2] = buttonSheet.grabImage(3, 1, 132, 132);
