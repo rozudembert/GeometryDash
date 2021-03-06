@@ -10,7 +10,6 @@ public enum ObjectId {
 	
 	Player(),
 	Block(),
-	Spike(),
-	Goal();
+	Spike();
 	
 }

@@ -8,7 +8,7 @@ public class Texture {
 	
 	BufferedImage image;
 	
-	SpriteSheet bs, ps; //Sprite for Block Sheet (bs) and Player Sheet (ps)
+	SpriteSheet bs, ps, buttonSheet; //Sprite for Block Sheet (bs) and Player Sheet (ps)
 	
 	//Buttons
 	public BufferedImage titleScreen = null;
@@ -18,10 +18,12 @@ public class Texture {
 	
 	private BufferedImage block_sheet = null;
 	private BufferedImage player_sheet = null;
+	private BufferedImage button_sheet = null;
 	
 	//array to store the images in
 	public BufferedImage[] block = new BufferedImage[23]; //array has to have the size of the amount of blocks
 	public BufferedImage[] player = new BufferedImage[8];
+	public BufferedImage[] button = new BufferedImage[20];
 	
 	public Texture() {
 		
@@ -39,15 +41,8 @@ public class Texture {
 			//Player and Block Sheet
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
+			button_sheet = loader.loadImage("/texture/button_sheet.png");
 			
-			//Buttons
-			titleScreen = loader.loadImage("/TitleScreen.png");
-			buttonLeft = loader.loadImage("/buttons/buttonLeft.png");
-			buttonLeftActive = loader.loadImage("/buttons/buttonLeftActive.png");
-			buttonRight = loader.loadImage("/buttons/buttonRight.png");
-			buttonRightActive = loader.loadImage("/buttons/buttonRightActive.png");
-			buttonPlay = loader.loadImage("/buttons/Play.png");
-			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,6 +50,7 @@ public class Texture {
 		
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(player_sheet);
+		buttonSheet = new SpriteSheet(button_sheet);
 	}
 	
 	//assign the images from the sheets to the arrays
@@ -92,5 +88,26 @@ public class Texture {
 		player[5] = ps.grabImage(6, 1, 64, 64);
 		player[6] = ps.grabImage(7, 1, 64, 64);
 		player[7] = ps.grabImage(8, 1, 64, 64);	//Creeper
+		
+		button[0] = buttonSheet.grabImage(1, 1, 132, 132);
+		button[1] = buttonSheet.grabImage(2, 1, 132, 132);
+		button[2] = buttonSheet.grabImage(3, 1, 132, 132);
+		button[3] = buttonSheet.grabImage(4, 1, 132, 132);
+		button[4] = buttonSheet.grabImage(5, 1, 132, 132);
+		button[5] = buttonSheet.grabImage(1, 2, 132, 132);
+		button[6] = buttonSheet.grabImage(2, 2, 132, 132);
+		button[7] = buttonSheet.grabImage(3, 2, 132, 132);
+		button[8] = buttonSheet.grabImage(4, 2, 132, 132);
+		button[9] = buttonSheet.grabImage(5, 2, 132, 132);
+		button[10] = buttonSheet.grabImage(1, 3, 132, 132);
+		button[11] = buttonSheet.grabImage(2, 3, 132, 132);
+		button[12] = buttonSheet.grabImage(3, 3, 132, 132);
+		button[13] = buttonSheet.grabImage(4, 3, 132, 132);
+		button[14] = buttonSheet.grabImage(5, 3, 132, 132);
+		button[15] = buttonSheet.grabImage(1, 4, 132, 132);
+		button[16] = buttonSheet.grabImage(2, 4, 132, 132);
+		button[17] = buttonSheet.grabImage(3, 4, 132, 132);
+		button[18] = buttonSheet.grabImage(4, 4, 132, 132);
+		button[19] = buttonSheet.grabImage(5, 4, 132, 132);
 	}	
 }
