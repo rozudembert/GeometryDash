@@ -68,7 +68,7 @@ public class Player extends GameObject{
 			
 			if(tempObject.getId() == ObjectId.Player) {
 				//Adjust player speed
-				tempObject.setVelX(7);
+				tempObject.setVelX(9);
 			}
 		}	
 	}
@@ -120,7 +120,7 @@ public class Player extends GameObject{
 	public void death() {
 		//Remove Player from the game
 		Game.playerDeath();
-		System.out.println("Player died due to collision");
+		controller.setRenderDistance(0);
 		controller.removeObject(this);
 			
 	}

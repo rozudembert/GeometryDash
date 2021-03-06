@@ -195,4 +195,12 @@ public class Controller {
 	public void removeObject(GameObject object) {
 		this.object.remove(object);
 	}
+	
+	public void setRenderDistance(int renderDistance) {
+		this.renderDistance = renderDistance;
+	}
+	
+	public int getRenderDistance() {
+		return renderDistance;
+	}
 }
