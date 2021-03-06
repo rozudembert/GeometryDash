@@ -58,9 +58,12 @@ public class Controller {
 		}
 	}
 	
-	//recieve image of the level as input and convert it into GameObjects
+	/*
+	 * recieve image of the level as input and convert it into GameObjects
+	 * only load the column of blocks 15 blocks away from the player
+	 */
 	public void loadLevel(BufferedImage image, int playerX) {
-		int width = image.getWidth();
+		
 		int height = image.getHeight();
 		int xx = (playerX + 1000)/64;
 		
@@ -77,11 +80,10 @@ public class Controller {
 	
 	
 	
-	//recieves image of the level as input and converts it into GameObjects
+	//recieve image of the level as input and convert it into GameObjects
 	//only for the first 35 blocks 
 	public void loadLevel_Start(BufferedImage image) {
 		
-		int width = image.getWidth();
 		int height = image.getHeight();
 		
 		//go through every pixel in the image
