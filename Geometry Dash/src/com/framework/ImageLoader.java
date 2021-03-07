@@ -3,7 +3,7 @@
  * to use for textures
  */
 
-package com.window;
+package com.framework;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

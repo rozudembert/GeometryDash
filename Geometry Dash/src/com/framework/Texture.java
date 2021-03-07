@@ -2,7 +2,7 @@ package com.framework;
 
 import java.awt.image.BufferedImage;
 
-import com.window.ImageLoader;
+import com.framework.ImageLoader;
 
 public class Texture {
 	

@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import com.framework.Texture;
+import com.framework.ImageLoader;
 import com.window.Game.STATUS;
 
 public class Menu{

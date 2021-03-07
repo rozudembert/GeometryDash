@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import com.framework.GameObject;
 import com.framework.ObjectId;
+import com.framework.ImageLoader;
 import com.objects.Block;
 import com.objects.Player;
 import com.objects.Spike;
