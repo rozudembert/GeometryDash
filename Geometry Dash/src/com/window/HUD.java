@@ -41,6 +41,8 @@ public class HUD {
 		//White outline
 		g.setColor(Color.WHITE);
 		g.drawRect(x_position, y_position, boxWidth, boxHeight);
+		
+		//Show Percentage
 		g.drawString((int)progress/6 + "%", x_position + 570, y_position + 15);
 		
 		
