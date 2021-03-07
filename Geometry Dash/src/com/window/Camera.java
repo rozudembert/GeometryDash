@@ -22,15 +22,10 @@ public class Camera {
 		x = -player.getX() + Game.WIDTH/2 - 200;
 		
 		//change Y-Coordinate at the beginning
-		
 		if(start) {
 			y= -player.getY() + Game.WIDTH/2 - 200 ;
 			start = false;
 		}		
-		
-		System.out.println("PlayerY: " + player.getY());
-		System.out.println("CameraY: " + y);		
-		
 	}
 	
 	

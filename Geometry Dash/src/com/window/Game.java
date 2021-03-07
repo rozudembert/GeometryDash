@@ -33,6 +33,7 @@ public class Game extends Canvas implements Runnable{
 	Camera cam;
 	static Texture texture;
 	Menu menu;
+	HUD hud;
 	
 	public static STATUS gameStatus = STATUS.StartMenu;
 	
@@ -48,7 +49,9 @@ public class Game extends Canvas implements Runnable{
 		cam = new Camera(0, 0);
 		
 		controller = new Controller(cam);
-			
+		
+		hud = new HUD(cam);
+		
 		this.addKeyListener(new KeyInput(this, controller, menu));	
 	}
 	
@@ -99,6 +102,7 @@ public class Game extends Canvas implements Runnable{
 	
 	//Game-Loop	
 	public void run() {
+		this.requestFocus();
 		initialise();
 		this.requestFocus();
 		long lastTime = System.nanoTime();
@@ -144,8 +148,10 @@ public class Game extends Canvas implements Runnable{
 			for(int i = 0; i < controller.object.size(); i++) {
 				if(controller.object.get(i).getId() == ObjectId.Player) {
 					cam.update(controller.object.get(i));
+					hud.update(controller.object.get(i));
 				}
 			}
+			
 		}		
 	}
 	
@@ -165,9 +171,10 @@ public class Game extends Canvas implements Runnable{
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 				
-		g2d.translate(cam.getX(), cam.getY()); //Begin of camera; translates everything it "sandwiches"
-				
+		g2d.translate(cam.getX(), cam.getY()); //Begin of camera
+		
 		controller.render(graphics);
+		hud.render(graphics);
 		
 		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
 		
