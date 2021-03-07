@@ -171,13 +171,6 @@ public class Game extends Canvas implements Runnable{
 		
 		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
 		
-		if(gameStatus == STATUS.Game) {
-			
-		}
-		else if(gameStatus == STATUS.Menu) {
-			//menu.render(graphics);
-		}
-		
 		menu.render(graphics);
 		
 		graphics.dispose();

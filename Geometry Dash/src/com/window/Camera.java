@@ -8,6 +8,7 @@ import com.framework.GameObject;
 public class Camera {
 
 	private float x, y;
+	private boolean start = true;
 	
 	public Camera(float x, float y) {
 		this.x = x;
@@ -20,17 +21,15 @@ public class Camera {
 	public void update(GameObject player) {
 		x = -player.getX() + Game.WIDTH/2 - 200;
 		
-		//Camera moves at the same speed like the player
-		//x += -player.getVelX();
+		//change Y-Coordinate at the beginning
 		
-		//the camera should always have a distance between the players top and games top
-		//Wenn Abstand zwischen PlayerY und cameraY kleiner als 320
-			//Was
-		if(player.getY() - y < cameraDistance) {
-			//Adjust camera Y
-			
-		}
+		if(start) {
+			y= -player.getY() + Game.WIDTH/2 - 200 ;
+			start = false;
+		}		
 		
+		System.out.println("PlayerY: " + player.getY());
+		System.out.println("CameraY: " + y);		
 		
 	}
 	
