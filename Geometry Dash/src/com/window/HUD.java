@@ -29,11 +29,6 @@ public class HUD {
 		int x_position = -(int)camera.getX() + Game.WIDTH/2 - boxWidth/2;
 		int y_position = -(int)camera.getY()+ 10;
 		
-		
-		//progress bar background
-		//g.setColor(Color.GRAY);
-		//g.fillRect(x_position, y_position, boxWidth, boxHeight);
-		
 		//progess bar
 		g.setColor(Color.GREEN);
 		g.fillRect(x_position, y_position, (int)progress, boxHeight);
@@ -41,6 +36,7 @@ public class HUD {
 		//White outline
 		g.setColor(Color.WHITE);
 		g.drawRect(x_position, y_position, boxWidth, boxHeight);
+		g.drawRect(x_position+1, y_position+1, boxWidth-2, boxHeight-2);
 		
 		//Show Percentage
 		g.drawString((int)progress/6 + "%", x_position + 570, y_position + 15);
