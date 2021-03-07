@@ -83,9 +83,6 @@ public class Player extends GameObject{
 				//collision with the top -> Player dies
 				if(getBorderTop().intersects(tempObject.getBorder())){
 					death();
-					
-					//y = tempObject.getY() + height/2; //height/2 kann verändert werden damit es besser passt
-					//velY = 0;
 				}
 				
 				//collision with the ground
@@ -99,16 +96,14 @@ public class Player extends GameObject{
 				//Right side collision
 				if(getBorderRight().intersects(tempObject.getBorder())){
 					death();
-					
-					//x = tempObject.getX() - width;					
+									
 				}
 				
+				/*
 				//Left side collision
-				//if(getBorderLeft().intersects(tempObject.getBorder())){
-					//death();
-					
-					//x = tempObject.getX() + width + 2;
-				//}				
+				if(getBorderLeft().intersects(tempObject.getBorder())){
+					death();				
+				} */				
 			}
 					
 			if(tempObject.getId() == ObjectId.Spike) {
@@ -120,6 +115,7 @@ public class Player extends GameObject{
 	public void death() {
 		//Remove Player from the game
 		Game.playerDeath();
+		cam.setStart(true);
 		controller.setRenderDistance(0);
 		controller.removeObject(this);
 			

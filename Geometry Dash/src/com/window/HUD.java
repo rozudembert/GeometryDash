@@ -21,7 +21,6 @@ public class HUD {
 	
 	public void update(GameObject player) {
 		progress = (player.getX() / LEVEL_LENGTH) * 600;
-		System.out.println(progress);
 	}
 	
 	public void render(Graphics g) {

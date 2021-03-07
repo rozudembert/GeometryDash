@@ -15,7 +15,8 @@ public class Camera {
 		this.y = y;
 	}
 	
-	private float cameraDistance = 320;
+	private static float TOP_OFFSET = 192;
+	private static float GROUND_OFFSET = 440;
 	
 	//The Camera follows the players movement
 	public void update(GameObject player) {
@@ -23,9 +24,29 @@ public class Camera {
 		
 		//change Y-Coordinate at the beginning
 		if(start) {
-			y= -player.getY() + Game.WIDTH/2 - 200 ;
+			y = -player.getY() + 440;
 			start = false;
-		}		
+		}
+		
+		//if the player gets too high, adjust Y
+		float playerY = player.getY();
+		float cameraY = -y;
+		
+		System.out.println("Player: " + playerY);
+		System.out.println("Cam:" + cameraY);
+		System.out.println("Cam:" + y);
+		
+		if(playerY - cameraY < TOP_OFFSET) {
+			y = -player.getY() + TOP_OFFSET;
+		}
+			
+		if(playerY - cameraY > GROUND_OFFSET) {
+			y = -player.getY() + GROUND_OFFSET;
+		}
+		
+		
+		
+		
 	}
 	
 	
@@ -42,4 +63,11 @@ public class Camera {
 	public float getY() {
 		return y;
 	}
+	public void setStart(boolean start) {
+		this.start = start;
+	}
+	public boolean getStart() {
+		return start;
+	}
+	
 }
