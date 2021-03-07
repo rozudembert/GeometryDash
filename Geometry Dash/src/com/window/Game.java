@@ -13,6 +13,7 @@ import com.framework.ObjectId;
 import com.framework.Texture;
 import com.objects.Block;
 import com.objects.Player;
+import com.window.Game.STATUS;
 
 public class Game extends Canvas implements Runnable{
 	
@@ -60,11 +61,12 @@ public class Game extends Canvas implements Runnable{
 		Menu,
 		Help,
 		Dead,
+		End,
 		Game;
 	}
 	
 	public void setGameStatus(STATUS status) {
-		this.gameStatus = status;
+		Game.gameStatus = status;
 	}
 	
 	public static Texture getInstance() {
@@ -74,6 +76,10 @@ public class Game extends Canvas implements Runnable{
 	public static void playerDeath() {
 		Controller.clearLevel();
 		gameStatus = STATUS.Menu;
+	}
+	
+	public static void endMenu() {
+		gameStatus = STATUS.End;
 	}
 	
 	/*
@@ -145,10 +151,10 @@ public class Game extends Canvas implements Runnable{
 		
 		else if(gameStatus == STATUS.Game) {			
 			//updating camera
-			for(int i = 0; i < controller.object.size(); i++) {
-				if(controller.object.get(i).getId() == ObjectId.Player) {
-					cam.update(controller.object.get(i));
-					hud.update(controller.object.get(i));
+			for(int i = 0; i < Controller.object.size(); i++) {
+				if(Controller.object.get(i).getId() == ObjectId.Player) {
+					cam.update(Controller.object.get(i));
+					hud.update(Controller.object.get(i));
 				}
 			}
 			
@@ -175,6 +181,7 @@ public class Game extends Canvas implements Runnable{
 		
 		controller.render(graphics);
 		hud.render(graphics);
+		
 		
 		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
 		

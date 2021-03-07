@@ -7,6 +7,7 @@ import com.framework.GameObject;
 import com.framework.ObjectId;
 import com.framework.ImageLoader;
 import com.objects.Block;
+import com.objects.EndPortal;
 import com.objects.Player;
 import com.objects.Spike;
 
@@ -143,8 +144,13 @@ public class Controller {
 		else if(r == 215 && g == 123 && b == 45) type = 30; //Lava
 		else if(r == 224 && g == 154 && b == 56) type = 31; //Lava Top
 		
+		//End Portal
+		else if(r == 255 && g == 45 && b == 255) addObject(new EndPortal(xx*64, yy*64, ObjectId.EndPortal));
+		
 		if(type != 100)
 			addObject(new Block(xx*64, yy*64, type, ObjectId.Block));
+		
+		
 	}
 	
 	

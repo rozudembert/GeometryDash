@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.framework.GameObject;
+import com.window.Game.STATUS;
 
 public class HUD {
 	
@@ -24,23 +25,26 @@ public class HUD {
 	}
 	
 	public void render(Graphics g) {
-		int boxWidth = 600;
-		int boxHeight = 20;
-		int x_position = -(int)camera.getX() + Game.WIDTH/2 - boxWidth/2;
-		int y_position = -(int)camera.getY()+ 10;
-		
-		//progess bar
-		g.setColor(Color.GREEN);
-		g.fillRect(x_position, y_position, (int)progress, boxHeight);
-		
-		//White outline
-		g.setColor(Color.WHITE);
-		g.drawRect(x_position, y_position, boxWidth, boxHeight);
-		g.drawRect(x_position+1, y_position+1, boxWidth-2, boxHeight-2);
-		
-		//Show Percentage
-		g.drawString((int)progress/6 + "%", x_position + 570, y_position + 15);
 		
 		
+			
+			int boxWidth = 600;
+			int boxHeight = 20;
+			int x_position = -(int)camera.getX() + Game.WIDTH/2 - boxWidth/2;
+			int y_position = -(int)camera.getY()+ 10;
+			
+			//progess bar
+			g.setColor(Color.GREEN);
+			g.fillRect(x_position, y_position, (int)progress, boxHeight);
+			
+			//White outline
+			g.setColor(Color.WHITE);
+			g.drawRect(x_position, y_position, boxWidth, boxHeight);
+			g.drawRect(x_position+1, y_position+1, boxWidth-2, boxHeight-2);
+			
+			//Show Percentage
+			g.drawString((int)progress/6 + "%", x_position + 570, y_position + 15);
+		
+					
 	}
 }

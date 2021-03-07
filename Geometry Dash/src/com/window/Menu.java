@@ -21,15 +21,11 @@ public class Menu{
 	private static boolean leftLevelButton = false;
 	private static boolean rightLevelButton = false;
 	
-	private static Game game;
-	private Controller controller;	
 	Texture texture;
 	
 	private int level = 1;
 
 	public Menu(Game game, Controller controller, Texture texture) {
-		Menu.game = game;
-		this.controller = controller;
 		this.texture = texture;
 		
 		graphics();
@@ -66,33 +62,30 @@ public class Menu{
         Color buttonYellow = new Color(255,168,0);
         
         //to render titleScreen
-        if(game.gameStatus == STATUS.StartMenu) {
+        if(Game.gameStatus == STATUS.StartMenu) {
         	g.drawImage(titleScreen, 0, 0, null);
             	
         	g.setFont(fnt2);
         	g.setColor(buttonYellow);
         	g.drawString("Press SPACE to continue", width / 2 + 200, height / 2 + 150);
         }        
-        else if(game.gameStatus==STATUS.Menu) {
+       
+        else if(Game.gameStatus==STATUS.Menu) {
         	
         	g.drawImage(menu_background, 0, 0, null);
         	
-        	if(leftLevelButton && level > 1) {
+        	if(leftLevelButton && level > 1) 
         		g.drawImage(texture.button[level + 4], 340, 405, null);
-        	} 
-        	else {
+        	else 
         		g.drawImage(texture.button[level - 1], 340, 405, null);
-        	}
         	
-        	if(rightLevelButton && level < 5) {
+        	
+        	if(rightLevelButton && level < 5) 
         		g.drawImage(texture.button[level + 16], 830, 405, null);
-        	} 
-        	else if (level == 5) {
+        	else if (level == 5) 
         		g.drawImage(texture.button[0], 340, 405, null);
-        	} 
-        	else {
+        	else 
         		g.drawImage(texture.button[level + 11], 830, 405, null);
-        	}
         	
         	//Play Button
         	if(playButton) {
@@ -103,27 +96,39 @@ public class Menu{
         		g.setColor(Color.white);
         		g.drawImage(buttonPlay, 503, 532, null);
         	}
-        	
-        	g.drawString("< Level: " + (level) + " >", 575, 580);
-        	
-        	
+        	g.drawString("< Level: " + (level) + " >", 575, 580);  	
         }        
+        
+        else if(Game.gameStatus == STATUS.End) {
+        	g.drawImage(menu_background, 0, 0, null);        	
+        	g.drawString("You did it!", Game.WIDTH/2 - 200, Game.HEIGHT/2);
+        	//TODO: Better Graphics
+        	//TODO: Buttons to get in different menu etc.        	
+        }
+        
+        else if(Game.gameStatus == STATUS.Dead) {
+        	g.drawImage(menu_background, 0, 0, null);        	
+        	g.drawString("Game Over! :( ", Game.WIDTH/2 - 200, Game.HEIGHT/2);
+        	//TODO: Buttons etc.
+        }
 	}
 	
+
+	
 	public void setPlayButton(boolean playButton) {
-		this.playButton = playButton;
+		Menu.playButton = playButton;
 	}
 	public boolean getPlayButton() {
 		return playButton;
 	}
 	public void setLeftLevelButton(boolean leftLevelButton) {
-		this.leftLevelButton = leftLevelButton;
+		Menu.leftLevelButton = leftLevelButton;
 	}
 	public boolean getLeftLevelButton() {
 		return leftLevelButton;
 	}
 	public void setRightLevelButton(boolean rightLevelButton) {
-		this.rightLevelButton = rightLevelButton;
+		Menu.rightLevelButton = rightLevelButton;
 	}
 	public boolean getRightLevelButton() {
 		return rightLevelButton;

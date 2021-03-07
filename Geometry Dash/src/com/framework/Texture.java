@@ -12,7 +12,6 @@ public class Texture {
 	
 	//Buttons
 	public BufferedImage titleScreen = null;
-	public BufferedImage buttonLeft = null, buttonRight = null, buttonLeftActive = null, buttonRightActive = null;
 	public BufferedImage buttonPlay = null, buttonPlayActive = null;
 	
 	
@@ -42,7 +41,6 @@ public class Texture {
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
 			button_sheet = loader.loadImage("/buttons/button_sheet.png");
-			
 		
 		} catch (Exception e) {
 			e.printStackTrace();

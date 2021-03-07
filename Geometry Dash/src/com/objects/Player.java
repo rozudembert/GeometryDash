@@ -28,7 +28,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//Visible Player hitbox can be enabled here
-	private boolean showHitbox = true;
+	private boolean showHitbox = false;
 	
 	Texture texture = Game.getInstance();
 	
@@ -63,8 +63,8 @@ public class Player extends GameObject{
 	
 	//
 	public void move(LinkedList<GameObject> object) {
-		for(int i = 0; i < controller.object.size(); i++) {
-			GameObject tempObject = controller.object.get(i);
+		for(int i = 0; i < Controller.object.size(); i++) {
+			GameObject tempObject = Controller.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Player) {
 				//Adjust player speed
@@ -75,8 +75,8 @@ public class Player extends GameObject{
 	
 	//collision method to detect collision with any given GameObject
 	public void collision(LinkedList<GameObject> object) {
-		for(int i = 0; i < controller.object.size(); i++) {
-			GameObject tempObject = controller.object.get(i);
+		for(int i = 0; i < Controller.object.size(); i++) {
+			GameObject tempObject = Controller.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Block) {
 				
@@ -108,6 +108,13 @@ public class Player extends GameObject{
 					
 			if(tempObject.getId() == ObjectId.Spike) {
 				//player death
+			}
+			
+			if(tempObject.getId() == ObjectId.EndPortal) {
+				if(getBorderRight().intersects(tempObject.getBorder())) {
+					Controller.clearLevel();
+					Game.endMenu();
+				}
 			}
 		}
 	}
