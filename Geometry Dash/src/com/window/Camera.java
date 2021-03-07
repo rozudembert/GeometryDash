@@ -28,25 +28,14 @@ public class Camera {
 			start = false;
 		}
 		
-		//if the player gets too high, adjust Y
-		float playerY = player.getY();
-		float cameraY = -y;
-		
-		System.out.println("Player: " + playerY);
-		System.out.println("Cam:" + cameraY);
-		System.out.println("Cam:" + y);
-		
-		if(playerY - cameraY < TOP_OFFSET) {
+		//follow player movement on y-axis if player gets too high		
+		if(player.getY() + y < TOP_OFFSET) {
 			y = -player.getY() + TOP_OFFSET;
 		}
-			
-		if(playerY - cameraY > GROUND_OFFSET) {
+		
+		if(player.getY() + y > GROUND_OFFSET) {
 			y = -player.getY() + GROUND_OFFSET;
 		}
-		
-		
-		
-		
 	}
 	
 	
