@@ -1,3 +1,11 @@
+/*
+ * Spikes are harmful to the player. 
+ * Don't hit them!
+ * 
+ * @author 
+ * @version 
+ */
+
 package com.objects;
 
 import java.awt.Graphics;

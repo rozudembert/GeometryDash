@@ -1,5 +1,8 @@
 /*
  * Used to extract images from the SpriteSheet
+ * 
+ * @author Robert Kelm
+ * @version 12.02.2021
  */
 
 package com.framework;

@@ -1,5 +1,8 @@
 /*
  * This is the player which can be controlled with the keys
+ * 
+ * @author Robert Kelm
+ * @version 08.02.2021
  */
 
 package com.objects;
@@ -20,14 +23,14 @@ import com.window.Game.STATUS;
 
 public class Player extends GameObject{
 	
-	//players width and height
+	//width and height
 	public float width = 64, height = 64;
 	
-	//Gravity Settings
+	//gravity settings
 	private float GRAVITY = 0.5f;
 	private final float MAX_FALLINGSPEED = 10f;
 	
-	//Visible Player hitbox can be enabled here
+	//make the players hitbox visible
 	private boolean showHitbox = false;
 	
 	Texture texture = Game.getInstance();
@@ -35,7 +38,8 @@ public class Player extends GameObject{
 	private Controller controller;
 	private Camera cam;
 	Game game;
-	int skin; //What Skin the player is wearing 
+	
+	int skin; //what kind of the player has 
 	
 	public Player(float x, float y, Controller controller, int skin, Camera cam, ObjectId id) {
 		super(x, y, id);
@@ -49,6 +53,7 @@ public class Player extends GameObject{
 		x += velX;
 		y += velY;
 		
+		//gravity
 		if(falling || jumping) {
 			velY += GRAVITY;
 			
@@ -61,8 +66,9 @@ public class Player extends GameObject{
 		collision(object);
 	}
 	
-	//
+	//player is moving evenly to the right
 	public void move(LinkedList<GameObject> object) {
+		
 		for(int i = 0; i < Controller.object.size(); i++) {
 			GameObject tempObject = Controller.object.get(i);
 			
@@ -80,7 +86,7 @@ public class Player extends GameObject{
 			
 			if(tempObject.getId() == ObjectId.Block) {
 				
-				//collision with the top -> Player dies
+				//collision with the top -> player dies
 				if(getBorderTop().intersects(tempObject.getBorder())){
 					death();
 				}
@@ -93,25 +99,28 @@ public class Player extends GameObject{
 					jumping = false;
 				} else falling = true; //Jumping is only possible if Player is on the ground
 				
-				//Right side collision
+				//right side collision
 				if(getBorderRight().intersects(tempObject.getBorder())){
 					death();
 									
 				}
 				
-				/*
-				//Left side collision
+				
+				//left side collision
 				if(getBorderLeft().intersects(tempObject.getBorder())){
-					death();				
-				} */				
+					//currently disabled, because it is not necessary
+					//death();				
+				} 				
 			}
 					
 			if(tempObject.getId() == ObjectId.Spike) {
-				//player death
+				//death();
 			}
 			
+			//player reaches the end of the level
 			if(tempObject.getId() == ObjectId.EndPortal) {
 				if(getBorderRight().intersects(tempObject.getBorder())) {
+					
 					Controller.clearLevel();
 					Game.endMenu();
 				}
@@ -119,8 +128,8 @@ public class Player extends GameObject{
 		}
 	}
 	
+	//remove player from the game reset level and camera
 	public void death() {
-		//Remove Player from the game
 		Game.playerDeath();
 		cam.setStart(true);
 		controller.setRenderDistance(0);
@@ -129,15 +138,11 @@ public class Player extends GameObject{
 	}
 	
 	
-	//method to render the graphics
+	//render the graphics
 	public void render(Graphics graphics) {
 		
 		graphics.drawImage(texture.player[skin], (int)x, (int)y, null);
-		
-		//the player appears as a blue box
-		//graphics.setColor(Color.blue);
-		//graphics.fillRect((int)x, (int)y, (int)width, (int)height);
-		
+				
 		//given graphics get casted in 2d graphics to use for collision
 		Graphics2D g2d = (Graphics2D) graphics; 
 		
@@ -151,7 +156,7 @@ public class Player extends GameObject{
 		}
 	}
 	
-	//The following methods create Rectangles inside the player to use in collision
+	//the following methods create rectangles inside the player to use in collision detection
 	public Rectangle getBorder() {
 		return new Rectangle((int)x +5, (int)y + (int)(height/2), (int)width/2 + 20, (int)height/2);
 	}	

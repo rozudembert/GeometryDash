@@ -1,5 +1,9 @@
 /*
- * The Camera class is to follow the players movement on the horizontal axis
+ * The camera is following the players movement 
+ * on horizontal and vertical axis. 
+ * 
+ * @author Robert Kelm
+ * @version 08.03.2021
  */
 package com.window;
 
@@ -15,10 +19,11 @@ public class Camera {
 		this.y = y;
 	}
 	
+	//maximum/minimum distance between player and top of the screen
 	private static float TOP_OFFSET = 192;
-	private static float GROUND_OFFSET = 440;
+	private static float GROUND_OFFSET = 440; 
 	
-	//The Camera follows the players movement
+	//camera follows the players movement
 	public void update(GameObject player) {
 		x = -player.getX() + Game.WIDTH/2 - 200;
 		

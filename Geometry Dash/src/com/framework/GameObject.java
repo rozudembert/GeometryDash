@@ -1,5 +1,5 @@
 /*
- * GameObject is an abstract class and used to manage every object in the game
+ * abstract class used to manage player, block, coin and other GameObjects
  * 
  * @author Robert Kelm
  * @version 08.02.2021
@@ -13,12 +13,12 @@ import java.util.LinkedList;
 
 public abstract class GameObject {
 	
-	//X and Y coordinates
+	//x and y coordinates
 	protected float x, y;
 	protected boolean visible;
 	protected ObjectId id; 
 	
-	//Vertical and horizontal velocity of the object 
+	//vertical and horizontal velocity of the object 
 	protected float velX = 0f, velY = 0f;
 	
 	//boolean to check if player is jumping/falling

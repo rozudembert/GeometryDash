@@ -1,3 +1,10 @@
+/*
+ * 	Controller is updating and rendering the GameObjects.
+ * 
+ *  @author Robert Kelm
+ *  @version 08.03.2021
+ */
+
 package com.window;
 
 import java.awt.Graphics;
@@ -20,7 +27,6 @@ public class Controller {
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	private BufferedImage activeLevel = null;
 	
-	private int level = 1;
 	private int renderDistance;
 	
 	public Controller(Camera cam) {
@@ -60,10 +66,9 @@ public class Controller {
 		}
 	}
 	
-	/*
-	 * recieve image of the level as input and convert it into GameObjects
-	 * only load the column of blocks 15 blocks away from the player
-	 */
+	
+	//recieve image of the level as input and convert it into GameObjects
+	//only load the column of blocks 15 blocks away from the player	
 	public void loadLevel(BufferedImage image, int playerX) {
 		
 		int height = image.getHeight();
@@ -79,9 +84,7 @@ public class Controller {
 			loadBlocks(red, green, blue, xx, yy);
 		}
 	}
-	
-	
-	
+
 	//recieve image of the level as input and convert it into GameObjects
 	//only for the first 35 blocks 
 	public void loadLevel_Start(BufferedImage image) {
@@ -190,14 +193,6 @@ public class Controller {
 		}
 	}
 	
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
-	public int getLevel() {
-		return level;
-	}
-	
 	//delete every object in the world
 	public static void clearLevel() {
 		object.clear();
@@ -205,12 +200,12 @@ public class Controller {
 	
 	//add Objects in the world	
 	public void addObject(GameObject object) {
-		this.object.add(object);
+		Controller.object.add(object);
 	}
 		
 	//remove Objects from the world
 	public void removeObject(GameObject object) {
-		this.object.remove(object);
+		Controller.object.remove(object);
 	}
 	
 	public void setRenderDistance(int renderDistance) {

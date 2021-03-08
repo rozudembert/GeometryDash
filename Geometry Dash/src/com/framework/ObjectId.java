@@ -1,7 +1,9 @@
 /*
- * ObjectId is a "library" to differentiate between the different 
- * objects in the game.
- * Every Object has its own ID
+ * Libary to differentiate between the differend Objects in the game.
+ * Every GameObject has its own ID.
+ * 
+ * @author Robert Kelm
+ * @version 08.02.2021
  */
 
 package com.framework;

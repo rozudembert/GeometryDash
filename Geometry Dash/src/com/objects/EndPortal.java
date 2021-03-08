@@ -1,3 +1,12 @@
+/*
+ * This is literally the end... 
+ * 
+ * ...of the level
+ * 
+ * @author Robert Kelm
+ * @version 08.02.2021
+ */
+
 package com.objects;
 
 import java.awt.Graphics;
@@ -24,11 +33,12 @@ public class EndPortal extends GameObject{
 		
 	}
 
+	//render texture
 	public void render(Graphics graphics) {
 		graphics.drawImage(texture.block[3], (int)x, (int)y, null);
-		
 	}
 
+	//create border to use in collision detection
 	public Rectangle getBorder() {
 		return new Rectangle((int)x, (int)y, width, height);
 	}

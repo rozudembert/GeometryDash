@@ -1,6 +1,10 @@
 /*
- * The Blocks limit the games area and
- * are an obstacle for the player
+ * The Block can either be good or bad for the Player.
+ * The Player can slide on top of Blocks but cannot hit them on the side.
+ * They are limiting the game area
+ * 
+ * @author Robert Kelm
+ * @version 08.02.2021
  */
 
 package com.objects;
@@ -36,17 +40,16 @@ public class Block extends GameObject{
 		//The Block isn't doing anything yet
 	}
 	
-	//the block appears as a white outlined rectangle
+	//assign the texture to the block
 	public void render (Graphics graphics) {
 		graphics.drawImage(texture.block[type], (int)x, (int)y, null);
 		
 	}
 	
-	//creates a rectangle to use in collision detection
+	//create a rectangle outlining the block to use in collision detection
 	public Rectangle getBorder() {
 		return new Rectangle((int)x, (int)y, width, height);
 	}
-	
 	
 	
 }

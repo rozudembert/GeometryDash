@@ -1,7 +1,10 @@
 /*
- * KeyInput is there to detect the key's pressed and
- * to manage the players movement
+ * KeyInput is there to manage the keyboard input.
+ * To control the players movement and
+ * navigation inside the menus.
  *
+ * @author Robert Kelm
+ * @version 08.03.2021
  */
 
 package com.framework;
@@ -15,12 +18,10 @@ import com.window.Menu;
 
 public class KeyInput extends KeyAdapter{
 	
-	//disables auto movement and enables more specific movement to the left and right
-	private boolean testing = false;
-	
 	Game game;
 	Controller controller;
 	Menu menu;
+	
 	private boolean[ ] keyDown = new boolean[2];
 	
 	private int level = 1;
@@ -38,26 +39,11 @@ public class KeyInput extends KeyAdapter{
 		int key = e.getKeyCode();
 		
 		//runs through the list with every object in the game
-		for(int i = 0; i < controller.object.size(); i++) {
-			GameObject tempObject = controller.object.get(i);
+		for(int i = 0; i < Controller.object.size(); i++) {
+			GameObject tempObject = Controller.object.get(i);
 			
 			//to be sure the moving object is a player and not a block
 			if(tempObject.getId() == ObjectId.Player) {
-				
-				if(testing == true) {
-				
-					//movement to the right
-					if(key == KeyEvent.VK_D) {
-						tempObject.setVelX(5);
-						keyDown[0] = true;
-					}
-				
-					//movement to the left
-					if(key == KeyEvent.VK_A) {
-						tempObject.setVelX(-5);
-						keyDown[1] = true;
-					}
-				}
 				
 				//jumping
 				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
@@ -72,6 +58,7 @@ public class KeyInput extends KeyAdapter{
 			System.exit(1);
 		}
 		
+		//TitleScreen 
 		if(Game.gameStatus == STATUS.StartMenu) {
 			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 				game.setGameStatus(STATUS.Game);
@@ -79,8 +66,10 @@ public class KeyInput extends KeyAdapter{
 			}
 		}
 		
+		//Menu Options
 		else if(Game.gameStatus == STATUS.Menu) {
 			
+			//Play Button
 			if(menu.getPlayButton()) {
 				if(key == KeyEvent.VK_ENTER) {
 					game.setGameStatus(STATUS.Game);
@@ -95,6 +84,8 @@ public class KeyInput extends KeyAdapter{
 					menu.setRightLevelButton(true);
 				}
 			}
+			
+			//Left Button to change level
 			else if(menu.getLeftLevelButton()) {
 				if(key == KeyEvent.VK_ENTER && level > 1 ) {
 					level = level - 1;
@@ -106,6 +97,8 @@ public class KeyInput extends KeyAdapter{
 					menu.setPlayButton(true);
 				}
 			}
+			
+			//Right Button to change level
 			else if(menu.getRightLevelButton()) {
 				if(key == KeyEvent.VK_ENTER && level < 5 ) {
 					level++;
@@ -120,12 +113,13 @@ public class KeyInput extends KeyAdapter{
 		}
 	}
 	
+	//This code is in fact unecessary
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
 		//runs through the list with every object in the game
-		for(int i = 0; i < controller.object.size(); i++) {
-			GameObject tempObject = controller.object.get(i);
+		for(int i = 0; i < Controller.object.size(); i++) {
+			GameObject tempObject = Controller.object.get(i);
 			
 			//to be sure the moving object is a player
 			if(tempObject.getId() == ObjectId.Player) {

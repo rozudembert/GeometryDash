@@ -1,3 +1,10 @@
+/*
+ * To set up the window 
+ * 
+ * @author Robert Kelm
+ * @version 05.02.2021
+ */
+
 package com.window;
 
 import java.awt.Dimension;

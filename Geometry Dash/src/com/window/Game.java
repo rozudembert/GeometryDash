@@ -1,3 +1,11 @@
+/*
+ * Basically the Main-Class of this project.
+ * To keep everything running
+ * 
+ * @author Robert Kelm
+ * @version 08.03.2021
+ */
+
 package com.window;
 
 import java.awt.Canvas;
@@ -5,57 +13,91 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.util.Random;
 
 import com.framework.KeyInput;
 import com.framework.ObjectId;
 import com.framework.Texture;
-import com.objects.Block;
-import com.objects.Player;
-import com.window.Game.STATUS;
 
 public class Game extends Canvas implements Runnable{
 	
-	private static final long serialVersionUID = -5594972038976415455L;
-	
-	//Window dimensions
+	//window dimensions
 	public static int WIDTH = 1280, HEIGHT = WIDTH / 16*9;
 	
-	//Window title
-	private static String title = "Geometry Dash";
+	//window title
+	private static String title = "Geometry Dash :)";
 	
-	private boolean running = false;
-	private Thread thread;	
-	
-	public BufferedImage level = null, level2 = null;
-	
+	static Texture texture;
 	Controller controller;
 	Camera cam;
-	static Texture texture;
 	Menu menu;
 	HUD hud;
 	
+	//the gameState in which the game is starting
 	public static STATUS gameStatus = STATUS.StartMenu;
 	
-	
-	
-	//
+	//!!!order of initialisation is important!!!
 	private void initialise() {
 		
 		texture = new Texture();
-		
 		menu = new Menu(this, controller, texture);
-		
 		cam = new Camera(0, 0);
-		
 		controller = new Controller(cam);
-		
 		hud = new HUD(cam);
 		
 		this.addKeyListener(new KeyInput(this, controller, menu));	
 	}
 	
+	private void update() {
+		controller.update();		
+		
+		if(gameStatus == STATUS.Menu) {
+			menu.update();
+		} 
+		
+		else if(gameStatus == STATUS.Game) {			
+			
+			//update camera
+			for(int i = 0; i < Controller.object.size(); i++) {
+				if(Controller.object.get(i).getId() == ObjectId.Player) {
+					
+					cam.update(Controller.object.get(i));
+					hud.update(Controller.object.get(i));
+					
+				}
+			}		
+		}		
+	}
+	
+	//render graphics
+	private void render() {
+		
+		BufferStrategy bufferStrategy = this.getBufferStrategy();
+		if(bufferStrategy == null) {
+			this.createBufferStrategy(3); //amount of buffers
+			return;
+		}
+		
+		Graphics graphics = bufferStrategy.getDrawGraphics();
+		Graphics2D g2d = (Graphics2D) graphics;
+		
+		//create Background
+		graphics.setColor(Color.black);
+		graphics.fillRect(0, 0, WIDTH, HEIGHT);
+				
+		g2d.translate(cam.getX(), cam.getY()); //Begin of camera
+		
+		controller.render(graphics);
+		hud.render(graphics);
+		
+		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
+		
+		menu.render(graphics);
+		
+		graphics.dispose();
+		bufferStrategy.show();
+	}
+	
+	//enum to store the different states the game can be in
 	public enum STATUS{
 		StartMenu,
 		Menu,
@@ -63,10 +105,6 @@ public class Game extends Canvas implements Runnable{
 		Dead,
 		End,
 		Game;
-	}
-	
-	public void setGameStatus(STATUS status) {
-		Game.gameStatus = status;
 	}
 	
 	public static Texture getInstance() {
@@ -82,9 +120,25 @@ public class Game extends Canvas implements Runnable{
 		gameStatus = STATUS.End;
 	}
 	
-	/*
-	 * The following methods are needed to start the game
-	 */
+	public void setGameStatus(STATUS status) {
+		Game.gameStatus = status;
+	}
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////
+	//															//
+	//															//
+	// 		  THE FOLLOWING CODE IS FOR RUNNING THE GAME		//
+	//															//
+	//															//
+	//////////////////////////////////////////////////////////////
+	
+	private static final long serialVersionUID = 8720090281850121093L;
+	
+	private boolean running = false;
+	private Thread thread;	
 	
 	//Main method to create window and start game
 	public static void main (String args[]) {
@@ -140,57 +194,4 @@ public class Game extends Canvas implements Runnable{
 		}
 		stop();
 	}
-	
-	//updating the GameObjects
-	private void update() {
-		controller.update();		
-		
-		if(gameStatus == STATUS.Menu) {
-			menu.update();
-		} 
-		
-		else if(gameStatus == STATUS.Game) {			
-			//updating camera
-			for(int i = 0; i < Controller.object.size(); i++) {
-				if(Controller.object.get(i).getId() == ObjectId.Player) {
-					cam.update(Controller.object.get(i));
-					hud.update(Controller.object.get(i));
-				}
-			}
-			
-		}		
-	}
-	
-	//to render the graphics
-	private void render() {
-		BufferStrategy bufferStrategy = this.getBufferStrategy();
-		if(bufferStrategy == null) {
-			this.createBufferStrategy(3); //amount of buffers
-			return;
-		}
-		
-		Graphics graphics = bufferStrategy.getDrawGraphics();
-		
-		Graphics2D g2d = (Graphics2D) graphics;
-		
-		//create Background
-		graphics.setColor(Color.black);
-		graphics.fillRect(0, 0, WIDTH, HEIGHT);
-				
-		g2d.translate(cam.getX(), cam.getY()); //Begin of camera
-		
-		controller.render(graphics);
-		hud.render(graphics);
-		
-		
-		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
-		
-		menu.render(graphics);
-		
-		graphics.dispose();
-		bufferStrategy.show();
-	}
-	
-	
-	
 }

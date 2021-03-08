@@ -1,3 +1,11 @@
+/*
+ * load textures from files and SpriteSheets and 
+ * assign them to their objects
+ * 
+ * @author Robert Kelm
+ * @version 08.02.2021
+ */
+
 package com.framework;
 
 import java.awt.image.BufferedImage;
@@ -7,10 +15,9 @@ import com.framework.ImageLoader;
 public class Texture {
 	
 	BufferedImage image;
+	SpriteSheet bs, ps, buttonSheet;
 	
-	SpriteSheet bs, ps, buttonSheet; //Sprite for Block Sheet (bs) and Player Sheet (ps)
-	
-	//Buttons
+	//buttons
 	public BufferedImage titleScreen = null;
 	public BufferedImage buttonPlay = null, buttonPlayActive = null;
 	
@@ -35,9 +42,9 @@ public class Texture {
 		
 		ImageLoader loader = new ImageLoader();
 		
-		//load the sheets from our files
+		//load the sheets from the files
 		try {
-			//Player and Block Sheet
+			
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
 			button_sheet = loader.loadImage("/buttons/button_sheet.png");

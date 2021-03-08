@@ -1,6 +1,9 @@
 /*
  * Class to load images from file system
  * to use for textures
+ * 
+ * @author Robert Kelm
+ * @version 12.02.2021
  */
 
 package com.framework;
@@ -16,7 +19,7 @@ public class ImageLoader {
 	
 	public BufferedImage loadImage(String path) {
 		
-		//this code will load the image of any given path in our file system
+		//load the image of any given path in our file system
 		try {
 			image = ImageIO.read(getClass().getResource(path));
 		} catch (IOException e) {
