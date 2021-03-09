@@ -128,7 +128,7 @@ public class Controller {
 		else if(r == 58 && g == 46 && b == 29) type = 11; //Plank
 		else if(r == 132 && g == 64 && b == 64) type = 12; //Oak Log
 		else if(r == 179 && g == 183 && b == 169) type = 13; //Birch Log
-		else if(r == 0 && g == 31 && b == 0) type = 14; //Leaves
+		else if(r == 0 && g == 21 && b == 0) type = 14; //Leaves
 		else if(r == 104 && g == 135 && b == 50) type = 15; //leaves
 		else if(r == 64 && g == 64 && b == 64) type = 16; //Cobblestone
 		else if(r == 128 && g == 128 && b == 128) type = 17; //Stone

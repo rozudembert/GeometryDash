@@ -27,9 +27,9 @@ public class Player extends GameObject{
 	public float width = 64, height = 64;
 	
 	//gravity settings
-	private float GRAVITY = 0.8f;
-	private float SPEED = 10;
-	private final float MAX_FALLINGSPEED = 10f;
+	private float GRAVITY = 1.6f;
+	private float SPEED = 11;
+	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
 	private boolean showHitbox = false;
@@ -170,5 +170,4 @@ public class Player extends GameObject{
 	public Rectangle getBorderLeft() {
 		return new Rectangle((int)x, (int)y + 5, (int)5, (int)height - 10);
 	}
-	
 }

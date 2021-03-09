@@ -41,8 +41,10 @@ public class HUD {
 		int y_position = -(int)camera.getY()+ 10;
 		
 		//progess bar
-		g.setColor(Color.GREEN);
-		g.fillRect(x_position, y_position, (int)progress, boxHeight);
+		if(progress < 100) {
+			g.setColor(Color.GREEN);
+			g.fillRect(x_position, y_position, (int)progress, boxHeight);
+		}
 		
 		//white outline
 		g.setColor(Color.WHITE);

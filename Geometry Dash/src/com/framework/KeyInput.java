@@ -48,7 +48,7 @@ public class KeyInput extends KeyAdapter{
 				//jumping
 				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
 					tempObject.setJumping(true);
-					tempObject.setVelY(-14);				
+					tempObject.setVelY(-20);				
 				}
 			}
 		}
@@ -61,8 +61,8 @@ public class KeyInput extends KeyAdapter{
 		//TitleScreen 
 		if(Game.gameStatus == STATUS.StartMenu) {
 			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
-				game.setGameStatus(STATUS.Game);
-				controller.startLevel(level);
+				game.setGameStatus(STATUS.Menu);
+				//controller.startLevel(level);
 			}
 		}
 		
