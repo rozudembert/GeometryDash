@@ -27,7 +27,8 @@ public class Player extends GameObject{
 	public float width = 64, height = 64;
 	
 	//gravity settings
-	private float GRAVITY = 0.5f;
+	private float GRAVITY = 0.8f;
+	private float SPEED = 10;
 	private final float MAX_FALLINGSPEED = 10f;
 	
 	//make the players hitbox visible
@@ -74,7 +75,7 @@ public class Player extends GameObject{
 			
 			if(tempObject.getId() == ObjectId.Player) {
 				//Adjust player speed
-				tempObject.setVelX(9);
+				tempObject.setVelX(SPEED);
 			}
 		}	
 	}
