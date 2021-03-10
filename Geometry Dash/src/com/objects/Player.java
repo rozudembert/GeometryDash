@@ -115,7 +115,7 @@ public class Player extends GameObject{
 			}
 					
 			if(tempObject.getId() == ObjectId.Spike) {
-				//death();
+				//check Collision
 			}
 			
 			//player reaches the end of the level

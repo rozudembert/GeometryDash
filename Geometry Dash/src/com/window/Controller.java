@@ -72,22 +72,25 @@ public class Controller {
 	public void loadLevel(BufferedImage image, int playerX) {
 		
 		int height = image.getHeight();
+		int width = image.getWidth();
 		int xx = (playerX + 1000)/64;
 		
-		for(int yy = 0; yy < height; yy++) {
-			
-			int pixel = image.getRGB(xx, yy);
-			int red = (pixel >> 16) & 0xff;
-			int green = (pixel >> 8) & 0xff;
-			int blue = (pixel) & 0xff;
-			
-			loadBlocks(red, green, blue, xx, yy);
+		if(xx < width-100) {
+			for(int yy = 0; yy < height; yy++) {
+				
+				int pixel = image.getRGB(xx, yy);
+				int red = (pixel >> 16) & 0xff;
+				int green = (pixel >> 8) & 0xff;
+				int blue = (pixel) & 0xff;
+				
+				loadBlocks(red, green, blue, xx, yy);
+			}
 		}
 	}
 
 	//recieve image of the level as input and convert it into GameObjects
 	//only for the first 35 blocks 
-	public void loadLevel_Start(BufferedImage image) {
+	public void loadLevel(BufferedImage image) {
 		
 		int height = image.getHeight();
 		
@@ -150,6 +153,9 @@ public class Controller {
 		//End Portal
 		else if(r == 255 && g == 45 && b == 255) addObject(new EndPortal(xx*64, yy*64, ObjectId.EndPortal));
 		
+		//Spike
+		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, ObjectId.Spike));
+		
 		if(type != 100)
 			addObject(new Block(xx*64, yy*64, type, ObjectId.Block));
 		
@@ -180,7 +186,7 @@ public class Controller {
 			break;
 		}
 		
-		loadLevel_Start(activeLevel);
+		loadLevel(activeLevel);
 		
 	}
 	
