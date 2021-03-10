@@ -8,6 +8,7 @@
 package com.framework;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
@@ -34,6 +35,7 @@ public abstract class GameObject {
 	public abstract void update(LinkedList<GameObject> object);	
 	public abstract void render(Graphics graphics);
 	public abstract Rectangle getBorder();
+	public abstract Polygon getBorderPoly();
 	
 	////////////////////////////
 	

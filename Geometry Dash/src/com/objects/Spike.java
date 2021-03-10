@@ -46,8 +46,11 @@ public class Spike extends GameObject{
 		polygon.addPoint((int)x, (int)y + height);
 		polygon.addPoint((int)x + width/2, (int)y);
 		polygon.addPoint((int)x + width, (int)y + height);
-		return polygon;
-		
+		return polygon;		
 	}
+	
+	//RECTANGLE POLYGON COLLISION
+	
+	
 
 }

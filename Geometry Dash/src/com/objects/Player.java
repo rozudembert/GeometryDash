@@ -10,8 +10,10 @@ package com.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.LinkedList;
+import java.awt.geom.Area;
 
 import com.framework.GameObject;
 import com.framework.ObjectId;
@@ -19,7 +21,7 @@ import com.framework.Texture;
 import com.window.Camera;
 import com.window.Controller;
 import com.window.Game;
-import com.window.Game.STATUS;
+
 
 public class Player extends GameObject{
 	
@@ -115,7 +117,9 @@ public class Player extends GameObject{
 			}
 					
 			if(tempObject.getId() == ObjectId.Spike) {
-				//check Collision
+				if(tempObject.getBorderPoly().intersects(getBorderRight())) {
+					death();
+				}
 			}
 			
 			//player reaches the end of the level
@@ -170,4 +174,17 @@ public class Player extends GameObject{
 	public Rectangle getBorderLeft() {
 		return new Rectangle((int)x, (int)y + 5, (int)5, (int)height - 10);
 	}
+
+
+	@Override
+	public Polygon getBorderPoly() {
+		return null;
+	}
+	
+	//RECTANGLE/POLYGON COLLISION
+	
+	
+	
+	
+	
 }

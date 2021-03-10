@@ -83,7 +83,7 @@ public class Controller {
 				int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
 				
-				loadBlocks(red, green, blue, xx, yy);
+				loadObjects(red, green, blue, xx, yy);
 			}
 		}
 	}
@@ -108,15 +108,16 @@ public class Controller {
 				if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*64, yy*64, this, 7, cam, ObjectId.Player));
 				
 				//add Blocks
-				loadBlocks(red, green, blue, xx, yy);
+				loadObjects(red, green, blue, xx, yy);
 			}
 		}		
 	}
 	
 	//add block depending on rgb color
-	public void loadBlocks(int r, int g, int b, int xx, int yy) {
+	public void loadObjects(int r, int g, int b, int xx, int yy) {
 		int type = 100;
 		
+		//Blocks
 		if(r == 255 && g == 255 && b == 255) type = 0; //Green Block
 		else if(r == 99 && g == 19 && b == 19) type = 1; //Red-Black-Gradient
 		else if(r == 37 && g == 138 && b == 200) type = 2; //Blue Cement
@@ -153,7 +154,7 @@ public class Controller {
 		//End Portal
 		else if(r == 255 && g == 45 && b == 255) addObject(new EndPortal(xx*64, yy*64, ObjectId.EndPortal));
 		
-		//Spike
+		//Spikes
 		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, ObjectId.Spike));
 		
 		if(type != 100)

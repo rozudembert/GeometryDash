@@ -11,6 +11,7 @@ package com.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
@@ -50,6 +51,9 @@ public class Block extends GameObject{
 	public Rectangle getBorder() {
 		return new Rectangle((int)x, (int)y, width, height);
 	}
+
+	//this method is not needed here
+	public Polygon getBorderPoly() {return null;}
 	
 	
 }
