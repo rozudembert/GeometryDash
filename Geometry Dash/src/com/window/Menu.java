@@ -22,8 +22,15 @@ public class Menu{
 	
 	//boolean for the selected buttons
 	private static boolean playButton = true;
-	private static boolean leftLevelButton = false;
-	private static boolean rightLevelButton = false;
+	private static boolean main_leftButton = false;
+	private static boolean main_rightButton = false;
+	
+	private static boolean death_retry = false;
+	private static boolean death_backToMenu = false;
+	
+	private static boolean final_retry = false;
+	private static boolean final_nextLevel = false;
+	private static boolean final_backToMenu = false;
 	
 	Texture texture;
 	
@@ -55,11 +62,18 @@ public class Menu{
 	
 	public void render(Graphics g) {
 	
-        Font fnt2 = new Font("calibri", 1, 28);
-        int width = Game.WIDTH;
+		int width = Game.WIDTH;
         int height = Game.HEIGHT;
+		int q = 200;
+		int j = 64;
+        
+        
+        Font fnt2 = new Font("calibri", 1, 28);
         g.setFont(fnt2);
+
         Color buttonYellow = new Color(255,168,0);
+        
+        
         
         //Title Screen
         if(Game.gameStatus == STATUS.StartMenu) {
@@ -77,13 +91,13 @@ public class Menu{
         	g.drawImage(menu_background, 0, 0, null);
         	
         	//Left Button -> if selected make it in colour
-        	if(leftLevelButton && level > 1) 
+        	if(main_leftButton && level > 1) 
         		g.drawImage(texture.button[level + 4], 340, 405, null);
         	else 
         		g.drawImage(texture.button[level - 1], 340, 405, null);
         	
         	//Right Button -> if selected make it in colour
-        	if(rightLevelButton && level < 5) 
+        	if(main_rightButton && level < 5) 
         		g.drawImage(texture.button[level + 16], 830, 405, null);
         	else if (level == 5) 
         		g.drawImage(texture.button[0], 340, 405, null);
@@ -102,23 +116,57 @@ public class Menu{
         	g.drawString("< Level: " + (level) + " >", 575, 580);  	
         }        
         
+        //Game Over Menu
+        else if(Game.gameStatus == STATUS.Dead) {
+        	//g.drawImage(menu_background, 0, 0, null);        	
+        	//g.drawString("Game Over! :( ", Game.WIDTH/2 - 200, Game.HEIGHT/2);
+        	
+        	//Play Again Button
+        	if(death_retry) {
+        		g.setColor(buttonYellow);
+        		g.drawRect(width /2 - q/2, height/2 - 50, q, q);
+        	}
+        	else {
+        		g.setColor(Color.white);
+        		g.drawRect(width /2 - q/2, height/2 - 50, q, q);
+        	}
+        	g.drawString("Play Again", width/2 - 26,  height/2 + 60);
+        	
+        	if(death_backToMenu) {
+        		g.setColor(buttonYellow);
+        		g.drawRect(width / 2 - 500, height / 2, q, j);
+        	}
+        	else {
+        		g.setColor(Color.WHITE);
+        		g.drawRect(width / 2 - 500, height / 2, q, j);
+        	}
+	        g.drawString("Back To Menu", width / 2 - 430, height / 2 + (j / 2) + 10);
+        }
+        
         //End Menu
         else if(Game.gameStatus == STATUS.End) {
         	g.drawImage(menu_background, 0, 0, null);        	
-        	g.drawString("You did it!", Game.WIDTH/2 - 200, Game.HEIGHT/2);
-        	//TODO: Better Graphics
-        	//TODO: Buttons        
-        	//TODO: Statistics
+        	g.drawString("You did it!", Game.WIDTH/2 - 200, Game.HEIGHT/2 - 200);
+        	        	
+        	if(final_retry) g.setColor(buttonYellow);
+        	else g.setColor(Color.WHITE);
+        	g.drawRect(width /2 - q/2, height/2 - 50, q, q);
+        	g.drawString("Play Again", width/2 - 26,  height/2 + 60);
+        	
+        	//Back To Menu Button
+        	if(final_backToMenu) g.setColor(buttonYellow);
+        	else g.setColor(Color.WHITE);
+        	g.drawRect(width / 2 - 500, height / 2, q, j);
+	        g.drawString("Back To Menu", width / 2 - 430, height / 2 + (j / 2) + 10);
+	        
+	        //next Level Button
+	        if(final_nextLevel) g.setColor(buttonYellow);
+        	else g.setColor(Color.WHITE);
+        	g.drawRect(width / 2 + 500 - q, height / 2, q, j);
+	        g.drawString("Next Level", width / 2 + 500 - q, height / 2 + (j / 2) + 10);
         }
         
-        //Game Over Menu
-        else if(Game.gameStatus == STATUS.Dead) {
-        	g.drawImage(menu_background, 0, 0, null);        	
-        	g.drawString("Game Over! :( ", Game.WIDTH/2 - 200, Game.HEIGHT/2);
-        	//TODO: Buttons
-        	//TODO: Statistics
-        	//TODO: Better Graphics
-        }
+        
 	}
 	
 	
@@ -126,28 +174,62 @@ public class Menu{
 	
 	//Getter and Setter:
 	
-	public void setPlayButton(boolean playButton) {
-		Menu.playButton = playButton;
-	}
-	public boolean getPlayButton() {
-		return playButton;
-	}
-	public void setLeftLevelButton(boolean leftLevelButton) {
-		Menu.leftLevelButton = leftLevelButton;
-	}
-	public boolean getLeftLevelButton() {
-		return leftLevelButton;
-	}
-	public void setRightLevelButton(boolean rightLevelButton) {
-		Menu.rightLevelButton = rightLevelButton;
-	}
-	public boolean getRightLevelButton() {
-		return rightLevelButton;
-	}
 	public void setLevel(int level) {
 		this.level = level;
 	}
 	public int getLevel() {
 		return level;
 	}
+	
+	public void setMainPlayButton(boolean playButton) {
+		Menu.playButton = playButton;
+	}
+	public boolean getMainPlayButton() {
+		return playButton;
+	}
+	public void setMainLeftLevelButton(boolean leftLevelButton) {
+		Menu.main_leftButton = leftLevelButton;
+	}
+	public boolean getMainLeftLevelButton() {
+		return main_leftButton;
+	}
+	public void setMainRightLevelButton(boolean rightLevelButton) {
+		Menu.main_rightButton = rightLevelButton;
+	}
+	public boolean getMainRightLevelButton() {
+		return main_rightButton;
+	}
+	
+	public void set_death_retry(boolean x) {
+		Menu.death_retry = x;
+	}
+	public boolean get_death_retry() {
+		return death_retry;
+	}
+	public void set_death_backToMenu(boolean x) {
+		Menu.death_backToMenu = x;
+	}
+	public boolean get_death_backToMenu() {
+		return death_backToMenu;
+	}
+	
+	public void set_final_retry(boolean x) {
+		Menu.final_retry = x;
+	}
+	public boolean get_final_retry() {
+		return final_retry;
+	}
+	public void set_final_backToMenu(boolean x) {
+		Menu.final_backToMenu = x;
+	}
+	public boolean get_final_backToMenu() {
+		return final_backToMenu;
+	}
+	public void set_final_nextLevel(boolean x) {
+		Menu.final_nextLevel = x;
+	}
+	public boolean get_final_nextLevel() {
+		return final_nextLevel;
+	}
+	
 }

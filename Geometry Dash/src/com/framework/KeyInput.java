@@ -70,46 +70,118 @@ public class KeyInput extends KeyAdapter{
 		else if(Game.gameStatus == STATUS.Menu) {
 			
 			//Play Button
-			if(menu.getPlayButton()) {
+			if(menu.getMainPlayButton()) {
 				if(key == KeyEvent.VK_ENTER) {
 					game.setGameStatus(STATUS.Game);
-					controller.startLevel(level);										
+					controller.startLevel(level);	
+					menu.setMainPlayButton(false);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
-					menu.setPlayButton(false);
-					menu.setLeftLevelButton(true);
+					menu.setMainPlayButton(false);
+					menu.setMainLeftLevelButton(true);
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
-					menu.setPlayButton(false);
-					menu.setRightLevelButton(true);
+					menu.setMainPlayButton(false);
+					menu.setMainRightLevelButton(true);
 				}
 			}
 			
 			//Left Button to change level
-			else if(menu.getLeftLevelButton()) {
+			else if(menu.getMainLeftLevelButton()) {
 				if(key == KeyEvent.VK_ENTER && level > 1 ) {
 					level = level - 1;
 					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
-					menu.setLeftLevelButton(false);
-					menu.setPlayButton(true);
+					menu.setMainLeftLevelButton(false);
+					menu.setMainPlayButton(true);
 				}
 			}
 			
 			//Right Button to change level
-			else if(menu.getRightLevelButton()) {
+			else if(menu.getMainRightLevelButton()) {
 				if(key == KeyEvent.VK_ENTER && level < 5 ) {
 					level++;
 					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
-					menu.setRightLevelButton(false);
-					menu.setPlayButton(true);
+					menu.setMainRightLevelButton(false);
+					menu.setMainPlayButton(true);
 				}
 			}
+		}
+		
+		else if(Game.gameStatus == STATUS.Dead) {
+			
+			//
+			if(menu.get_death_retry()) {
+				if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Game);
+					controller.startLevel(level);
+					menu.setMainPlayButton(false);
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					menu.set_death_retry(false);
+					menu.set_death_backToMenu(true);
+				}
+			}
+			else if(menu.get_death_backToMenu()) {
+				if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Menu);
+					menu.set_death_backToMenu(false);
+					menu.setMainPlayButton(true);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					menu.set_death_backToMenu(false);
+					menu.set_death_retry(true);
+				}
+			}
+		}
+		
+		else if(Game.gameStatus == STATUS.End) {
+			
+			if(menu.get_final_retry()) {
+				if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Game);
+					controller.startLevel(level);										
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					menu.set_final_retry(false);
+					menu.set_final_backToMenu(true);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					menu.set_final_retry(false);
+					menu.set_final_nextLevel(true);
+				}
+			}
+			
+			else if(menu.get_final_backToMenu()) {
+				
+				if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Menu);
+					menu.set_final_backToMenu(false);
+					menu.setMainPlayButton(true);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					menu.set_final_backToMenu(false);
+					menu.set_final_retry(true);
+				}
+			}
+			
+			else if(menu.get_final_nextLevel()) {
+				
+				if(key == KeyEvent.VK_ENTER) {
+					game.setGameStatus(STATUS.Game);
+					level++;
+					controller.startLevel(level);
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					menu.set_final_nextLevel(false);
+					menu.set_final_retry(true);
+				}
+			}	
 		}
 	}
 	

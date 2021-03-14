@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable{
 	static Texture texture;
 	Controller controller;
 	Camera cam;
-	Menu menu;
+	static Menu menu;
 	HUD hud;
 	
 	//the gameState in which the game is starting
@@ -113,16 +113,34 @@ public class Game extends Canvas implements Runnable{
 	
 	public static void playerDeath() {
 		Controller.clearLevel();
-		gameStatus = STATUS.Menu;
+		gameStatus = STATUS.End;
+		menu.set_final_retry(true);
+		
+		//gameStatus = STATUS.Dead;
+		//menu.set_death_retry(true);
 	}
 	
 	public static void endMenu() {
 		gameStatus = STATUS.End;
+		menu.set_final_retry(true);
 	}
 	
 	public void setGameStatus(STATUS status) {
 		Game.gameStatus = status;
 	}
+	
+	
+	
+	//WOOOW SO EMPTY :)
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
