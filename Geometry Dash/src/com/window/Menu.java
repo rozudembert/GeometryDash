@@ -35,6 +35,7 @@ public class Menu{
 	Texture texture;
 	
 	private int level = 1;
+	private int jumps = 0;
 
 	public Menu(Game game, Controller controller, Texture texture) {
 		this.texture = texture;
@@ -146,7 +147,8 @@ public class Menu{
         //End Menu
         else if(Game.gameStatus == STATUS.End) {
         	g.drawImage(menu_background, 0, 0, null);        	
-        	g.drawString("You did it!", Game.WIDTH/2 - 200, Game.HEIGHT/2 - 200);
+        	g.drawString("You did it!", Game.WIDTH/2 - 100, Game.HEIGHT/2 - 200);
+        	g.drawString("You jumped " + jumps + " times", Game.WIDTH/2 - 200, Game.HEIGHT/2 - 100);
         	        	
         	if(final_retry) g.setColor(buttonYellow);
         	else g.setColor(Color.WHITE);
@@ -180,6 +182,16 @@ public class Menu{
 	public int getLevel() {
 		return level;
 	}
+	public void setJumps(int jumps) {
+		this.jumps = jumps;
+	}
+	public int getJumps() {
+		return jumps;
+	}
+	public void addJumps() {
+		jumps++;
+	}
+	
 	
 	public void setMainPlayButton(boolean playButton) {
 		Menu.playButton = playButton;

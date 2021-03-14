@@ -42,7 +42,8 @@ public class Player extends GameObject{
 	private Camera cam;
 	Game game;
 	
-	int skin; //what kind of the player has 
+	int skin; //what kind of the player has
+	
 	
 	public Player(float x, float y, Controller controller, int skin, Camera cam, ObjectId id) {
 		super(x, y, id);
