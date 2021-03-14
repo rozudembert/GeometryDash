@@ -79,12 +79,24 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainPlayButton(false);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
-					menu.setMainPlayButton(false);
-					menu.setMainLeftLevelButton(true);
+					if(level > 1) {
+						menu.setMainPlayButton(false);
+						menu.setMainLeftLevelButton(true);
+					}
+					else {
+						menu.setMainPlayButton(false);
+						menu.setGear(true);
+					}
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
+					if(level < 5) {
+						menu.setMainPlayButton(false);
+						menu.setMainRightLevelButton(true);
+					}					
+				}
+				else if(key == KeyEvent.VK_UP) {
 					menu.setMainPlayButton(false);
-					menu.setMainRightLevelButton(true);
+					menu.setGear(true);
 				}
 			}
 			
@@ -99,6 +111,10 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainLeftLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
+				else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT) {
+					menu.setMainLeftLevelButton(false);
+					menu.setGear(true);
+				}
 			}
 			
 			//Right Button to change level
@@ -107,10 +123,58 @@ public class KeyInput extends KeyAdapter{
 					level++;
 					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
+					
+					if(level == 5) {
+						menu.setMainRightLevelButton(false);
+						menu.setMainPlayButton(true);
+					}
+					
 				}
 				else if(key == KeyEvent.VK_LEFT) {
 					menu.setMainRightLevelButton(false);
 					menu.setMainPlayButton(true);
+				}
+				else if(key == KeyEvent.VK_UP) {
+					menu.setMainRightLevelButton(false);
+					menu.setGear(true);
+				}
+			}
+			
+			else if(menu.getGear()) {
+				if(key == KeyEvent.VK_ENTER) {
+					//TODO nothing is happening yet
+				}
+				else if(key == KeyEvent.VK_DOWN) {
+					menu.setGear(false);
+					menu.setMainPlayButton(true);
+				}
+				else if(key == KeyEvent.VK_LEFT) {
+					menu.setGear(false);
+					menu.setQuit(true);
+				}
+				else if(key == KeyEvent.VK_RIGHT) {
+					if(level > 1) {
+						menu.setGear(false);
+						menu.setMainLeftLevelButton(true);
+					}
+					else {
+						menu.setGear(false);
+						menu.setMainPlayButton(true);
+					}
+				}
+			}
+			
+			else if(menu.getQuit()) {
+				if(key == KeyEvent.VK_ENTER) {
+					System.exit(1);
+				}
+				if(key == KeyEvent.VK_DOWN) {
+					menu.setQuit(false);
+					menu.setMainPlayButton(true);
+				}
+				if(key == KeyEvent.VK_RIGHT) {
+					menu.setQuit(false);
+					menu.setGear(true);
 				}
 			}
 		}

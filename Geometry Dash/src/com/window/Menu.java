@@ -17,13 +17,18 @@ import com.window.Game.STATUS;
 public class Menu{
 	
 	private BufferedImage titleScreen = null;
-	private BufferedImage buttonPlay = null, buttonPlayActive = null;
 	private BufferedImage menu_background = null;
+	
+	private BufferedImage buttonPlay = null, buttonPlayActive = null;
+	private BufferedImage gear_button = null, gear_selected = null, x_button = null, x_button_selected = null; 
+	
 	
 	//boolean for the selected buttons
 	private static boolean playButton = true;
 	private static boolean main_leftButton = false;
 	private static boolean main_rightButton = false;
+	private static boolean quit = false;
+	private static boolean gear = false;
 	
 	private static boolean death_retry = false;
 	private static boolean death_backToMenu = false;
@@ -31,6 +36,7 @@ public class Menu{
 	private static boolean final_retry = false;
 	private static boolean final_nextLevel = false;
 	private static boolean final_backToMenu = false;
+	
 	
 	Texture texture;
 	
@@ -48,9 +54,15 @@ public class Menu{
 		
 		try {
 			titleScreen = loader.loadImage("/TitleScreen.png");
+			menu_background = loader.loadImage("/background/menu_background.png");
 			buttonPlay = loader.loadImage("/buttons/Play.png");
 			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");
-			menu_background = loader.loadImage("/background/menu_background.png");
+			
+			gear_button = loader.loadImage("/buttons/gear.png");
+			gear_selected = loader.loadImage("/buttons/gear_selected.png");
+			x_button = loader.loadImage("/buttons/x.png");
+			x_button_selected = loader.loadImage("/buttons/x_selected.png");
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,6 +127,12 @@ public class Menu{
         		g.drawImage(buttonPlay, 503, 532, null);
         	}
         	g.drawString("< Level: " + (level) + " >", 575, 580);  	
+        	
+        	if(quit) g.drawImage(x_button_selected, 20, 20, null);
+        	else g.drawImage(x_button, 20, 20, null);
+        	
+        	if(gear) g.drawImage(gear_selected, 70, 20, null);
+        	else g.drawImage(gear_button, 70, 20, null);
         }        
         
         //Game Over Menu
@@ -242,6 +260,19 @@ public class Menu{
 	}
 	public boolean get_final_nextLevel() {
 		return final_nextLevel;
+	}
+	
+	public void setGear(boolean gear) {
+		this.gear = gear;
+	}
+	public boolean getGear() {
+		return gear;
+	}
+	public void setQuit(boolean quit) {
+		this.quit = quit;
+	}
+	public boolean getQuit() {
+		return quit;
 	}
 	
 }
