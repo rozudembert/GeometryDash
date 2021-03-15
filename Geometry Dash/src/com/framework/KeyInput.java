@@ -23,6 +23,7 @@ public class KeyInput extends KeyAdapter{
 	Menu menu;
 	
 	private boolean[ ] keyDown = new boolean[2];
+	private boolean godMode = false;
 	
 	private int level = 1;
 	
@@ -71,12 +72,18 @@ public class KeyInput extends KeyAdapter{
 		//Menu Options
 		else if(Game.gameStatus == STATUS.Menu) {
 			
+			//God Mode
+			if(key == KeyEvent.VK_B) {
+				godMode = true;
+			}
+			
 			//Play Button
 			if(menu.getMainPlayButton()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
 					controller.startLevel(level);	
 					menu.setMainPlayButton(false);
+					menu.setJumps(0);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
 					if(level > 1) {
@@ -187,6 +194,7 @@ public class KeyInput extends KeyAdapter{
 					game.setGameStatus(STATUS.Game);
 					controller.startLevel(level);
 					menu.setMainPlayButton(false);
+					menu.setJumps(0);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
 					menu.set_death_retry(false);
@@ -211,7 +219,8 @@ public class KeyInput extends KeyAdapter{
 			if(menu.get_final_retry()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
-					controller.startLevel(level);										
+					controller.startLevel(level);	
+					menu.setJumps(0);
 				}
 				else if(key == KeyEvent.VK_LEFT) {
 					menu.set_final_retry(false);

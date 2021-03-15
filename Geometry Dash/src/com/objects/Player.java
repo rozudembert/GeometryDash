@@ -30,7 +30,7 @@ public class Player extends GameObject{
 	
 	//gravity settings
 	private float GRAVITY = 1.6f;
-	private float SPEED = 12;
+	private float SPEED = 11;
 	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
@@ -118,9 +118,10 @@ public class Player extends GameObject{
 			}
 					
 			if(tempObject.getId() == ObjectId.Spike) {
-				if(tempObject.getBorderPoly().intersects(getBorderRight())) {
+				if(tempObject.getBorderPoly().intersects(getBorderRight()) || tempObject.getBorderPoly().intersects(getBorder())) {
 					death();
 				}
+				
 			}
 			
 			//player reaches the end of the level

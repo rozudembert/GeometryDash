@@ -22,8 +22,11 @@ public class Spike extends GameObject{
 	private int width = 64;
 	private int height = 64;
 	
-	public Spike(float x, float y, ObjectId id) {
+	int rotation; // 0 -> normal; 1 -> überkopf
+	
+	public Spike(float x, float y, int rotation, ObjectId id) {
 		super(x, y, id);
+		this.rotation = rotation;
 	}
 
 	public void update(LinkedList<GameObject> object) {

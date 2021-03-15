@@ -30,13 +30,7 @@ public class HUD {
 	
 	//calculate progress depending on players position in relation to end of the level
 	public void update(GameObject player) {
-		
 		progress = (player.getX() / controller.getEndBlock()) * 600;
-		System.out.println("player: " + player.getX());
-		System.out.println("End: " + controller.getEndBlock());
-		System.out.println("Progress " + progress);
-		
-		
 	}
 	
 	//render HUD on top of the screen

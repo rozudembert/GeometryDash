@@ -72,8 +72,8 @@ public class Menu{
 			menuButton_Selected = loader.loadImage("/buttons/BackAus.png");
 			playAgainButton = loader.loadImage("/buttons/PlayAgain.png");
 			playAgainButton_Selected = loader.loadImage("/buttons/PlayAgainAus.png");
-			resumeButton = loader.loadImage("/buttons/Resume.png");
-			resumeButton_Selected = loader.loadImage("/buttons/ResumeAus.png");
+			resumeButton = loader.loadImage("/buttons/NextLevel.png");
+			resumeButton_Selected = loader.loadImage("/buttons/NextLevelAus.png");
 			
 			gameOver = loader.loadImage("/other/GameOver!.png");
 			logo = loader.loadImage("/other/Logo.png");
