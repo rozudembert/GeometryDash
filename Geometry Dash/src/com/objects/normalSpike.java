@@ -2,8 +2,8 @@
  * Spikes are harmful to the player. 
  * Don't hit them!
  * 
- * @author 
- * @version 
+ * @author Robert Kelm
+ * @version 15.03.2021
  */
 
 package com.objects;

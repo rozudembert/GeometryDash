@@ -53,10 +53,12 @@ public class Controller {
 			
 			if(tempObject.getId() == ObjectId.Player) playerX = (int)tempObject.getX();			
 			
-			//remove block if passed by the player
-			if(tempObject.getId() == ObjectId.Block && tempObject.getX() < playerX - 550) {
-				removeObject(tempObject);					
-			}
+			//if(!Game.getGodMode()) {
+				//remove block if passed by the player
+				if(tempObject.getId() == ObjectId.Block && tempObject.getX() < playerX - 550) {
+					removeObject(tempObject);					
+				}
+			//}
 		}			
 		
 		//add blocks shortly before the player passes them

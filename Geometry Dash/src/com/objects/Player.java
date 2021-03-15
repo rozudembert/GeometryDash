@@ -34,7 +34,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
-	private boolean showHitbox = false;
+	private boolean showHitbox = true;
 	
 	Texture texture = Game.getInstance();
 	
@@ -76,7 +76,7 @@ public class Player extends GameObject{
 		for(int i = 0; i < Controller.object.size(); i++) {
 			GameObject tempObject = Controller.object.get(i);
 			
-			if(tempObject.getId() == ObjectId.Player) {
+			if(tempObject.getId() == ObjectId.Player && Game.getGodMode() == false) {
 				//Adjust player speed
 				tempObject.setVelX(SPEED);
 			}
@@ -92,7 +92,12 @@ public class Player extends GameObject{
 				
 				//collision with the top -> player dies
 				if(getBorderTop().intersects(tempObject.getBorder())){
-					death();
+					if(Game.getGodMode()) {
+						y = tempObject.getY() + height/2;
+						velY = 0;
+					}
+					else
+						death();
 				}
 				
 				//collision with the ground
@@ -105,21 +110,23 @@ public class Player extends GameObject{
 				
 				//right side collision
 				if(getBorderRight().intersects(tempObject.getBorder())){
-					death();
-									
+					if(Game.getGodMode())
+						x = tempObject.getX() - width;
+					else
+						death();
 				}
-				
 				
 				//left side collision
 				if(getBorderLeft().intersects(tempObject.getBorder())){
-					//currently disabled, because it is not necessary
-					//death();				
+					if(Game.getGodMode())
+						x = tempObject.getX() + width +2;
 				} 				
 			}
 					
 			if(tempObject.getId() == ObjectId.Spike) {
 				if(tempObject.getBorderPoly().intersects(getBorderRight()) || tempObject.getBorderPoly().intersects(getBorder())) {
-					death();
+					if(Game.getGodMode())
+						death();
 				}
 				
 			}

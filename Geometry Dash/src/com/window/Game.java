@@ -32,6 +32,8 @@ public class Game extends Canvas implements Runnable{
 	static Menu menu;
 	HUD hud;
 	
+	private static boolean godMode = false;
+	
 	//the gameState in which the game is starting
 	public static STATUS gameStatus = STATUS.StartMenu;
 	
@@ -127,6 +129,12 @@ public class Game extends Canvas implements Runnable{
 		Game.gameStatus = status;
 	}
 	
+	public static void setGodMode(boolean godMode) {
+		Game.godMode = godMode;
+	}
+	public static boolean getGodMode() {
+		return godMode;
+	}
 	
 	
 	//WOOOW SO EMPTY :)

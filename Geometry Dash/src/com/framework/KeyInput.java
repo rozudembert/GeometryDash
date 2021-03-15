@@ -23,7 +23,6 @@ public class KeyInput extends KeyAdapter{
 	Menu menu;
 	
 	private boolean[ ] keyDown = new boolean[2];
-	private boolean godMode = false;
 	
 	private int level = 1;
 	
@@ -46,13 +45,26 @@ public class KeyInput extends KeyAdapter{
 			//to be sure the moving object is a player and not a block
 			if(tempObject.getId() == ObjectId.Player) {
 				
+				
 				//jumping
 				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
 					menu.addJumps();
-					tempObject.setJumping(true);
-					tempObject.setVelY(-19);	
-					
+					tempObject.setVelY(-19);
+					tempObject.setJumping(true);					
 				}
+				
+				if(Game.getGodMode()) {
+					if(key == KeyEvent.VK_D) {
+						tempObject.setVelX(11);
+						keyDown[0] = true;
+					}
+					
+					if(key == KeyEvent.VK_A) {
+						tempObject.setVelX(-11);
+						keyDown[1] = true;
+					}
+				}
+				
 			}
 		}
 		
@@ -73,8 +85,13 @@ public class KeyInput extends KeyAdapter{
 		else if(Game.gameStatus == STATUS.Menu) {
 			
 			//God Mode
-			if(key == KeyEvent.VK_B) {
-				godMode = true;
+			if(key == KeyEvent.VK_B && Game.getGodMode() == false) {
+				Game.setGodMode(true);
+				System.out.println("God Mode activated");
+			}
+			else if(key == KeyEvent.VK_B && Game.getGodMode() == true) {
+				Game.setGodMode(false);
+				System.out.println("God Mode deactivated");
 			}
 			
 			//Play Button
