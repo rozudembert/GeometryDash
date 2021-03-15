@@ -22,6 +22,9 @@ public class Menu{
 	private BufferedImage buttonPlay = null, buttonPlayActive = null;
 	private BufferedImage gear_button = null, gear_selected = null, x_button = null, x_button_selected = null; 
 	
+	private BufferedImage menuButton = null, menuButton_Selected = null;
+	private BufferedImage playAgainButton = null, playAgainButton_Selected = null;
+	private BufferedImage resumeButton = null, resumeButton_Selected = null;
 	
 	//boolean for the selected buttons
 	private static boolean playButton = true;
@@ -62,6 +65,13 @@ public class Menu{
 			gear_selected = loader.loadImage("/buttons/gear_selected.png");
 			x_button = loader.loadImage("/buttons/x.png");
 			x_button_selected = loader.loadImage("/buttons/x_selected.png");
+			
+			menuButton = loader.loadImage("/buttons/Menu.png");
+			menuButton_Selected = loader.loadImage("/buttons/MenuAus.png");
+			playAgainButton = loader.loadImage("/buttons/PlayAgain.png");
+			playAgainButton_Selected = loader.loadImage("/buttons/PlayAgainAus.png");
+			resumeButton = loader.loadImage("/buttons/Resume.png");
+			resumeButton_Selected = loader.loadImage("/buttons/ResumeAus.png");
 			
 		
 		} catch (Exception e) {
@@ -128,38 +138,30 @@ public class Menu{
         	}
         	g.drawString("< Level: " + (level) + " >", 575, 580);  	
         	
-        	if(quit) g.drawImage(x_button_selected, 20, 20, null);
-        	else g.drawImage(x_button, 20, 20, null);
+        	if(quit) g.drawImage(x_button_selected, 1192, 47, null);
+        	else g.drawImage(x_button, 1192, 47, null);
         	
-        	if(gear) g.drawImage(gear_selected, 70, 20, null);
-        	else g.drawImage(gear_button, 70, 20, null);
+        	if(gear) g.drawImage(gear_selected, 1142, 46, null);
+        	else g.drawImage(gear_button, 1142, 46, null);
         }        
         
         //Game Over Menu
         else if(Game.gameStatus == STATUS.Dead) {
-        	//g.drawImage(menu_background, 0, 0, null);        	
-        	//g.drawString("Game Over! :( ", Game.WIDTH/2 - 200, Game.HEIGHT/2);
         	
         	//Play Again Button
         	if(death_retry) {
-        		g.setColor(buttonYellow);
-        		g.drawRect(width /2 - q/2, height/2 - 50, q, q);
+        		g.drawImage(playAgainButton_Selected, 508, 501, null);
         	}
         	else {
-        		g.setColor(Color.white);
-        		g.drawRect(width /2 - q/2, height/2 - 50, q, q);
+        		g.drawImage(playAgainButton, 508, 501, null);
         	}
-        	g.drawString("Play Again", width/2 - 26,  height/2 + 60);
         	
         	if(death_backToMenu) {
-        		g.setColor(buttonYellow);
-        		g.drawRect(width / 2 - 500, height / 2, q, j);
+        		g.drawImage(menuButton_Selected, 216, 501, null);
         	}
         	else {
-        		g.setColor(Color.WHITE);
-        		g.drawRect(width / 2 - 500, height / 2, q, j);
+        		g.drawImage(menuButton, 216, 501, null);
         	}
-	        g.drawString("Back To Menu", width / 2 - 430, height / 2 + (j / 2) + 10);
         }
         
         //End Menu
@@ -168,22 +170,16 @@ public class Menu{
         	g.drawString("You did it!", Game.WIDTH/2 - 100, Game.HEIGHT/2 - 200);
         	g.drawString("You jumped " + jumps + " times", Game.WIDTH/2 - 200, Game.HEIGHT/2 - 100);
         	        	
-        	if(final_retry) g.setColor(buttonYellow);
-        	else g.setColor(Color.WHITE);
-        	g.drawRect(width /2 - q/2, height/2 - 50, q, q);
-        	g.drawString("Play Again", width/2 - 26,  height/2 + 60);
+        	if(final_retry) g.drawImage(playAgainButton_Selected, 508, 501, null);
+        	else g.drawImage(playAgainButton, 508, 501, null);
         	
         	//Back To Menu Button
-        	if(final_backToMenu) g.setColor(buttonYellow);
-        	else g.setColor(Color.WHITE);
-        	g.drawRect(width / 2 - 500, height / 2, q, j);
-	        g.drawString("Back To Menu", width / 2 - 430, height / 2 + (j / 2) + 10);
+        	if(final_backToMenu) g.drawImage(menuButton_Selected, 216, 501, null);
+        	else g.drawImage(menuButton, 216, 501, null);
 	        
 	        //next Level Button
-	        if(final_nextLevel) g.setColor(buttonYellow);
-        	else g.setColor(Color.WHITE);
-        	g.drawRect(width / 2 + 500 - q, height / 2, q, j);
-	        g.drawString("Next Level", width / 2 + 500 - q, height / 2 + (j / 2) + 10);
+	        if(final_nextLevel) g.drawImage(resumeButton_Selected, 800, 501, null);
+        	else g.drawImage(resumeButton, 800, 501, null);
         }
         
         

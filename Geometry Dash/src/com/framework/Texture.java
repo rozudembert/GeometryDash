@@ -15,7 +15,8 @@ import com.framework.ImageLoader;
 public class Texture {
 	
 	BufferedImage image;
-	SpriteSheet bs, ps, buttonSheet;
+	SpriteSheet bs, ps, buttonSheet; 
+	//SpriteSheet menuButtonSheet; 
 	
 	//buttons
 	public BufferedImage titleScreen = null;
@@ -25,11 +26,13 @@ public class Texture {
 	private BufferedImage block_sheet = null;
 	private BufferedImage player_sheet = null;
 	private BufferedImage button_sheet = null;
+	//private BufferedImage menu_button_sheet = null;
 	
 	//array to store the images in
 	public BufferedImage[] block = new BufferedImage[32]; //array has to have the size of the amount of blocks
 	public BufferedImage[] player = new BufferedImage[8];
 	public BufferedImage[] button = new BufferedImage[21];
+	//public BufferedImage[] menu_button = new BufferedImage[8];
 	
 	public Texture() {
 		
@@ -48,6 +51,7 @@ public class Texture {
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
 			button_sheet = loader.loadImage("/buttons/button_sheet.png");
+			//menu_button_sheet = loader.loadImage("/buttons/menu_button_sheet.png");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,6 +60,7 @@ public class Texture {
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(player_sheet);
 		buttonSheet = new SpriteSheet(button_sheet);
+		//menuButtonSheet = new SpriteSheet(menu_button_sheet);
 	}
 	
 	//assign the images from the sheets to the arrays
@@ -125,5 +130,8 @@ public class Texture {
 		button[18] = buttonSheet.grabImage(3, 4, 132, 132);
 		button[19] = buttonSheet.grabImage(4, 4, 132, 132);
 		button[20] = buttonSheet.grabImage(5, 4, 132, 132);
+		
+		//menu buttons
+		//menu_button[0] = menuButtonSheet.grabImage(0, 0, 0, 0);
 	}	
 }

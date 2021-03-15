@@ -126,7 +126,7 @@ public class Player extends GameObject{
 			//player reaches the end of the level
 			if(tempObject.getId() == ObjectId.EndPortal) {
 				if(getBorderRight().intersects(tempObject.getBorder())) {
-					
+					end();
 					Controller.clearLevel();
 					Game.endMenu();
 				}
@@ -140,7 +140,13 @@ public class Player extends GameObject{
 		cam.setStart(true);
 		controller.setRenderDistance(0);
 		controller.removeObject(this);
-			
+	}
+	
+	public void end() {
+		Game.endMenu();
+		cam.setStart(true);
+		controller.setRenderDistance(0);
+		controller.removeObject(this);
 	}
 	
 	

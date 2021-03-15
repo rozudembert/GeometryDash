@@ -73,7 +73,7 @@ public class KeyInput extends KeyAdapter{
 			
 			//Play Button
 			if(menu.getMainPlayButton()) {
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
 					controller.startLevel(level);	
 					menu.setMainPlayButton(false);
@@ -83,16 +83,16 @@ public class KeyInput extends KeyAdapter{
 						menu.setMainPlayButton(false);
 						menu.setMainLeftLevelButton(true);
 					}
-					else {
-						menu.setMainPlayButton(false);
-						menu.setGear(true);
-					}
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
 					if(level < 5) {
 						menu.setMainPlayButton(false);
 						menu.setMainRightLevelButton(true);
-					}					
+					}	
+					else {
+						menu.setMainPlayButton(false);
+						menu.setGear(true);
+					}
 				}
 				else if(key == KeyEvent.VK_UP) {
 					menu.setMainPlayButton(false);
@@ -102,7 +102,7 @@ public class KeyInput extends KeyAdapter{
 			
 			//Left Button to change level
 			else if(menu.getMainLeftLevelButton()) {
-				if(key == KeyEvent.VK_ENTER && level > 1 ) {
+				if((key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) && level > 1 ) {
 					level = level - 1;
 					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
@@ -111,7 +111,7 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainLeftLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_UP) {
 					menu.setMainLeftLevelButton(false);
 					menu.setGear(true);
 				}
@@ -119,7 +119,7 @@ public class KeyInput extends KeyAdapter{
 			
 			//Right Button to change level
 			else if(menu.getMainRightLevelButton()) {
-				if(key == KeyEvent.VK_ENTER && level < 5 ) {
+				if((key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) && level < 5 ) {
 					level++;
 					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
@@ -134,28 +134,28 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainRightLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_UP) {
+				else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_RIGHT) {
 					menu.setMainRightLevelButton(false);
 					menu.setGear(true);
 				}
 			}
 			
 			else if(menu.getGear()) {
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					//TODO nothing is happening yet
 				}
 				else if(key == KeyEvent.VK_DOWN) {
 					menu.setGear(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_RIGHT) {
 					menu.setGear(false);
 					menu.setQuit(true);
 				}
-				else if(key == KeyEvent.VK_RIGHT) {
-					if(level > 1) {
+				else if(key == KeyEvent.VK_LEFT) {
+					if(level < 5) {
 						menu.setGear(false);
-						menu.setMainLeftLevelButton(true);
+						menu.setMainRightLevelButton(true);
 					}
 					else {
 						menu.setGear(false);
@@ -165,14 +165,14 @@ public class KeyInput extends KeyAdapter{
 			}
 			
 			else if(menu.getQuit()) {
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					System.exit(1);
 				}
 				if(key == KeyEvent.VK_DOWN) {
 					menu.setQuit(false);
 					menu.setMainPlayButton(true);
 				}
-				if(key == KeyEvent.VK_RIGHT) {
+				if(key == KeyEvent.VK_LEFT) {
 					menu.setQuit(false);
 					menu.setGear(true);
 				}
@@ -183,7 +183,7 @@ public class KeyInput extends KeyAdapter{
 			
 			//
 			if(menu.get_death_retry()) {
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
 					controller.startLevel(level);
 					menu.setMainPlayButton(false);
@@ -194,7 +194,7 @@ public class KeyInput extends KeyAdapter{
 				}
 			}
 			else if(menu.get_death_backToMenu()) {
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Menu);
 					menu.set_death_backToMenu(false);
 					menu.setMainPlayButton(true);
@@ -209,7 +209,7 @@ public class KeyInput extends KeyAdapter{
 		else if(Game.gameStatus == STATUS.End) {
 			
 			if(menu.get_final_retry()) {
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
 					controller.startLevel(level);										
 				}
@@ -225,7 +225,7 @@ public class KeyInput extends KeyAdapter{
 			
 			else if(menu.get_final_backToMenu()) {
 				
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Menu);
 					menu.set_final_backToMenu(false);
 					menu.setMainPlayButton(true);
@@ -238,7 +238,7 @@ public class KeyInput extends KeyAdapter{
 			
 			else if(menu.get_final_nextLevel()) {
 				
-				if(key == KeyEvent.VK_ENTER) {
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
 					level++;
 					controller.startLevel(level);

@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable{
 		menu = new Menu(this, controller, texture);
 		cam = new Camera(0, 0);
 		controller = new Controller(cam);
-		hud = new HUD(cam);
+		hud = new HUD(cam, controller);
 		
 		this.addKeyListener(new KeyInput(this, controller, menu));	
 	}
@@ -113,14 +113,12 @@ public class Game extends Canvas implements Runnable{
 	
 	public static void playerDeath() {
 		Controller.clearLevel();
-		gameStatus = STATUS.End;
-		menu.set_final_retry(true);
-		
-		//gameStatus = STATUS.Dead;
-		//menu.set_death_retry(true);
+		gameStatus = STATUS.Dead;
+		menu.set_death_retry(true);
 	}
 	
 	public static void endMenu() {
+		Controller.clearLevel();
 		gameStatus = STATUS.End;
 		menu.set_final_retry(true);
 	}

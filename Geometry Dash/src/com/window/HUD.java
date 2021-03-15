@@ -21,15 +21,27 @@ public class HUD {
 	//the maximum lenght of a level is 1024 blocks.
 	public static float LEVEL_LENGTH = 1024 * 64;
 	
-	public HUD(Camera camera) {
+	public HUD(Camera camera, Controller controller) {
 		this.camera = camera;
+		this.controller = controller;
 	}
 	
 	private float progress = 0;
 	
 	//calculate progress depending on players position in relation to end of the level
 	public void update(GameObject player) {
-		progress = (player.getX() / LEVEL_LENGTH) * 600;
+		
+		progress = (player.getX() / controller.getEndBlock()) * 600;
+		System.out.println("player: " + player.getX());
+		System.out.println("End: " + controller.getEndBlock());
+		System.out.println("Progress " + progress);
+		/*
+		if(controller.getEndBlock() != 0) {
+			progress = player.getX() / controller.getEndBlock();
+		}
+		else {
+			progress = (player.getX() / LEVEL_LENGTH) * 600;
+		}*/
 	}
 	
 	//render HUD on top of the screen
@@ -52,7 +64,10 @@ public class HUD {
 		g.drawRect(x_position+1, y_position+1, boxWidth-2, boxHeight-2);
 		
 		//show Percentage
-		g.drawString((int)progress/6 + "%", x_position + 570, y_position + 15);
+		if(progress < 1 * boxWidth) {
+			g.drawString((int)progress/6 + "%", x_position + 570, y_position + 15);
+		}
+		
 						
 	}
 }
