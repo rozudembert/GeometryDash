@@ -28,6 +28,7 @@ public class Controller {
 	private BufferedImage activeLevel = null;
 	
 	private int renderDistance;
+	private int endBlock = 0;
 	
 	public Controller(Camera cam) {
 		this.cam = cam;
@@ -65,11 +66,12 @@ public class Controller {
 		
 		}
 	}
-	
-	
+		
 	//recieve image of the level as input and convert it into GameObjects
 	//only load the column of blocks 15 blocks away from the player	
 	public void loadLevel(BufferedImage image, int playerX) {
+		
+		findEnd(image);
 		
 		int height = image.getHeight();
 		int width = image.getWidth();
@@ -88,6 +90,32 @@ public class Controller {
 		}
 	}
 
+	public void findEnd(BufferedImage image) {
+		
+		int width = image.getWidth();
+		
+		boolean done = false;
+		int endBlockX = 0;
+		
+		for(int i = 0; i < width; i++) {
+			if(!done) {
+				
+				int pixel = image.getRGB(i, 1);
+				int red = (pixel >> 16) & 0xff;
+				int green = (pixel >> 8) & 0xff;
+				int blue = (pixel) & 0xff;
+				
+				if(red == 255 && green == 45 && blue == 255) {				
+					endBlockX = i;
+					done = true; 
+				}
+			}
+			else 
+				break;
+		}					
+		endBlock =  endBlockX * 64;
+	}
+	
 	//recieve image of the level as input and convert it into GameObjects
 	//only for the first 35 blocks 
 	public void loadLevel(BufferedImage image) {
@@ -221,5 +249,9 @@ public class Controller {
 	
 	public int getRenderDistance() {
 		return renderDistance;
+	}
+	
+	public int getEndBlock() {
+		return endBlock;
 	}
 }
