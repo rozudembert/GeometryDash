@@ -35,13 +35,8 @@ public class HUD {
 		System.out.println("player: " + player.getX());
 		System.out.println("End: " + controller.getEndBlock());
 		System.out.println("Progress " + progress);
-		/*
-		if(controller.getEndBlock() != 0) {
-			progress = player.getX() / controller.getEndBlock();
-		}
-		else {
-			progress = (player.getX() / LEVEL_LENGTH) * 600;
-		}*/
+		
+		
 	}
 	
 	//render HUD on top of the screen
