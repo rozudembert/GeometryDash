@@ -46,4 +46,10 @@ public class EndPortal extends GameObject{
 
 	//this method is not needed here
 	public Polygon getBorderPoly() {return null;}
+
+	@Override
+	public Rectangle getExtendedBorder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

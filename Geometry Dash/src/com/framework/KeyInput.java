@@ -34,6 +34,16 @@ public class KeyInput extends KeyAdapter{
 		keyDown[0] = false;	
 	}
 	
+	public void isKeyPressed(KeyEvent e) {
+		
+	}
+	
+	boolean keySpace = false;
+	boolean keyW = false;
+	boolean keyUP = false;
+	
+	
+	
 	//When the right keys get pressed, the player shall move
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -44,23 +54,31 @@ public class KeyInput extends KeyAdapter{
 			
 			//to be sure the moving object is a player and not a block
 			if(tempObject.getId() == ObjectId.Player) {
-				
-				
+							
 				//jumping
 				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
-					menu.addJumps();
-					tempObject.setVelY(-19);
-					tempObject.setJumping(true);					
+					keySpace = true;
+					keyW = true;
+					keyUP = true;
+					
+					//TODO
+					if(true) {
+						menu.addJumps();
+						
+						tempObject.setVelY(-19);
+						tempObject.setJumping(true);
+					}
+										
 				}
 				
 				if(Game.getGodMode()) {
 					if(key == KeyEvent.VK_D) {
-						tempObject.setVelX(11);
+						tempObject.setVelX(12);
 						keyDown[0] = true;
 					}
 					
 					if(key == KeyEvent.VK_A) {
-						tempObject.setVelX(-11);
+						tempObject.setVelX(-12);
 						keyDown[1] = true;
 					}
 				}

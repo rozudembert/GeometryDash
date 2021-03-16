@@ -48,6 +48,12 @@ public class normalSpike extends GameObject{
 		polygon.addPoint((int)x + width, (int)y + height);
 		return polygon;		
 	}
+
+	@Override
+	public Rectangle getExtendedBorder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	//RECTANGLE POLYGON COLLISION
 	

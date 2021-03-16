@@ -41,15 +41,23 @@ public class Block extends GameObject{
 		//The Block isn't doing anything yet
 	}
 	
+	private int temp = 18;
+	
 	//assign the texture to the block
 	public void render (Graphics graphics) {
 		graphics.drawImage(texture.block[type], (int)x, (int)y, null);
-		
+		graphics.setColor(Color.RED);
+		//graphics.drawRect((int)x, (int)y-temp, width, temp);
 	}
 	
 	//create a rectangle outlining the block to use in collision detection
 	public Rectangle getBorder() {
 		return new Rectangle((int)x, (int)y, width, height);
+	}
+	
+	
+	public Rectangle getExtendedBorder() {
+		return new Rectangle((int)x, (int)y-temp, width, temp);
 	}
 
 	//this method is not needed here

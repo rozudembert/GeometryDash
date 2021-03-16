@@ -18,6 +18,7 @@ public abstract class GameObject {
 	protected float x, y;
 	protected boolean visible;
 	protected ObjectId id; 
+	protected float gravity;
 	
 	//vertical and horizontal velocity of the object 
 	protected float velX = 0f, velY = 0f;
@@ -36,6 +37,7 @@ public abstract class GameObject {
 	public abstract void render(Graphics graphics);
 	public abstract Rectangle getBorder();
 	public abstract Polygon getBorderPoly();
+	public abstract Rectangle getExtendedBorder();
 	
 	////////////////////////////
 	
@@ -103,5 +105,9 @@ public abstract class GameObject {
 	
 	public boolean getVisible() {
 		return visible;
+	}
+	
+	public float getGravity() {
+		return gravity;
 	}
 }

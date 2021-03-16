@@ -68,6 +68,8 @@ public class Player extends GameObject{
 		
 		move(object);
 		collision(object);
+		
+		System.out.println(jumping);
 	}
 	
 	//player is moving evenly to the right
@@ -101,7 +103,7 @@ public class Player extends GameObject{
 				}
 				
 				//collision with the ground
-				if(getBorder().intersects(tempObject.getBorder())){
+				if(getBorder().intersects(tempObject.getBorder()) || getBorder().intersects(tempObject.getExtendedBorder())){
 					y = tempObject.getY() - 64;
 					velY = 0;
 					falling = false;
@@ -193,6 +195,13 @@ public class Player extends GameObject{
 
 	@Override
 	public Polygon getBorderPoly() {
+		return null;
+	}
+
+
+	@Override
+	public Rectangle getExtendedBorder() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

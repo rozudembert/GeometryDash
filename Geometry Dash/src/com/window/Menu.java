@@ -47,6 +47,7 @@ public class Menu{
 	
 	private int level = 1;
 	private int jumps = 0;
+	private int attempts = 0;
 
 	public Menu(Game game, Controller controller, Texture texture) {
 		this.texture = texture;
@@ -116,6 +117,7 @@ public class Menu{
         	
         	//background
         	g.drawImage(menu_background, 0, 0, null);
+        	//g.drawImage(logo, 100, 100, null);
         	
         	//Left Button -> if selected make it in colour
         	if(main_leftButton && level > 1) 

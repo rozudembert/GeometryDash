@@ -48,6 +48,12 @@ public class overheadSpike extends GameObject{
 		polygon.addPoint((int)x + width, (int)y);
 		return polygon;		
 	}
+
+	@Override
+	public Rectangle getExtendedBorder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	//RECTANGLE POLYGON COLLISION
 	
