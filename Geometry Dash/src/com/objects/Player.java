@@ -125,7 +125,7 @@ public class Player extends GameObject{
 					
 			if(tempObject.getId() == ObjectId.Spike) {
 				if(tempObject.getBorderPoly().intersects(getBorderRight()) || tempObject.getBorderPoly().intersects(getBorder())) {
-					if(Game.getGodMode())
+					if(!Game.getGodMode())
 						death();
 				}
 				
