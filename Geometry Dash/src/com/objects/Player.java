@@ -67,9 +67,7 @@ public class Player extends GameObject{
 		}		
 		
 		move(object);
-		collision(object);
-		
-		System.out.println(jumping);
+		collision(object);	
 	}
 	
 	//player is moving evenly to the right

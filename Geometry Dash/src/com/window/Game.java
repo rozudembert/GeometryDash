@@ -89,13 +89,16 @@ public class Game extends Canvas implements Runnable{
 		Graphics2D g2d = (Graphics2D) graphics;
 		
 		//create Background
-		graphics.setColor(Color.black);
+		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
-				
-		g2d.translate(cam.getX(), cam.getY()); //Begin of camera
 		
-		controller.render(graphics);
-		hud.render(graphics);
+		controller.renderBackground(graphics);
+		
+		g2d.translate(cam.getX(), cam.getY()); //Begin of camera
+				
+			//background.render(graphics);
+			controller.render(graphics);
+			hud.render(graphics);
 		
 		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
 		
@@ -217,7 +220,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				//System.out.println("FPS: " + frames + " TICKS: " + updates);
+				System.out.println("FPS: " + frames + " TICKS: " + updates);
 				frames = 0;
 				updates = 0;
 			}				

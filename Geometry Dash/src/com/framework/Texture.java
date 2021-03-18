@@ -20,9 +20,6 @@ public class Texture {
 	public BufferedImage gameOver = null;
 	public BufferedImage congrats = null;
 	
-	public BufferedImage menu_background = null;
-	public BufferedImage titleScreen = null;
-	
 	//Buttons
 	public BufferedImage buttonPlay = null, buttonPlayActive = null;
 	public BufferedImage gear_button = null, gear_selected = null, x_button = null, x_button_selected = null; 
@@ -31,6 +28,10 @@ public class Texture {
 	public BufferedImage resumeButton = null, resumeButton_Selected = null;
 	
 	public BufferedImage stars1 = null, stars2 = null, stars3 = null;
+	
+	public BufferedImage menu_background = null;
+	public BufferedImage titleScreen = null;
+	
 	
 	//Graphic Sheets
 	private BufferedImage block_sheet = null;
@@ -88,6 +89,8 @@ public class Texture {
 			stars1 = loader.loadImage("/other/1Stars.png");
 			stars2 = loader.loadImage("/other/2Stars.png");
 			stars3 = loader.loadImage("/other/3Stars.png");
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

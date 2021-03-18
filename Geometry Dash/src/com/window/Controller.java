@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import com.framework.GameObject;
 import com.framework.ObjectId;
+import com.framework.Texture;
 import com.framework.ImageLoader;
 import com.objects.Block;
 import com.objects.EndPortal;
@@ -24,8 +25,11 @@ public class Controller {
 	public static LinkedList <GameObject> object = new LinkedList<GameObject>();
 	
 	private Camera cam;
+	
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	private BufferedImage activeLevel = null;
+	
+	public BufferedImage wallpaper1 = null, wallpaper2 = null, wallpaper3 = null; 
 	
 	private int renderDistance;
 	private int endBlock = 0;
@@ -35,11 +39,18 @@ public class Controller {
 		
 		//load level images from file system
 		ImageLoader loader = new ImageLoader();
+		
 		level1 = loader.loadImage("/level/level_1.png");
 		level2 = loader.loadImage("/level/level_2.png");
 		level3 = loader.loadImage("/level/level_3.png");
 		level4 = loader.loadImage("/level/level_4.png");
 		level5 = loader.loadImage("/level/level_5.png");
+		
+		wallpaper1 = loader.loadImage("/background/wallpaper1.jpg");
+		wallpaper2 = loader.loadImage("/background/wallpaper2.png");
+		wallpaper3 = loader.loadImage("/background/wallpaper3.jpg");
+		
+		
 	}
 	
 	public void update() {
@@ -52,12 +63,10 @@ public class Controller {
 			
 			if(tempObject.getId() == ObjectId.Player) playerX = (int)tempObject.getX();			
 			
-			//if(!Game.getGodMode()) {
-				//remove block if passed by the player
-				if(tempObject.getId() == ObjectId.Block && tempObject.getX() < playerX - 550) {
-					removeObject(tempObject);					
-				}
-			//}
+			//remove block if passed by the player
+			if(tempObject.getId() == ObjectId.Block && tempObject.getX() < playerX - 550) {
+				removeObject(tempObject);					
+			}
 		}			
 		
 		//add blocks shortly before the player passes them
@@ -67,6 +76,7 @@ public class Controller {
 			renderDistance = renderDistance + 64;		
 		
 		}
+		
 	}
 		
 	//recieve image of the level as input and convert it into GameObjects
@@ -228,8 +238,13 @@ public class Controller {
 		
 	}
 	
+	public void renderBackground(Graphics graphics) {
+		graphics.drawImage(wallpaper3, 0,0, null);
+	}
+	
 	//render the graphics of the objects
 	public void render(Graphics graphics) {
+		
 		for(int i= 0; i < object.size(); i++) {
 			GameObject tempObject = object.get(i);
 			

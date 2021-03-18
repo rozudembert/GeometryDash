@@ -73,14 +73,6 @@ public class KeyInput extends KeyAdapter{
 					keySpace = true;
 					keyW = true;
 					keyUP = true;
-					
-					//TODO
-					if(true) {
-						//menu.addJumps();
-						
-						//tempObject.setVelY(-19);
-						//tempObject.setJumping(true);
-					}
 										
 				}
 				

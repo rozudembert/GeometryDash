@@ -8,10 +8,8 @@
 package com.window;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 import com.framework.Texture;
-import com.framework.ImageLoader;
 import com.window.Game.STATUS;
 
 public class Menu{
@@ -35,7 +33,6 @@ public class Menu{
 	
 	private int level = 1;
 	private int jumps = 0;
-	private int attempts = 0;
 
 	public Menu(Game game, Controller controller, Texture texture) {
 		this.texture = texture;
@@ -48,10 +45,7 @@ public class Menu{
 	public void render(Graphics g) {
 	
 		int width = Game.WIDTH;
-        int height = Game.HEIGHT;
-		int q = 200;
-		int j = 64;
-        
+        int height = Game.HEIGHT;        
         
         Font fnt2 = new Font("calibri", 1, 28);
         g.setFont(fnt2);
@@ -230,13 +224,13 @@ public class Menu{
 	}
 	
 	public void setGear(boolean gear) {
-		this.gear = gear;
+		Menu.gear = gear;
 	}
 	public boolean getGear() {
 		return gear;
 	}
 	public void setQuit(boolean quit) {
-		this.quit = quit;
+		Menu.quit = quit;
 	}
 	public boolean getQuit() {
 		return quit;
