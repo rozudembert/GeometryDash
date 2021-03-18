@@ -29,10 +29,12 @@ public class Controller {
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	private BufferedImage activeLevel = null;
 	
-	public BufferedImage wallpaper1 = null, wallpaper2 = null, wallpaper3 = null; 
+	private BufferedImage wallpaper1 = null, wallpaper2 = null, wallpaper3 = null; 
+	private BufferedImage activeWallpaper = null;
 	
 	private int renderDistance;
 	private int endBlock = 0;
+	private int level = 0;
 	
 	public Controller(Camera cam) {
 		this.cam = cam;
@@ -214,6 +216,8 @@ public class Controller {
 	//select correct level-image and call loadLevel method
 	public void startLevel(int level) {
 		
+		this.level = level;
+		
 		clearLevel();
 		
 		switch(level) {
@@ -238,8 +242,33 @@ public class Controller {
 		
 	}
 	
+	public BufferedImage getBackground(int level) {
+		switch (level) {
+		case 0:
+			break;
+		case 1:
+			activeWallpaper = wallpaper3;
+			break;
+		case 2: 
+			activeWallpaper = wallpaper2;
+			break;
+		case 3: 
+			activeWallpaper = wallpaper1;
+			break;
+		case 4: 
+			activeWallpaper = wallpaper1;
+			break;
+		case 5: 
+			activeWallpaper = wallpaper2;
+			break;
+		}
+		
+		return activeWallpaper;
+	}
+	
 	public void renderBackground(Graphics graphics) {
-		graphics.drawImage(wallpaper3, 0,0, null);
+		getBackground(level);		
+		graphics.drawImage(activeWallpaper, 0,0, null);
 	}
 	
 	//render the graphics of the objects

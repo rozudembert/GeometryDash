@@ -31,6 +31,7 @@ public class HUD {
 	//calculate progress depending on players position in relation to end of the level
 	public void update(GameObject player) {
 		progress = (player.getX() / controller.getEndBlock()) * 600;
+		Menu.setProgress((int)progress / 6);
 	}
 	
 	//render HUD on top of the screen
@@ -42,7 +43,7 @@ public class HUD {
 		int y_position = -(int)camera.getY()+ 10;
 		
 		//progess bar
-		if(progress < 1*boxWidth) {
+		if(progress < 1 * boxWidth) {
 			g.setColor(Color.GREEN);
 			g.fillRect(x_position, y_position, (int)progress, boxHeight);
 		}

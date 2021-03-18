@@ -31,8 +31,14 @@ public class Menu{
 	
 	Texture texture;
 	
-	private int level = 1;
+	private static int level = 1;
 	private int jumps = 0;
+	
+	private static int progress1 = 0;
+	private static int progress2 = 0;
+	private static int progress3 = 0;
+	private static int progress4 = 0;
+	private static int progress5 = 0; 
 
 	public Menu(Game game, Controller controller, Texture texture) {
 		this.texture = texture;
@@ -100,6 +106,29 @@ public class Menu{
         	
         	if(gear) g.drawImage(texture.gear_selected, 1142, 46, null);
         	else g.drawImage(texture.gear_button, 1142, 46, null);
+        	
+        	//Show amount of Stars of the level depending on progress
+        	int temp = 0; 
+        	
+        	if(level == 1)	temp = progress1;
+        	else if(level == 2)	temp = progress2;
+        	else if(level == 3)	temp = progress3;
+        	else if(level == 4)	temp = progress4;
+        	else if(level == 5)	temp = progress5;
+        	
+        	if(temp >= 99)
+    			g.drawImage(texture.stars3, 290, -120, null);
+    		else if(temp < 99 && temp >= 60)
+    			g.drawImage(texture.stars2, 290, -120, null);
+    		else if(temp  < 59 && temp > 30)
+    			g.drawImage(texture.stars1, 290, -120, null);
+    		else
+    			g.drawImage(texture.stars0, 290, -120, null);
+        	
+        	
+            	
+        	
+        	
         }        
         
         //Game Over Menu
@@ -147,6 +176,25 @@ public class Menu{
         }
         
         
+	}
+	
+	public static void setProgress(int progress) {
+		
+		if(level == 1 && progress1 < progress)
+			progress1 = progress;
+		
+		else if(level == 2 && progress2 < progress)
+			progress2 = progress;
+		
+		else if(level == 3 && progress3 < progress)
+			progress3 = progress;
+		
+		else if(level == 4 && progress4 < progress)
+			progress4 = progress;
+		
+		else if(level == 5 && progress5 < progress)
+			progress5 = progress;
+		
 	}
 	
 

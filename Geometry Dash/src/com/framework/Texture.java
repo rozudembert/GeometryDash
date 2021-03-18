@@ -27,7 +27,7 @@ public class Texture {
 	public BufferedImage playAgainButton = null, playAgainButton_Selected = null;
 	public BufferedImage resumeButton = null, resumeButton_Selected = null;
 	
-	public BufferedImage stars1 = null, stars2 = null, stars3 = null;
+	public BufferedImage stars0 = null, stars1 = null, stars2 = null, stars3 = null;
 	
 	public BufferedImage menu_background = null;
 	public BufferedImage titleScreen = null;
@@ -86,6 +86,7 @@ public class Texture {
 			gameOver = loader.loadImage("/other/GameOver!.png");
 			congrats = loader.loadImage("/other/Congrats.png");		
 			
+			stars0 = loader.loadImage("/other/0Stars.png");
 			stars1 = loader.loadImage("/other/1Stars.png");
 			stars2 = loader.loadImage("/other/2Stars.png");
 			stars3 = loader.loadImage("/other/3Stars.png");
