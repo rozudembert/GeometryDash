@@ -34,7 +34,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
-	private boolean showHitbox = true;
+	private boolean showHitbox = false;
 	
 	Texture texture = Game.getInstance();
 	

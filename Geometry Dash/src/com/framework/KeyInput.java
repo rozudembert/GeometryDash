@@ -34,15 +34,28 @@ public class KeyInput extends KeyAdapter{
 		keyDown[0] = false;	
 	}
 	
-	public void isKeyPressed(KeyEvent e) {
-		
+	public void update() {
+		for(int i = 0; i < Controller.object.size(); i++) {
+			GameObject tempObject = Controller.object.get(i);
+			
+			if(tempObject.getId() == ObjectId.Player) {
+				if(keySpace || keyW || keyUP) {
+					menu.addJumps();
+					
+					tempObject.setVelY(-19);
+					tempObject.setJumping(true);
+					
+					keySpace = false;
+					keyW = false;
+					keyUP = false;
+				}
+			}
+		}
 	}
 	
 	boolean keySpace = false;
 	boolean keyW = false;
-	boolean keyUP = false;
-	
-	
+	boolean keyUP = false;	
 	
 	//When the right keys get pressed, the player shall move
 	public void keyPressed(KeyEvent e) {
@@ -54,7 +67,7 @@ public class KeyInput extends KeyAdapter{
 			
 			//to be sure the moving object is a player and not a block
 			if(tempObject.getId() == ObjectId.Player) {
-							
+				
 				//jumping
 				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
 					keySpace = true;
@@ -63,10 +76,10 @@ public class KeyInput extends KeyAdapter{
 					
 					//TODO
 					if(true) {
-						menu.addJumps();
+						//menu.addJumps();
 						
-						tempObject.setVelY(-19);
-						tempObject.setJumping(true);
+						//tempObject.setVelY(-19);
+						//tempObject.setJumping(true);
 					}
 										
 				}
@@ -315,6 +328,12 @@ public class KeyInput extends KeyAdapter{
 				//Player movement stops 
 				if(!keyDown[0] && !keyDown[1]) 
 					tempObject.setVelX(0);
+				
+				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
+					keySpace = false;
+					keyW = false;
+					keyUP = false;
+				}
 			}
 		}
 	}

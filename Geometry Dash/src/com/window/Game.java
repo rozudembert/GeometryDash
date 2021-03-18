@@ -31,6 +31,7 @@ public class Game extends Canvas implements Runnable{
 	Camera cam;
 	static Menu menu;
 	HUD hud;
+	KeyInput kl;
 	
 	private static boolean godMode = false;
 	
@@ -45,12 +46,17 @@ public class Game extends Canvas implements Runnable{
 		cam = new Camera(0, 0);
 		controller = new Controller(cam);
 		hud = new HUD(cam, controller);
+		kl = new KeyInput(this, controller, menu);
 		
-		this.addKeyListener(new KeyInput(this, controller, menu));	
+		this.addKeyListener(kl);	
 	}
 	
 	private void update() {
+		kl.update();
+		
 		controller.update();		
+		
+		
 		
 		if(gameStatus == STATUS.Menu) {
 			menu.update();
@@ -67,7 +73,7 @@ public class Game extends Canvas implements Runnable{
 					
 				}
 			}		
-		}		
+		}
 	}
 	
 	//render graphics
