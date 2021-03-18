@@ -15,24 +15,34 @@ import com.framework.ImageLoader;
 public class Texture {
 	
 	BufferedImage image;
-	SpriteSheet bs, ps, buttonSheet; 
-	//SpriteSheet menuButtonSheet; 
+	SpriteSheet bs, ps, buttonSheet, spikeSheet; 
 	
-	//buttons
+	public BufferedImage gameOver = null;
+	public BufferedImage congrats = null;
+	
+	public BufferedImage menu_background = null;
 	public BufferedImage titleScreen = null;
+	
+	//Buttons
 	public BufferedImage buttonPlay = null, buttonPlayActive = null;
+	public BufferedImage gear_button = null, gear_selected = null, x_button = null, x_button_selected = null; 
+	public BufferedImage menuButton = null, menuButton_Selected = null;
+	public BufferedImage playAgainButton = null, playAgainButton_Selected = null;
+	public BufferedImage resumeButton = null, resumeButton_Selected = null;
 	
+	public BufferedImage stars1 = null, stars2 = null, stars3 = null;
 	
+	//Graphic Sheets
 	private BufferedImage block_sheet = null;
 	private BufferedImage player_sheet = null;
 	private BufferedImage button_sheet = null;
-	//private BufferedImage menu_button_sheet = null;
-	
+	private BufferedImage spike_sheet = null;
+
 	//array to store the images in
 	public BufferedImage[] block = new BufferedImage[32]; //array has to have the size of the amount of blocks
 	public BufferedImage[] player = new BufferedImage[8];
 	public BufferedImage[] button = new BufferedImage[21];
-	//public BufferedImage[] menu_button = new BufferedImage[8];
+	public BufferedImage[] spike = new BufferedImage[16];
 	
 	public Texture() {
 		
@@ -48,11 +58,37 @@ public class Texture {
 		//load the sheets from the files
 		try {
 			
+			//load Spritesheet images
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
 			button_sheet = loader.loadImage("/buttons/button_sheet.png");
-			//menu_button_sheet = loader.loadImage("/buttons/menu_button_sheet.png");
+			spike_sheet = loader.loadImage("/texture/spike_sheet.png");
 		
+			titleScreen = loader.loadImage("/TitleScreen.png");
+			menu_background = loader.loadImage("/background/menu_background.png");
+			
+			buttonPlay = loader.loadImage("/buttons/Play.png");
+			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");
+			
+			gear_button = loader.loadImage("/buttons/gear.png");
+			gear_selected = loader.loadImage("/buttons/gear_selected.png");
+			x_button = loader.loadImage("/buttons/x.png");
+			x_button_selected = loader.loadImage("/buttons/x_selected.png");
+			
+			menuButton = loader.loadImage("/buttons/Back.png");
+			menuButton_Selected = loader.loadImage("/buttons/BackAus.png");
+			playAgainButton = loader.loadImage("/buttons/PlayAgain.png");
+			playAgainButton_Selected = loader.loadImage("/buttons/PlayAgainAus.png");
+			resumeButton = loader.loadImage("/buttons/NextLevel.png");
+			resumeButton_Selected = loader.loadImage("/buttons/NextLevelAus.png");
+			
+			gameOver = loader.loadImage("/other/GameOver!.png");
+			congrats = loader.loadImage("/other/Congrats.png");		
+			
+			stars1 = loader.loadImage("/other/1Stars.png");
+			stars2 = loader.loadImage("/other/2Stars.png");
+			stars3 = loader.loadImage("/other/3Stars.png");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,7 +96,7 @@ public class Texture {
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(player_sheet);
 		buttonSheet = new SpriteSheet(button_sheet);
-		//menuButtonSheet = new SpriteSheet(menu_button_sheet);
+		spikeSheet = new SpriteSheet(spike_sheet);
 	}
 	
 	//assign the images from the sheets to the arrays
@@ -131,7 +167,21 @@ public class Texture {
 		button[19] = buttonSheet.grabImage(4, 4, 132, 132);
 		button[20] = buttonSheet.grabImage(5, 4, 132, 132);
 		
-		//menu buttons
-		//menu_button[0] = menuButtonSheet.grabImage(0, 0, 0, 0);
+		spike[0] = spikeSheet.grabImage(1, 1, 64, 64);
+		spike[1] = spikeSheet.grabImage(2, 1, 64, 64);
+		spike[2] = spikeSheet.grabImage(3, 1, 64, 64);
+		spike[3] = spikeSheet.grabImage(4, 1, 64, 64);
+		spike[4] = spikeSheet.grabImage(1, 2, 64, 64);
+		spike[5] = spikeSheet.grabImage(2, 2, 64, 64);
+		spike[6] = spikeSheet.grabImage(3, 2, 64, 64);
+		spike[7] = spikeSheet.grabImage(4, 2, 64, 64);
+		spike[8] = spikeSheet.grabImage(1, 3, 64, 64);
+		spike[9] = spikeSheet.grabImage(2, 3, 64, 64);
+		spike[10] = spikeSheet.grabImage(3, 3, 64, 64);
+		spike[11] = spikeSheet.grabImage(4, 3, 64, 64);
+		spike[12] = spikeSheet.grabImage(1, 4, 64, 64);
+		spike[13] = spikeSheet.grabImage(2, 4, 64, 64);
+		spike[14] = spikeSheet.grabImage(3, 4, 64, 64);
+		spike[15] = spikeSheet.grabImage(4, 4, 64, 64);
 	}	
 }
