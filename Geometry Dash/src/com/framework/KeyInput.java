@@ -117,6 +117,22 @@ public class KeyInput extends KeyAdapter{
 				System.out.println("God Mode deactivated");
 			}
 			
+			//Change Player Skin
+			if(key == KeyEvent.VK_UP) {
+				if(menu.getPlayer() < 8) {
+					menu.setPlayer(menu.getPlayer() + 1);
+					controller.setPlayerSkin(controller.getPlayerSkin() + 1);
+				}
+			}
+			else if(key == KeyEvent.VK_DOWN) {
+				if(menu.getPlayer() > 1) {
+					menu.setPlayer(menu.getPlayer() - 1);
+					controller.setPlayerSkin(controller.getPlayerSkin() - 1);
+				}
+			}
+			
+			
+			
 			//Play Button
 			if(menu.getMainPlayButton()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
@@ -141,10 +157,10 @@ public class KeyInput extends KeyAdapter{
 						menu.setGear(true);
 					}
 				}
-				else if(key == KeyEvent.VK_UP) {
-					menu.setMainPlayButton(false);
-					menu.setGear(true);
-				}
+//				else if(key == KeyEvent.VK_UP) {
+//					menu.setMainPlayButton(false);
+//					menu.setGear(true);
+//				}
 			}
 			
 			//Left Button to change level
@@ -158,10 +174,10 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainLeftLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_UP) {
-					menu.setMainLeftLevelButton(false);
-					menu.setGear(true);
-				}
+//				else if(key == KeyEvent.VK_UP) {
+//					menu.setMainLeftLevelButton(false);
+//					menu.setGear(true);
+//				}
 			}
 			
 			//Right Button to change level
@@ -181,7 +197,11 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainRightLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_RIGHT) {
+//				else if(key == KeyEvent.VK_UP) {
+//					menu.setMainRightLevelButton(false);
+//					menu.setGear(true);
+//				}
+				else if(key == KeyEvent.VK_RIGHT) {
 					menu.setMainRightLevelButton(false);
 					menu.setGear(true);
 				}
@@ -191,10 +211,10 @@ public class KeyInput extends KeyAdapter{
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					//TODO nothing is happening yet
 				}
-				else if(key == KeyEvent.VK_DOWN) {
-					menu.setGear(false);
-					menu.setMainPlayButton(true);
-				}
+//				else if(key == KeyEvent.VK_DOWN) {
+//					menu.setGear(false);
+//					menu.setMainPlayButton(true);
+//				}
 				else if(key == KeyEvent.VK_RIGHT) {
 					menu.setGear(false);
 					menu.setQuit(true);
@@ -215,10 +235,10 @@ public class KeyInput extends KeyAdapter{
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					System.exit(1);
 				}
-				if(key == KeyEvent.VK_DOWN) {
-					menu.setQuit(false);
-					menu.setMainPlayButton(true);
-				}
+//				if(key == KeyEvent.VK_DOWN) {
+//					menu.setQuit(false);
+//					menu.setMainPlayButton(true);
+//				}
 				if(key == KeyEvent.VK_LEFT) {
 					menu.setQuit(false);
 					menu.setGear(true);

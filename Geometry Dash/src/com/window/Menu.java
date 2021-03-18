@@ -39,6 +39,9 @@ public class Menu{
 	private static int progress3 = 0;
 	private static int progress4 = 0;
 	private static int progress5 = 0; 
+	
+	private static int player = 1;
+	
 
 	public Menu(Game game, Controller controller, Texture texture) {
 		this.texture = texture;
@@ -126,7 +129,7 @@ public class Menu{
     			g.drawImage(texture.stars0, 290, -120, null);
         	
         	
-            	
+            g.drawImage(texture.menuPlayer[player - 1], 598, 435, null);	
         	
         	
         }        
@@ -218,6 +221,13 @@ public class Menu{
 	public void addJumps() {
 		jumps++;
 	}
+	public int getPlayer() {
+		return player;
+	}
+	public void setPlayer(int player) {
+		this.player = player;
+	}
+	
 	
 	
 	public void setMainPlayButton(boolean playButton) {

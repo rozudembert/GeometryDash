@@ -16,16 +16,22 @@ import java.util.LinkedList;
 
 import com.framework.GameObject;
 import com.framework.ObjectId;
+import com.framework.Texture;
+import com.window.Game;
 
 public class Spike extends GameObject{
-
+	
+	Texture texture = Game.getInstance();
+	
 	private int width = 64;
 	private int height = 64;
 	int type; //0 -> normal; 1 -> overhead
+	int design;
 	
-	public Spike(float x, float y, int type, ObjectId id) {
+	public Spike(float x, float y, int type, int design, ObjectId id) {
 		super(x, y, id);
 		this.type = type;
+		this.design = design;
 	}
 
 	public void update(LinkedList<GameObject> object) {
@@ -37,21 +43,19 @@ public class Spike extends GameObject{
 		
 		switch(type) {
 		case 0: 
-			graphics.fillPolygon(new int[] {(int)x, (int)x + width/2, (int)x + width}, new int[] {(int)y + height, (int)y, (int)y + height}, 3);
+			graphics.drawImage(texture.spike[design], (int)x, (int)y, null);
+			//graphics.fillPolygon(new int[] {(int)x, (int)x + width/2, (int)x + width}, new int[] {(int)y + height, (int)y, (int)y + height}, 3);
 			break;
 			
 		case 1:
-			graphics.fillPolygon(new int[] {(int)x, (int)x + width/2, (int)x + width}, new int[] {(int)y , (int)y + height, (int)y}, 3);
+			graphics.drawImage(texture.spike[design + 8], (int)x, (int)y, null);
+			//graphics.fillPolygon(new int[] {(int)x, (int)x + width/2, (int)x + width}, new int[] {(int)y , (int)y + height, (int)y}, 3);
 			break;
 		}
 
 		
 	}
 
-	public Rectangle getBorder() {
-		return null;
-	}
-	
 	public Polygon getBorderPoly() {
 		Polygon polygon = new Polygon();
 		
@@ -70,13 +74,14 @@ public class Spike extends GameObject{
 		}
 		
 		return polygon;
-		
-		 
-		
 				
 	}
 
 	public Rectangle getExtendedBorder() { 
+		return null;
+	}
+	
+	public Rectangle getBorder() {
 		return null;
 	}
 

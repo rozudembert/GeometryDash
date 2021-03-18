@@ -15,7 +15,7 @@ import com.framework.ImageLoader;
 public class Texture {
 	
 	BufferedImage image;
-	SpriteSheet bs, ps, buttonSheet, spikeSheet; 
+	SpriteSheet bs, ps, buttonSheet, spikeSheet, menuPlayerSheet;
 	
 	public BufferedImage gameOver = null;
 	public BufferedImage congrats = null;
@@ -38,12 +38,14 @@ public class Texture {
 	private BufferedImage player_sheet = null;
 	private BufferedImage button_sheet = null;
 	private BufferedImage spike_sheet = null;
+	private BufferedImage menu_player = null;
 
 	//array to store the images in
 	public BufferedImage[] block = new BufferedImage[32]; //array has to have the size of the amount of blocks
 	public BufferedImage[] player = new BufferedImage[8];
 	public BufferedImage[] button = new BufferedImage[21];
 	public BufferedImage[] spike = new BufferedImage[16];
+	public BufferedImage[] menuPlayer = new BufferedImage[8];
 	
 	public Texture() {
 		
@@ -64,6 +66,7 @@ public class Texture {
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
 			button_sheet = loader.loadImage("/buttons/button_sheet.png");
 			spike_sheet = loader.loadImage("/texture/spike_sheet.png");
+			menu_player = loader.loadImage("/texture/playergraphics_sheet.png");
 		
 			titleScreen = loader.loadImage("/TitleScreen.png");
 			menu_background = loader.loadImage("/background/menu_background.png");
@@ -101,6 +104,7 @@ public class Texture {
 		ps = new SpriteSheet(player_sheet);
 		buttonSheet = new SpriteSheet(button_sheet);
 		spikeSheet = new SpriteSheet(spike_sheet);
+		menuPlayerSheet = new SpriteSheet(menu_player);
 	}
 	
 	//assign the images from the sheets to the arrays
@@ -147,6 +151,15 @@ public class Texture {
 		player[5] = ps.grabImage(6, 1, 64, 64);
 		player[6] = ps.grabImage(7, 1, 64, 64);
 		player[7] = ps.grabImage(8, 1, 64, 64);	//Creeper
+		
+		menuPlayer[0] = menuPlayerSheet.grabImage(1, 1, 84, 84);
+		menuPlayer[1] = menuPlayerSheet.grabImage(2, 1, 84, 84);
+		menuPlayer[2] = menuPlayerSheet.grabImage(3, 1, 84, 84);
+		menuPlayer[3] = menuPlayerSheet.grabImage(4, 1, 84, 84);
+		menuPlayer[4] = menuPlayerSheet.grabImage(5, 1, 84, 84);
+		menuPlayer[5] = menuPlayerSheet.grabImage(6, 1, 84, 84);
+		menuPlayer[6] = menuPlayerSheet.grabImage(7, 1, 84, 84);
+		menuPlayer[7] = menuPlayerSheet.grabImage(8, 1, 84, 84);
 		
 		//Buttons
 		button[0] = null;

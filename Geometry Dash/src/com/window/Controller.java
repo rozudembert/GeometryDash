@@ -35,6 +35,7 @@ public class Controller {
 	private int renderDistance;
 	private int endBlock = 0;
 	private int level = 0;
+	private int playerSkin = 1;
 	
 	public Controller(Camera cam) {
 		this.cam = cam;
@@ -153,7 +154,7 @@ public class Controller {
 				int blue = (pixel) & 0xff;
 				
 				//add Player
-				if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*64, yy*64, this, 7, cam, ObjectId.Player));
+				if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*64, yy*64, this, playerSkin - 1, cam, ObjectId.Player));
 				
 				//add Blocks
 				loadObjects(red, green, blue, xx, yy);
@@ -203,8 +204,8 @@ public class Controller {
 		else if(r == 255 && g == 45 && b == 255) addObject(new EndPortal(xx*64, yy*64, ObjectId.EndPortal));
 		
 		//Spikes
-		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, ObjectId.Spike));
-		else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, ObjectId.Spike));
+		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 1,  ObjectId.Spike));
+		else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 1, ObjectId.Spike));
 		 
 		
 		if(type != 100)
@@ -307,5 +308,12 @@ public class Controller {
 	
 	public int getEndBlock() {
 		return endBlock;
+	}
+	
+	public void setPlayerSkin(int playerSkin) {
+		this.playerSkin = playerSkin;
+	}
+	public int getPlayerSkin() {
+		return playerSkin;
 	}
 }
