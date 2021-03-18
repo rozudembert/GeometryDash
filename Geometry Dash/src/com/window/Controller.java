@@ -29,7 +29,7 @@ public class Controller {
 	private BufferedImage level1 = null, level2 = null, level3 = null, level4 = null, level5 = null;
 	private BufferedImage activeLevel = null;
 	
-	private BufferedImage wallpaper1 = null, wallpaper2 = null, wallpaper3 = null; 
+	private BufferedImage wallpaper = null, wallpaper1 = null, wallpaper2 = null, wallpaper3 = null; 
 	private BufferedImage activeWallpaper = null;
 	
 	private int renderDistance;
@@ -48,6 +48,7 @@ public class Controller {
 		level4 = loader.loadImage("/level/level_4.png");
 		level5 = loader.loadImage("/level/level_5.png");
 		
+		wallpaper = loader.loadImage("/background/wallpaper.jpg");
 		wallpaper1 = loader.loadImage("/background/wallpaper1.jpg");
 		wallpaper2 = loader.loadImage("/background/wallpaper2.png");
 		wallpaper3 = loader.loadImage("/background/wallpaper3.jpg");
@@ -167,7 +168,7 @@ public class Controller {
 		//Blocks
 		if(r == 255 && g == 255 && b == 255) type = 0; //Green Block
 		else if(r == 99 && g == 19 && b == 19) type = 1; //Red-Black-Gradient
-		else if(r == 37 && g == 138 && b == 200) type = 2; //Blue Cement
+		else if(r == 37 && g == 128 && b == 200) type = 2; //Blue Cement
 		else if(r == 169 && g == 48 && b == 159) type = 3; //Magenta Cement
 		else if(r == 95 && g == 170 && b == 25) type = 4; //Lime Cement
 		else if(r == 239 && g == 174 && b == 21) type = 5; //Yellow Cement
@@ -253,7 +254,7 @@ public class Controller {
 			activeWallpaper = wallpaper2;
 			break;
 		case 3: 
-			activeWallpaper = wallpaper1;
+			activeWallpaper = wallpaper;
 			break;
 		case 4: 
 			activeWallpaper = wallpaper1;
