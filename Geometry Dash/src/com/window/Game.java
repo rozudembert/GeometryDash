@@ -132,7 +132,18 @@ public class Game extends Canvas implements Runnable{
 		Controller.clearLevel();
 		gameStatus = STATUS.End;
 		menu.set_final_retry(true);
+		
 	}
+	
+	public static void sleep() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	public void setGameStatus(STATUS status) {
 		Game.gameStatus = status;
@@ -145,6 +156,7 @@ public class Game extends Canvas implements Runnable{
 		return godMode;
 	}
 	
+
 	
 	//WOOOW SO EMPTY :)
 	

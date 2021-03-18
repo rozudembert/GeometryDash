@@ -74,7 +74,7 @@ public class Menu{
        
         //Main Menu
         else if(Game.gameStatus==STATUS.Menu) {
-        	
+                 	
         	//background
         	g.drawImage(texture.menu_background, 0, 0, null);
         	//g.drawImage(logo, 100, 100, null);
@@ -136,7 +136,7 @@ public class Menu{
         
         //Game Over Menu
         else if(Game.gameStatus == STATUS.Dead) {
-        	
+        	       	       	
         	g.setColor(Color.BLACK);
         	g.fillRect(0, 0, width, height);
         	

@@ -100,7 +100,6 @@ public class KeyInput extends KeyAdapter{
 		if(Game.gameStatus == STATUS.StartMenu) {
 			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 				game.setGameStatus(STATUS.Menu);
-				//controller.startLevel(level);
 			}
 		}
 		
@@ -169,6 +168,11 @@ public class KeyInput extends KeyAdapter{
 					level = level - 1;
 					menu.setLevel(level);
 					System.out.println("You selected level: " + level);
+					
+					if(level == 1) {
+						menu.setMainLeftLevelButton(false);
+						menu.setMainPlayButton(true);
+					}
 				}
 				else if(key == KeyEvent.VK_RIGHT) {
 					menu.setMainLeftLevelButton(false);
