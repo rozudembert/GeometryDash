@@ -16,8 +16,7 @@ import com.framework.ImageLoader;
 import com.objects.Block;
 import com.objects.EndPortal;
 import com.objects.Player;
-import com.objects.normalSpike;
-import com.objects.overheadSpike;
+import com.objects.Spike;
 
 public class Controller {
 
@@ -191,8 +190,8 @@ public class Controller {
 		else if(r == 255 && g == 45 && b == 255) addObject(new EndPortal(xx*64, yy*64, ObjectId.EndPortal));
 		
 		//Spikes
-		else if(r == 255 && g == 0 && b == 0) addObject(new normalSpike(xx*64, yy*64, ObjectId.Spike));
-		else if(r == 150 && g == 0 && b == 0) addObject(new overheadSpike(xx*64, yy*64, ObjectId.Spike));
+		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, ObjectId.Spike));
+		else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, ObjectId.Spike));
 		 
 		
 		if(type != 100)
