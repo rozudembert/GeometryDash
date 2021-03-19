@@ -172,7 +172,7 @@ public class Controller {
 		if(r == 255 && g == 255 && b == 255) type = 0; //Green Block
 		else if(r == 99 && g == 19 && b == 19) type = 1; //Red-Black-Gradient
 		else if(r == 37 && g == 128 && b == 200) type = 2; //Blue Cement
-		else if(r == 169 && g == 48 && b == 159) type = 3; //Magenta Cement
+		else if(r == 168 && g == 48 && b == 159) type = 3; //Magenta Cement
 		else if(r == 95 && g == 170 && b == 25) type = 4; //Lime Cement
 		else if(r == 239 && g == 174 && b == 21) type = 5; //Yellow Cement
 		else if(r == 99 && g == 127 && b == 175) type = 6; //Water

@@ -9,7 +9,6 @@
 
 package com.objects;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -49,8 +48,8 @@ public class Block extends GameObject{
 		graphics.drawImage(texture.block[type], (int)x, (int)y, null);
 		
 		//In case you want to outline the hitbox:
-		graphics.setColor(Color.RED);
-		graphics.drawRect((int)x, (int)y, width, height);
+		//graphics.setColor(Color.RED);
+		//graphics.drawRect((int)x, (int)y, width, height);
 		//graphics.drawRect((int)x, (int)y-temp, width, temp);
 	}
 	
