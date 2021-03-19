@@ -34,7 +34,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
-	private boolean showHitbox = false;
+	private boolean showHitbox = true;
 	
 	Texture texture = Game.getInstance();
 	
@@ -85,6 +85,7 @@ public class Player extends GameObject{
 	
 	//collision method to detect collision with any given GameObject
 	public void collision(LinkedList<GameObject> object) {
+		
 		for(int i = 0; i < Controller.object.size(); i++) {
 			GameObject tempObject = Controller.object.get(i);
 			
