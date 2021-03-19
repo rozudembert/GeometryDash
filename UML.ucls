@@ -1,235 +1,440 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.window.Game" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/window/Game.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="405" y="220"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="com.window.Camera" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/window/Camera.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="139" y="124"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="com.window.Window" project="GeometryDash" 
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.window.Window" project="GeometryDash" 
     file="/GeometryDash/Geometry Dash/src/com/window/Window.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="141" y="295"/>    
+    <position height="-1" width="-1" x="130" y="71"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.window.ImageLoader" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/window/ImageLoader.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="139" y="423"/>    
+  <class id="2" language="java" name="com.framework.ImageLoader" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/framework/ImageLoader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="124" y="182"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.window.Controller" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/window/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="411" y="622"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="com.framework.KeyInput" project="GeometryDash" 
+  <class id="3" language="java" name="com.framework.KeyInput" project="GeometryDash" 
     file="/GeometryDash/Geometry Dash/src/com/framework/KeyInput.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="133" y="622"/>    
+    <position height="-1" width="-1" x="139" y="812"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.window.Controller" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/window/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="906" y="764"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="5" language="java" name="com.window.Game.STATUS" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/window/Game.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="371" y="115"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="6" language="java" name="com.window.Game" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/window/Game.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="458" y="518"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </class>  
   <class id="7" language="java" name="com.framework.Texture" project="GeometryDash" 
     file="/GeometryDash/Geometry Dash/src/com/framework/Texture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="717" y="148"/>    
+    <position height="-1" width="-1" x="1128" y="372"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </class>  
   <class id="8" language="java" name="com.framework.SpriteSheet" project="GeometryDash" 
     file="/GeometryDash/Geometry Dash/src/com/framework/SpriteSheet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1069" y="94"/>    
+    <position height="-1" width="-1" x="1856" y="78"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.objects.Player" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/objects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="655" y="924"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="com.objects.Block" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/objects/Block.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1265" y="325"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="com.objects.Spike" project="GeometryDash" 
-    file="/GeometryDash/Geometry Dash/src/com/objects/Spike.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1259" y="535"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="com.framework.GameObject" project="GeometryDash" 
+  <class id="9" language="java" name="com.framework.GameObject" project="GeometryDash" 
     file="/GeometryDash/Geometry Dash/src/com/framework/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="928" y="517"/>    
+    <position height="-1" width="-1" x="1430" y="1100"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="13" language="java" name="com.framework.ObjectId" project="GeometryDash" 
+  <enumeration id="10" language="java" name="com.framework.ObjectId" project="GeometryDash" 
     file="/GeometryDash/Geometry Dash/src/com/framework/ObjectId.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1255" y="746"/>    
+    <position height="-1" width="-1" x="1174" y="822"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <generalization id="14">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="15">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="16" name="texture"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <class id="11" language="java" name="com.objects.Block" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/objects/Block.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1888" y="394"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.objects.EndPortal" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/objects/EndPortal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1916" y="662"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.objects.Spike" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/objects/Spike.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1926" y="952"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.objects.Player" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/objects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="686" y="1515"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.window.Camera" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/window/Camera.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="720" y="220"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.window.HUD" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/window/HUD.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="428" y="1224"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.window.Menu" project="GeometryDash" 
+    file="/GeometryDash/Geometry Dash/src/com/window/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1024" y="2040"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="18">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="19" name="cam"/>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="16" width="23" x="227" y="163"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="19" name="game"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="21">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="22" name="object"/>      
-      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="22" name="gameStatus"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="24">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="25" name="texture"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="27">    
-    <bendpoint x="895" y="174"/>    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="28" name="bs"/>      
-      <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="16" width="23" x="934" y="156"/>      
+      <attribute id="25" name="ps">        
+        <position height="18" width="22" x="1716" y="130"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="16" width="23" x="1685" y="87"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="30">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="31">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="32" name="controller"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="35">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="36" name="id"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="39" name="controller"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <bendpoint x="883" y="104"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="42" name="ps"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="45" name="texture">        
-        <position height="18" width="44" x="831" y="172"/>      
+  <association id="27">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="28" name="object">        
+        <position height="18" width="39" x="1272" y="980"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
+      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="31" name="texture"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="48" name="controller"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
+  <association id="33">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="34" name="kl"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="37" name="game"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <bendpoint x="1310" y="50"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="40" name="spikeSheet">        
+        <position height="18" width="63" x="1672" y="37"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="16" width="23" x="1647" y="37"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="42">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="43" name="texture">        
+        <position height="18" width="44" x="1044" y="740"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="16" width="23" x="1060" y="755"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="46" name="camera"/>      
+      <multiplicity id="47" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="48">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="49" name="texture"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="51">    
+    <bendpoint x="246" y="1570"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="52" name="menu">        
+        <position height="18" width="36" x="874" y="1928"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="16" width="23" x="892" y="1947"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <bendpoint x="194" y="1708"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="55" name="menu"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="58" name="hud"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="61" name="cam"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <bendpoint x="1052" y="1120"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="64" name="texture"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="67" name="id"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="70" name="texture"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="73" name="texture"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="76" name="cam"/>      
+      <multiplicity id="77" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="78">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="79" name="controller"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="82" name="controller"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="84">    
+    <bendpoint x="1338" y="114"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="85" name="bs">        
+        <position height="18" width="22" x="1774" y="142"/>      
+      </attribute>      
+      <multiplicity id="86" minimum="0" maximum="1">        
+        <position height="16" width="23" x="1684" y="65"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="87">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="88">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="89" name="cam">        
+        <position height="18" width="28" x="688" y="389"/>      
+      </attribute>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="91">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="92">    
+    <bendpoint x="1396" y="186"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="93" name="buttonSheet">        
+        <position height="18" width="68" x="1613" y="72"/>      
+      </attribute>      
+      <multiplicity id="94" minimum="0" maximum="1">        
+        <position height="16" width="23" x="1712" y="112"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="96" name="controller"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <bendpoint x="1612" y="324"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="99" name="menuPlayerSheet">        
+        <position height="18" width="94" x="1593" y="105"/>      
+      </attribute>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="101">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="102">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="103" name="controller"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="105">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
-    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
-    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+    <attributes public="true" package="false" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="false" private="true" static="true"/>  
   </classifier-display>  
   <association-display labels="true" multiplicity="true"/>
 </class-diagram>
