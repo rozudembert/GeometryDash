@@ -205,9 +205,25 @@ public class Controller {
 		//End Portal
 		else if(r == 255 && g == 45 && b == 255) addObject(new EndPortal(xx*64, yy*64, ObjectId.EndPortal));
 		
-		//Spikes
-		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 1,  ObjectId.Spike));
-		else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 1, ObjectId.Spike));
+		//normal Spikes
+		else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 0,  ObjectId.Spike)); //red
+		else if(r == 120 && g == 255 && b == 255) addObject(new Spike(xx*64, yy*64, 0, 1,  ObjectId.Spike)); //blue
+		//else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 2,  ObjectId.Spike)); //purple
+		else if(r == 66 && g == 255 && b == 35) addObject(new Spike(xx*64, yy*64, 0, 3,  ObjectId.Spike)); //green
+		//else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 4,  ObjectId.Spike)); //yellow
+		//else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 5,  ObjectId.Spike)); //gray
+		//else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 6,  ObjectId.Spike)); //white
+		//else if(r == 255 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 0, 7,  ObjectId.Spike)); //black
+		
+		//overhead Spikes
+		else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 0, ObjectId.Spike));
+		else if(r == 66 && g == 137 && b == 137) addObject(new Spike(xx*64, yy*64, 1, 1, ObjectId.Spike));
+		//else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 2, ObjectId.Spike));
+		else if(r == 38 && g == 142 && b == 19) addObject(new Spike(xx*64, yy*64, 1, 3, ObjectId.Spike));
+		//else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 4, ObjectId.Spike));
+		//else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 5, ObjectId.Spike));
+		//else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 6, ObjectId.Spike));
+		//else if(r == 150 && g == 0 && b == 0) addObject(new Spike(xx*64, yy*64, 1, 7, ObjectId.Spike));
 		 
 		
 		if(type != 100)
