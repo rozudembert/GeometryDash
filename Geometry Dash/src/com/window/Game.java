@@ -27,20 +27,19 @@ public class Game extends Canvas implements Runnable{
 	private static String title = "Geometry Dash :)";
 	
 	static Texture texture;
+	static Menu menu;
 	Controller controller;
 	Camera cam;
-	static Menu menu;
 	HUD hud;
-	KeyInput kl;
+	KeyInput KL;
 	
 	private static boolean godMode = false;
-	
 	public static boolean paused;
 	
 	//the gameState in which the game is starting
 	public static STATUS gameStatus = STATUS.StartMenu;
 	
-	//!!!order of initialisation is important!!!
+	//!!Order is very important here!!
 	private void initialise() {
 		
 		texture = new Texture();
@@ -48,18 +47,19 @@ public class Game extends Canvas implements Runnable{
 		cam = new Camera(0, 0);
 		controller = new Controller(cam);
 		hud = new HUD(cam, controller);
-		kl = new KeyInput(this, controller, menu);
+		KL = new KeyInput(this, controller, menu);
 		
-		this.addKeyListener(kl);	
+		this.addKeyListener(KL);	
 	}
 	
 	private void update() {
-		kl.update();
+		KL.update();
 		
 		if(paused) {
 			
+			//Do not do anything if the game is paused
 			
-		} else {
+		} else { //normal Game status
 			
 			controller.update();
 			
@@ -92,14 +92,15 @@ public class Game extends Canvas implements Runnable{
 			this.createBufferStrategy(3); //amount of buffers
 			return;
 		}
+		
 		Graphics graphics = bufferStrategy.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) graphics;
 		
-		
 		if(paused) {
-			menu.pauseMenu(graphics);
+			menu.pauseMenu(graphics); //Only show pause screen when paused is true
 			
 		} else if(!paused) {
+			
 			//create Background
 			graphics.setColor(Color.BLACK);
 			graphics.fillRect(0, 0, WIDTH, HEIGHT);
@@ -138,12 +139,14 @@ public class Game extends Canvas implements Runnable{
 		return texture;
 	}
 	
+	//Clear the level and show GameOver-Screen
 	public static void playerDeath() {
 		Controller.clearLevel();
 		gameStatus = STATUS.Dead;
 		menu.set_death_retry(true);
 	}
 	
+	//Clear the level and show End-Screen
 	public static void endMenu() {
 		Controller.clearLevel();
 		gameStatus = STATUS.End;
@@ -158,8 +161,6 @@ public class Game extends Canvas implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	public void setGameStatus(STATUS status) {
 		Game.gameStatus = status;

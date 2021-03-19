@@ -34,12 +34,14 @@ public class Menu{
 	private static int level = 1;
 	private int jumps = 0;
 	
+	//progress per level
 	private static int progress1 = 0;
 	private static int progress2 = 0;
 	private static int progress3 = 0;
 	private static int progress4 = 0;
 	private static int progress5 = 0; 
 	
+	//player skin to be shown in menu
 	private static int player = 1;
 	
 
@@ -62,7 +64,6 @@ public class Menu{
         Color buttonYellow = new Color(255,168,0);
         
         
-        
         //Title Screen
         if(Game.gameStatus == STATUS.StartMenu) {
         	g.drawImage(texture.titleScreen, 0, 0, null);
@@ -77,15 +78,14 @@ public class Menu{
                  	
         	//background
         	g.drawImage(texture.menu_background, 0, 0, null);
-        	//g.drawImage(logo, 100, 100, null);
         	
-        	//Left Button -> if selected make it in colour
+        	//Left Button -> if selected colour it
         	if(main_leftButton && level > 1) 
         		g.drawImage(texture.button[level + 4], 340, 405, null);
         	else 
         		g.drawImage(texture.button[level - 1], 340, 405, null);
         	
-        	//Right Button -> if selected make it in colour
+        	//Right Button -> if selected colour it
         	if(main_rightButton && level < 5) 
         		g.drawImage(texture.button[level + 16], 830, 405, null);
         	else if (level == 5) 
@@ -181,9 +181,11 @@ public class Menu{
         
 	}
 	
+	//Show Pause - Screen
 	public void pauseMenu(Graphics g) {
 		g.drawImage(texture.transparent, 0, 0, null);
 	}
+	
 	
 	public static void setProgress(int progress) {
 		

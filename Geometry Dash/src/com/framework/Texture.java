@@ -3,14 +3,12 @@
  * assign them to their objects
  * 
  * @author Robert Kelm
- * @version 08.02.2021
+ * @version 18.03.2021
  */
 
 package com.framework;
 
 import java.awt.image.BufferedImage;
-
-import com.framework.ImageLoader;
 
 public class Texture {
 	
@@ -27,8 +25,10 @@ public class Texture {
 	public BufferedImage playAgainButton = null, playAgainButton_Selected = null;
 	public BufferedImage resumeButton = null, resumeButton_Selected = null;
 	
+	//Stars
 	public BufferedImage stars0 = null, stars1 = null, stars2 = null, stars3 = null;
 	
+	//Big images
 	public BufferedImage menu_background = null;
 	public BufferedImage titleScreen = null;
 	public BufferedImage transparent = null;
@@ -41,8 +41,8 @@ public class Texture {
 	private BufferedImage spike_sheet = null;
 	private BufferedImage menu_player = null;
 
-	//array to store the images in
-	public BufferedImage[] block = new BufferedImage[32]; //array has to have the size of the amount of blocks
+	//Array to store the images in
+	public BufferedImage[] block = new BufferedImage[32];
 	public BufferedImage[] player = new BufferedImage[8];
 	public BufferedImage[] button = new BufferedImage[21];
 	public BufferedImage[] spike = new BufferedImage[16];
@@ -55,14 +55,13 @@ public class Texture {
 		getTextures();
 	}
 	
+	//Load the images from the files
 	public void loadTextures() {
 		
 		ImageLoader loader = new ImageLoader();
 		
-		//load the sheets from the files
 		try {
 			
-			//load Spritesheet images
 			block_sheet = loader.loadImage("/texture/block_sheet.png");
 			player_sheet = loader.loadImage("/texture/player_sheet.png");
 			button_sheet = loader.loadImage("/buttons/button_sheet.png");
@@ -96,12 +95,11 @@ public class Texture {
 			stars2 = loader.loadImage("/other/2Stars.png");
 			stars3 = loader.loadImage("/other/3Stars.png");
 			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		//assign images to SpriteSheets
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(player_sheet);
 		buttonSheet = new SpriteSheet(button_sheet);
@@ -109,8 +107,10 @@ public class Texture {
 		menuPlayerSheet = new SpriteSheet(menu_player);
 	}
 	
-	//assign the images from the sheets to the arrays
+	//fill the array 
 	public void getTextures() {
+		
+		//Blocks
 		block[0] = bs.grabImage(1, 1, 64, 64);	//Green Block
 		block[1] = bs.grabImage(2, 1, 64, 64);	//Red-Black-Gradient
 		block[2] = bs.grabImage(3, 1, 64, 64);	//Blue Cement
@@ -152,8 +152,9 @@ public class Texture {
 		player[4] = ps.grabImage(5, 1, 64, 64);
 		player[5] = ps.grabImage(6, 1, 64, 64);
 		player[6] = ps.grabImage(7, 1, 64, 64);
-		player[7] = ps.grabImage(8, 1, 64, 64);	//Creeper
+		player[7] = ps.grabImage(8, 1, 64, 64);
 		
+		//Player graphics for the main menue
 		menuPlayer[0] = menuPlayerSheet.grabImage(1, 1, 84, 84);
 		menuPlayer[1] = menuPlayerSheet.grabImage(2, 1, 84, 84);
 		menuPlayer[2] = menuPlayerSheet.grabImage(3, 1, 84, 84);
@@ -186,6 +187,7 @@ public class Texture {
 		button[19] = buttonSheet.grabImage(4, 4, 132, 132);
 		button[20] = buttonSheet.grabImage(5, 4, 132, 132);
 		
+		//Spikes
 		spike[0] = spikeSheet.grabImage(1, 1, 64, 64);
 		spike[1] = spikeSheet.grabImage(2, 1, 64, 64);
 		spike[2] = spikeSheet.grabImage(3, 1, 64, 64);

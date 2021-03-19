@@ -34,7 +34,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
-	private boolean showHitbox = true;
+	private boolean showHitbox = false;
 	
 	Texture texture = Game.getInstance();
 	
@@ -111,9 +111,6 @@ public class Player extends GameObject{
 					jumping = false;
 				} 
 				
-				
-				System.out.println(falling);
-				
 				//right side collision
 				if(getBorderRight().intersects(tempObject.getBorder())){
 					if(Game.getGodMode())
@@ -128,7 +125,8 @@ public class Player extends GameObject{
 						x = tempObject.getX() + width +2;
 				} 				
 			}
-					
+			
+			//Spike collision -> death
 			if(tempObject.getId() == ObjectId.Spike) {
 				if(tempObject.getBorderPoly().intersects(getBorderRight()) || tempObject.getBorderPoly().intersects(getBorder())) {
 					if(!Game.getGodMode())
@@ -137,7 +135,7 @@ public class Player extends GameObject{
 				
 			}
 			
-			//player reaches the end of the level
+			//Player reaches the end of the level
 			if(tempObject.getId() == ObjectId.EndPortal) {
 				if(getBorderRight().intersects(tempObject.getBorder())) {
 					end();
@@ -148,7 +146,7 @@ public class Player extends GameObject{
 		}
 	}
 	
-	//remove player from the game reset level and camera
+	//Remove Player and reset camera and level
 	public void death() {
 		Game.playerDeath();
 		cam.setStart(true);
@@ -182,7 +180,7 @@ public class Player extends GameObject{
 		}
 	}
 	
-	//the following methods create rectangles inside the player to use in collision detection
+	//Create rectangles inside the player to use in collision detection
 	public Rectangle getBorder() {
 		return new Rectangle((int)x +5, (int)y + (int)(height/2), (int)width/2 + 20, (int)height/2);
 	}	
@@ -208,11 +206,5 @@ public class Player extends GameObject{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	//RECTANGLE/POLYGON COLLISION
-	
-	
-	
-	
 	
 }

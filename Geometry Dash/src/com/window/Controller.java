@@ -49,6 +49,7 @@ public class Controller {
 		level4 = loader.loadImage("/level/level_4.png");
 		level5 = loader.loadImage("/level/level_5.png");
 		
+		//load backgrounds
 		wallpaper = loader.loadImage("/background/wallpaper.jpg");
 		wallpaper1 = loader.loadImage("/background/wallpaper1.jpg");
 		wallpaper2 = loader.loadImage("/background/wallpaper2.png");
@@ -67,7 +68,7 @@ public class Controller {
 			
 			if(tempObject.getId() == ObjectId.Player) playerX = (int)tempObject.getX();			
 			
-			//remove block if passed by the player
+			//remove block if already passed by the player
 			if(tempObject.getId() == ObjectId.Block && tempObject.getX() < playerX - 550) {
 				removeObject(tempObject);					
 			}
@@ -106,6 +107,7 @@ public class Controller {
 		}
 	}
 
+	//find the coordinates of an end portal block to use for progress bar
 	public void findEnd(BufferedImage image) {
 		
 		int height = image.getHeight();
@@ -244,6 +246,7 @@ public class Controller {
 		
 	}
 	
+	//set Background depending on level
 	public BufferedImage getBackground(int level) {
 		switch (level) {
 		case 0:
@@ -268,6 +271,7 @@ public class Controller {
 		return activeWallpaper;
 	}
 	
+	//
 	public void renderBackground(Graphics graphics) {
 		getBackground(level);		
 		graphics.drawImage(activeWallpaper, 0,0, null);

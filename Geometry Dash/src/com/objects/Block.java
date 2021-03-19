@@ -43,10 +43,12 @@ public class Block extends GameObject{
 	
 	private int temp = 18;
 	
-	//assign the texture to the block
+	//render the block
 	public void render (Graphics graphics) {
+		
 		graphics.drawImage(texture.block[type], (int)x, (int)y, null);
 		
+		//In case you want to outline the hitbox:
 		//graphics.setColor(Color.RED);
 		//graphics.drawRect((int)x, (int)y, width, height);
 		//graphics.drawRect((int)x, (int)y-temp, width, temp);
@@ -57,7 +59,7 @@ public class Block extends GameObject{
 		return new Rectangle((int)x, (int)y, width, height);
 	}
 	
-	
+	//create a Rectangle on top of the block to use in collision detection
 	public Rectangle getExtendedBorder() {
 		return new Rectangle((int)x, (int)y-temp, width, temp);
 	}

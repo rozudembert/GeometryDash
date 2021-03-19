@@ -23,6 +23,9 @@ public class KeyInput extends KeyAdapter{
 	Menu menu;
 	
 	private boolean[ ] keyDown = new boolean[2];
+	private boolean keySpace = false;
+	private boolean keyW = false;
+	private boolean keyUP = false;	
 	
 	private int level = 1;
 	
@@ -38,6 +41,8 @@ public class KeyInput extends KeyAdapter{
 		for(int i = 0; i < Controller.object.size(); i++) {
 			GameObject tempObject = Controller.object.get(i);
 			
+			
+			//Player is Jumping			
 			if(tempObject.getId() == ObjectId.Player) {
 				if(keySpace || keyW || keyUP) {
 					menu.addJumps();
@@ -53,23 +58,15 @@ public class KeyInput extends KeyAdapter{
 		}
 	}
 	
-	boolean keySpace = false;
-	boolean keyW = false;
-	boolean keyUP = false;	
-	
-	//When the right keys get pressed, the player shall move
+	//Check the keys that are pressed
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		
-		
-
-		
-		
+				
 		//runs through the list with every object in the game
 		for(int i = 0; i < Controller.object.size(); i++) {
 			GameObject tempObject = Controller.object.get(i);
 			
-			//to be sure the moving object is a player and not a block
+			//to be sure we are affecting the Player
 			if(tempObject.getId() == ObjectId.Player) {
 				
 				//jumping
@@ -79,7 +76,7 @@ public class KeyInput extends KeyAdapter{
 					keyUP = true;
 										
 				}
-				
+				 //Special Player controls in God Mode
 				if(Game.getGodMode()) {
 					if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 						tempObject.setVelX(12);
@@ -95,7 +92,8 @@ public class KeyInput extends KeyAdapter{
 				//Pause the Game
 				if((key == KeyEvent.VK_P || key == KeyEvent.VK_ESCAPE) && !Game.paused) {
 					Game.paused = true;
-				}
+				} 
+				//Continue the Game whenever any key is pressed
 				else 
 					Game.paused = false;
 				
@@ -104,6 +102,8 @@ public class KeyInput extends KeyAdapter{
 		
 		//TitleScreen 
 		if(Game.gameStatus == STATUS.StartMenu) {
+			
+			//Get into Main Menu
 			if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 				game.setGameStatus(STATUS.Menu);
 			}
@@ -112,7 +112,7 @@ public class KeyInput extends KeyAdapter{
 		//Menu Options
 		else if(Game.gameStatus == STATUS.Menu) {
 			
-			//God Mode
+			//Activate and deactivate God Mode
 			if(key == KeyEvent.VK_B && Game.getGodMode() == false) {
 				Game.setGodMode(true);
 				System.out.println("God Mode activated");
@@ -122,7 +122,7 @@ public class KeyInput extends KeyAdapter{
 				System.out.println("God Mode deactivated");
 			}
 			
-			//Change Player Skin
+			//Change the Player Skin
 			if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
 				if(menu.getPlayer() < 8) {
 					menu.setPlayer(menu.getPlayer() + 1);
@@ -134,8 +134,15 @@ public class KeyInput extends KeyAdapter{
 					menu.setPlayer(menu.getPlayer() - 1);
 					controller.setPlayerSkin(controller.getPlayerSkin() - 1);
 				}
-			}
+			}			
 			
+			//////////////////////////////////////////////////////////////
+			//															//
+			//				ACTIONS FOR EVERY BUTTON 					//
+			//															//
+			//		->  change buttons using WASD or Arrow Keys			//
+			//															//
+			//////////////////////////////////////////////////////////////
 			
 			
 			//Play Button
@@ -162,10 +169,6 @@ public class KeyInput extends KeyAdapter{
 						menu.setGear(true);
 					}
 				}
-//				else if(key == KeyEvent.VK_UP) {
-//					menu.setMainPlayButton(false);
-//					menu.setGear(true);
-//				}
 			}
 			
 			//Left Button to change level
@@ -184,10 +187,6 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainLeftLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
-//				else if(key == KeyEvent.VK_UP) {
-//					menu.setMainLeftLevelButton(false);
-//					menu.setGear(true);
-//				}
 			}
 			
 			//Right Button to change level
@@ -203,28 +202,23 @@ public class KeyInput extends KeyAdapter{
 					}
 					
 				}
+				
+				//Change Button
 				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.setMainRightLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
-//				else if(key == KeyEvent.VK_UP) {
-//					menu.setMainRightLevelButton(false);
-//					menu.setGear(true);
-//				}
 				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.setMainRightLevelButton(false);
 					menu.setGear(true);
 				}
 			}
 			
+			//Option Button
 			else if(menu.getGear()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					//TODO nothing is happening yet
 				}
-//				else if(key == KeyEvent.VK_DOWN) {
-//					menu.setGear(false);
-//					menu.setMainPlayButton(true);
-//				}
 				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.setGear(false);
 					menu.setQuit(true);
@@ -241,14 +235,11 @@ public class KeyInput extends KeyAdapter{
 				}
 			}
 			
+			//Quit the game 
 			else if(menu.getQuit()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					System.exit(1);
 				}
-//				if(key == KeyEvent.VK_DOWN) {
-//					menu.setQuit(false);
-//					menu.setMainPlayButton(true);
-//				}
 				if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.setQuit(false);
 					menu.setGear(true);
@@ -256,9 +247,10 @@ public class KeyInput extends KeyAdapter{
 			}
 		}
 		
+		//Game-Over-Screen-Actions
 		else if(Game.gameStatus == STATUS.Dead) {
 			
-			//
+			//Play Again Button
 			if(menu.get_death_retry()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
@@ -271,6 +263,7 @@ public class KeyInput extends KeyAdapter{
 					menu.set_death_backToMenu(true);
 				}
 			}
+			//Back to menu Button
 			else if(menu.get_death_backToMenu()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Menu);
@@ -284,8 +277,10 @@ public class KeyInput extends KeyAdapter{
 			}
 		}
 		
+		//Congratulations! You did it! - Screen
 		else if(Game.gameStatus == STATUS.End) {
 			
+			//Play Again Button
 			if(menu.get_final_retry()) {
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
 					game.setGameStatus(STATUS.Game);
@@ -302,6 +297,7 @@ public class KeyInput extends KeyAdapter{
 				}
 			}
 			
+			//Back To Menu Button
 			else if(menu.get_final_backToMenu()) {
 				
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
@@ -315,6 +311,7 @@ public class KeyInput extends KeyAdapter{
 				}
 			}
 			
+			//Next Level Button
 			else if(menu.get_final_nextLevel()) {
 				
 				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
@@ -331,7 +328,7 @@ public class KeyInput extends KeyAdapter{
 		}
 	}
 	
-	//This code is in fact unecessary
+	//This code is only necessary in god mode
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		

@@ -55,18 +55,19 @@ public class Spike extends GameObject{
 
 		
 	}
-
+	
+	//Create a Polygon to use in collision detection
 	public Polygon getBorderPoly() {
 		Polygon polygon = new Polygon();
 		
 		switch (type) {
-		case 0:	
+		case 0:	//Normal Spike
 			polygon.addPoint((int)x, (int)y + height);
 			polygon.addPoint((int)x + width/2, (int)y);
 			polygon.addPoint((int)x + width, (int)y + height);
 			break;
 			
-		case 1:
+		case 1: //Overhead Spike
 			polygon.addPoint((int)x, (int)y);
 			polygon.addPoint((int)x + width/2, (int)y + height);
 			polygon.addPoint((int)x + width, (int)y);
@@ -76,13 +77,10 @@ public class Spike extends GameObject{
 		return polygon;
 				
 	}
-
-	public Rectangle getExtendedBorder() { 
-		return null;
-	}
 	
-	public Rectangle getBorder() {
-		return null;
-	}
+	
+	//Not needed here
+	public Rectangle getExtendedBorder() {return null;}
+	public Rectangle getBorder() {return null;}
 
 }

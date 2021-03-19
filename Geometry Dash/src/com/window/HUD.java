@@ -42,7 +42,7 @@ public class HUD {
 		int x_position = -(int)camera.getX() + Game.WIDTH/2 - boxWidth/2;
 		int y_position = -(int)camera.getY()+ 10;
 		
-		//progess bar
+		//progess bar to change color depending on progress
 		if(progress < boxWidth / 3)
 			g.setColor(Color.RED);
 		else if(progress < boxWidth * 2/3)
