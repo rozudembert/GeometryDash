@@ -31,6 +31,7 @@ public class Texture {
 	
 	public BufferedImage menu_background = null;
 	public BufferedImage titleScreen = null;
+	public BufferedImage transparent = null;
 	
 	
 	//Graphic Sheets
@@ -70,6 +71,7 @@ public class Texture {
 		
 			titleScreen = loader.loadImage("/TitleScreen.png");
 			menu_background = loader.loadImage("/background/menu_background.png");
+			transparent = loader.loadImage("/other/transparent.png");
 			
 			buttonPlay = loader.loadImage("/buttons/Play.png");
 			buttonPlayActive = loader.loadImage("/buttons/PlayActive.png");

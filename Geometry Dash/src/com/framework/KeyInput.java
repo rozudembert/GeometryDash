@@ -61,6 +61,10 @@ public class KeyInput extends KeyAdapter{
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
+		
+
+		
+		
 		//runs through the list with every object in the game
 		for(int i = 0; i < Controller.object.size(); i++) {
 			GameObject tempObject = Controller.object.get(i);
@@ -69,7 +73,7 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ObjectId.Player) {
 				
 				//jumping
-				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping()) {	
+				if((key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP || key == KeyEvent.VK_W)&& !tempObject.isJumping() ) {	
 					keySpace = true;
 					keyW = true;
 					keyUP = true;
@@ -77,23 +81,25 @@ public class KeyInput extends KeyAdapter{
 				}
 				
 				if(Game.getGodMode()) {
-					if(key == KeyEvent.VK_D) {
+					if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 						tempObject.setVelX(12);
 						keyDown[0] = true;
 					}
 					
-					if(key == KeyEvent.VK_A) {
+					if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 						tempObject.setVelX(-12);
 						keyDown[1] = true;
 					}
 				}
 				
+				//Pause the Game
+				if((key == KeyEvent.VK_P || key == KeyEvent.VK_ESCAPE) && !Game.paused) {
+					Game.paused = true;
+				}
+				else 
+					Game.paused = false;
+				
 			}
-		}
-		
-		//Press Escape to exit the Game
-		if (key == KeyEvent.VK_ESCAPE) {
-			System.exit(1);
 		}
 		
 		//TitleScreen 
@@ -117,13 +123,13 @@ public class KeyInput extends KeyAdapter{
 			}
 			
 			//Change Player Skin
-			if(key == KeyEvent.VK_UP) {
+			if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
 				if(menu.getPlayer() < 8) {
 					menu.setPlayer(menu.getPlayer() + 1);
 					controller.setPlayerSkin(controller.getPlayerSkin() + 1);
 				}
 			}
-			else if(key == KeyEvent.VK_DOWN) {
+			else if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
 				if(menu.getPlayer() > 1) {
 					menu.setPlayer(menu.getPlayer() - 1);
 					controller.setPlayerSkin(controller.getPlayerSkin() - 1);
@@ -140,13 +146,13 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainPlayButton(false);
 					menu.setJumps(0);
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					if(level > 1) {
 						menu.setMainPlayButton(false);
 						menu.setMainLeftLevelButton(true);
 					}
 				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					if(level < 5) {
 						menu.setMainPlayButton(false);
 						menu.setMainRightLevelButton(true);
@@ -174,7 +180,7 @@ public class KeyInput extends KeyAdapter{
 						menu.setMainPlayButton(true);
 					}
 				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.setMainLeftLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
@@ -197,7 +203,7 @@ public class KeyInput extends KeyAdapter{
 					}
 					
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.setMainRightLevelButton(false);
 					menu.setMainPlayButton(true);
 				}
@@ -205,7 +211,7 @@ public class KeyInput extends KeyAdapter{
 //					menu.setMainRightLevelButton(false);
 //					menu.setGear(true);
 //				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.setMainRightLevelButton(false);
 					menu.setGear(true);
 				}
@@ -219,11 +225,11 @@ public class KeyInput extends KeyAdapter{
 //					menu.setGear(false);
 //					menu.setMainPlayButton(true);
 //				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.setGear(false);
 					menu.setQuit(true);
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					if(level < 5) {
 						menu.setGear(false);
 						menu.setMainRightLevelButton(true);
@@ -243,7 +249,7 @@ public class KeyInput extends KeyAdapter{
 //					menu.setQuit(false);
 //					menu.setMainPlayButton(true);
 //				}
-				if(key == KeyEvent.VK_LEFT) {
+				if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.setQuit(false);
 					menu.setGear(true);
 				}
@@ -260,7 +266,7 @@ public class KeyInput extends KeyAdapter{
 					menu.setMainPlayButton(false);
 					menu.setJumps(0);
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.set_death_retry(false);
 					menu.set_death_backToMenu(true);
 				}
@@ -271,7 +277,7 @@ public class KeyInput extends KeyAdapter{
 					menu.set_death_backToMenu(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.set_death_backToMenu(false);
 					menu.set_death_retry(true);
 				}
@@ -286,11 +292,11 @@ public class KeyInput extends KeyAdapter{
 					controller.startLevel(level);	
 					menu.setJumps(0);
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.set_final_retry(false);
 					menu.set_final_backToMenu(true);
 				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.set_final_retry(false);
 					menu.set_final_nextLevel(true);
 				}
@@ -303,7 +309,7 @@ public class KeyInput extends KeyAdapter{
 					menu.set_final_backToMenu(false);
 					menu.setMainPlayButton(true);
 				}
-				else if(key == KeyEvent.VK_RIGHT) {
+				else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
 					menu.set_final_backToMenu(false);
 					menu.set_final_retry(true);
 				}
@@ -315,8 +321,9 @@ public class KeyInput extends KeyAdapter{
 					game.setGameStatus(STATUS.Game);
 					level++;
 					controller.startLevel(level);
+					menu.set_final_nextLevel(false);
 				}
-				else if(key == KeyEvent.VK_LEFT) {
+				else if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
 					menu.set_final_nextLevel(false);
 					menu.set_final_retry(true);
 				}

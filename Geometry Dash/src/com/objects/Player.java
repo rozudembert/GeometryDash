@@ -34,7 +34,7 @@ public class Player extends GameObject{
 	private final float MAX_FALLINGSPEED = 15f;
 	
 	//make the players hitbox visible
-	private boolean showHitbox = false;
+	private boolean showHitbox = true;
 	
 	Texture texture = Game.getInstance();
 	
@@ -101,12 +101,18 @@ public class Player extends GameObject{
 				}
 				
 				//collision with the ground
-				if(getBorder().intersects(tempObject.getBorder()) || getBorder().intersects(tempObject.getExtendedBorder())){
+				if(!getBorder().intersects(tempObject.getBorder()) || !getBorder().intersects(tempObject.getExtendedBorder())) {
+					falling = true; //Jumping is only possible if Player is on the ground
+				}				
+				else if(getBorder().intersects(tempObject.getBorder()) || getBorder().intersects(tempObject.getExtendedBorder())){
 					y = tempObject.getY() - 64;
 					velY = 0;
 					falling = false;
 					jumping = false;
-				} else falling = true; //Jumping is only possible if Player is on the ground
+				} 
+				
+				
+				System.out.println(falling);
 				
 				//right side collision
 				if(getBorderRight().intersects(tempObject.getBorder())){

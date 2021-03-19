@@ -35,6 +35,8 @@ public class Game extends Canvas implements Runnable{
 	
 	private static boolean godMode = false;
 	
+	public static boolean paused;
+	
 	//the gameState in which the game is starting
 	public static STATUS gameStatus = STATUS.StartMenu;
 	
@@ -54,26 +56,32 @@ public class Game extends Canvas implements Runnable{
 	private void update() {
 		kl.update();
 		
-		controller.update();		
-		
-		
-		
-		if(gameStatus == STATUS.Menu) {
-			menu.update();
-		} 
-		
-		else if(gameStatus == STATUS.Game) {			
+		if(paused) {
 			
-			//update camera
-			for(int i = 0; i < Controller.object.size(); i++) {
-				if(Controller.object.get(i).getId() == ObjectId.Player) {
-					
-					cam.update(Controller.object.get(i));
-					hud.update(Controller.object.get(i));
-					
-				}
-			}		
+			
+		} else {
+			
+			controller.update();
+			
+			if(gameStatus == STATUS.Menu) {
+				menu.update();
+			} 
+			
+			else if(gameStatus == STATUS.Game) {			
+				
+				//update camera
+				for(int i = 0; i < Controller.object.size(); i++) {
+					if(Controller.object.get(i).getId() == ObjectId.Player) {
+						
+						cam.update(Controller.object.get(i));
+						hud.update(Controller.object.get(i));
+						
+					}
+				}		
+			}
 		}
+		
+		
 	}
 	
 	//render graphics
@@ -84,28 +92,36 @@ public class Game extends Canvas implements Runnable{
 			this.createBufferStrategy(3); //amount of buffers
 			return;
 		}
-		
 		Graphics graphics = bufferStrategy.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) graphics;
 		
-		//create Background
-		graphics.setColor(Color.BLACK);
-		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		controller.renderBackground(graphics);
-		
-		g2d.translate(cam.getX(), cam.getY()); //Begin of camera
+		if(paused) {
+			menu.pauseMenu(graphics);
+			
+		} else if(!paused) {
+			//create Background
+			graphics.setColor(Color.BLACK);
+			graphics.fillRect(0, 0, WIDTH, HEIGHT);
+			
+			controller.renderBackground(graphics);
+			
+			g2d.translate(cam.getX(), cam.getY()); //Begin of camera
 				
-			//background.render(graphics);
-			controller.render(graphics);
-			hud.render(graphics);
-		
-		g2d.translate(-cam.getX(), -cam.getY()); //End of camera
-		
-		menu.render(graphics);
+				controller.render(graphics);
+				hud.render(graphics);
+				
+					
+			g2d.translate(-cam.getX(), -cam.getY()); //End of camera
+			
+			menu.render(graphics);
+			
+			
+		}
 		
 		graphics.dispose();
 		bufferStrategy.show();
+		
 	}
 	
 	//enum to store the different states the game can be in

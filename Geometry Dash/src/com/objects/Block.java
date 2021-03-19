@@ -46,7 +46,9 @@ public class Block extends GameObject{
 	//assign the texture to the block
 	public void render (Graphics graphics) {
 		graphics.drawImage(texture.block[type], (int)x, (int)y, null);
-		graphics.setColor(Color.RED);
+		
+		//graphics.setColor(Color.RED);
+		//graphics.drawRect((int)x, (int)y, width, height);
 		//graphics.drawRect((int)x, (int)y-temp, width, temp);
 	}
 	

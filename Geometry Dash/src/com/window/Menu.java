@@ -164,7 +164,7 @@ public class Menu{
         	g.drawImage(texture.congrats, 290, -75, null);
         	g.drawImage(texture.stars3, 290, -65, null);
         	
-        	g.drawString("Jumps: " + jumps, 30, 485);
+        	g.drawString("Jumps: " + jumps, 30, 495);
         	        	
         	if(final_retry) g.drawImage(texture.playAgainButton_Selected, 491, 500, null);
         	else g.drawImage(texture.playAgainButton, 491, 500, null);
@@ -179,6 +179,10 @@ public class Menu{
         }
         
         
+	}
+	
+	public void pauseMenu(Graphics g) {
+		g.drawImage(texture.transparent, 0, 0, null);
 	}
 	
 	public static void setProgress(int progress) {
